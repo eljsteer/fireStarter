@@ -62,6 +62,6 @@ userSchema.virtual('projectCount').get(function () {
   return this.projects.length;
 });
 
-const User = model('User', userSchema);
+const User = model('user', userSchema);
 
 module.exports = User;
