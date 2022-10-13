@@ -1,39 +1,48 @@
 const { Schema, model } = require('mongoose');
-const dayJs = require("dayjs");
+const dateFormat = require('../utils/dateFormat');
 
-const ProjectSchema = new Schema({
-  title: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  overview: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    detault: Date.now(),
-    get: (createdAtTime) => dayJs(createdAtTime).format('DD/MM/YYYY-hh:mm'),
-  },
-  gitRepo: {
-    type: String,
-    required: true,
-  },
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
-  fundingGoal: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-}, {
+const projectSchema = new Schema({
+    title: {
+      type: String,
+      required: true,
+      maxlength:30,
+      trim: true,
+    },
+    overview: {
+      type: String,
+      required: true,
+      maxlength:80,
+      trim: true,
+    },
+    description: {
+      type: String,
+      required: true,
+      minlength: 10,
+      maxlength: 300,
+      trim: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now(),
+      get: (timestamp) => dateFormat(timestamp),
+    },
+    gitRepo: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+    fundingGoal: {
+      type: Number,
+      required: true,
+      unique: true,
+      trim: true
+    },
+  }, 
+  {
     toJSON: {
       getters: true,
       virtual: true,
@@ -42,6 +51,6 @@ const ProjectSchema = new Schema({
   }
 );
 
-const Project = model('project', ProjectSchema);
+const Project = model('project', projectSchema);
 
 module.exports = Project;
