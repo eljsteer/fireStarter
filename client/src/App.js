@@ -6,9 +6,14 @@ import Matchup from './pages/Matchup';
 import Vote from './pages/Vote';
 import NotFound from './pages/NotFound';
 
+const client = new ApolloClient({
+  uri: '/graphql',
+  cache: new InMemoryCache(),
+});
 
 function App() {
   return (
+    <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-center align-center min-100-vh bg-primary">
           <Routes>
@@ -31,6 +36,7 @@ function App() {
           </Routes>
         </div>
       </Router>
+    </ApolloProvider>
   );
 }
 
