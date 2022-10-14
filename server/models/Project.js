@@ -41,6 +41,12 @@ const projectSchema = new Schema({
       unique: true,
       trim: true
     },
+    currentFunds: {
+      type: Number,
+      required: true,
+      unique: true,
+      trim: true
+    }
   }, 
   {
     toJSON: {

@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const project = require('./Project');
+const Project = require('./Project');
 
 const userSchema = new Schema({
     email: {
@@ -18,22 +18,25 @@ const userSchema = new Schema({
       type: String,
       required: true
     },
-    lastNames: {
+    lastName: {
       type: String,
       required: true
     },
     github: {
       type: String,
-      required: true
     },
     linkedin: {
       type: String,
-      required: true
     },
     skills: {
       type: String,
     },
-    projects: [project]    
+    projects: [
+      {
+        type: Schema.Types.ObjectId, 
+        ref: 'Project',
+      },
+    ],    
   },
   {
     toJSON: {
