@@ -66,29 +66,6 @@ const LoginForm = () => {
           <TextField
             error
             id="outlined-error-helper-text"
-            label="First Name"
-            name="firstName"
-            helperText="Incorrect entry."
-          />
-          <TextField
-            error
-            id="outlined-error-helper-text"
-            label="Last Name"
-            name="lastName"
-            helperText="Incorrect entry."
-          />
-        </div>
-        <div>
-          <TextField
-            error
-            id="outlined-error-helper-text"
-            label="Username"
-            name="username"
-            helperText="Please enter a Valid Username."
-          />
-          <TextField
-            error
-            id="outlined-error-helper-text"
             type="text"
             label="Email"
             placeholder="Please enter your email"
