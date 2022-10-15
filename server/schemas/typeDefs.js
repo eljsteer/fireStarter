@@ -25,6 +25,15 @@ const typeDefs = gql`
     currentFunds: Number!
   }
 
+  input ProjectInput {
+    title: String!
+    overview: String, 
+    description: String, 
+    gitRepo: String, 
+    fundingGoal: Number, 
+    currentFunds: Number
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -41,8 +50,9 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    updateProfile(firstName: String!, lastName: String!, github: String, linkedin: String, skills: String): Auth
+    updateProfile(github: String, linkedin: String, skills: String): Auth
     addProject(title: String!, description: String!): Project
+    updateProject(projectData: ProjectInput!): Project
     removeProject(projectId: ID!): Project
   }
 `;
