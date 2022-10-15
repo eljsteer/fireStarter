@@ -17,7 +17,6 @@ const typeDefs = gql`
   type Project {
     _id: ID!
     title: String!
-    overview: String!
     description: String!
     createdAt: Date
     gitRepo: String!
@@ -27,7 +26,6 @@ const typeDefs = gql`
 
   input ProjectInput {
     title: String!
-    overview: String, 
     description: String, 
     gitRepo: String, 
     fundingGoal: Number, 
@@ -42,15 +40,15 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(username: String!): User
-    projects(username: String): [Project]
-    project(projectId: ID!): Project
+    userProjects(username: String): [Project]
+    singleProject(projectId: ID!): Project
     me: User
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!, firstName: String!, lastName: String!): Auth
     login(email: String!, password: String!): Auth
-    addProject(title: String!, description: String!): Project
+    addProject(title: String!, description: String!, gitRepo: String, fundingGoal: Number, currentFunds: Number): Project
     updateProject(projectData: ProjectInput!, projectId: ID!): Project
     removeProject(projectId: ID!): Project
   }

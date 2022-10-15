@@ -37,7 +37,7 @@ const userSchema = new Schema({
     skills: {
       type: String,
     },
-    projects: [
+    userProjects: [
       {
         type: Schema.Types.ObjectId, 
         ref: 'Project',

@@ -8,12 +8,6 @@ const projectSchema = new Schema({
       maxlength:30,
       trim: true,
     },
-    overview: {
-      type: String,
-      required: true,
-      maxlength:80,
-      trim: true,
-    },
     description: {
       type: String,
       required: true,
