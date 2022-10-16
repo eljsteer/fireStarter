@@ -1,0 +1,57 @@
+[
+    {
+    "_id":"1",
+    "firstName": "Tommy",
+    "lastName": "Shelby",
+    "username": "tommyGuns",
+    "email": "tom@peaky.dev",
+    "password": "password123",
+    "gitHub": "tommyGuns",
+    "linkedin": "tommyboss",
+    "skills": ["HTML","CSS","Javascript", "react", "mongoDB", "Express", "Python", "Java", "Angular"]
+    }, 
+    {
+    "_id":"2",
+    "firstName": "Arthur",
+    "lastName": "Shelby",
+    "username": "kingArthur",
+    "email": "arthur@peaky.dev",
+    "password": "password123",
+    "gitHub": "kingArthur",
+    "linkedin": "ashelby",
+    "skills": ["HTML","CSS","Javascript"]
+    }, 
+    {
+    "_id":"3",
+    "firstName": "Alfie",
+    "lastName": "Solomons",
+    "username": "theBaker",
+    "email": "alfie@rum.com",
+    "password": "password123",
+    "gitHub": "theBaker",
+    "linkedin": "solomonsalfie",
+    "skills": ["HTML","CSS","Javascript", "react", "mongoDB", "Express"]
+    }, 
+    {
+    "_id":"4",
+    "firstName": "Michael",
+    "lastName": "Gray",
+    "username": "drGray",
+    "email": "michael@gray.com",
+    "password": "password123",
+    "gitHub": "drGray",
+    "linkedin": "mgray93",
+    "skills": ["HTML","CSS","Javascript", "react", "mongoDB", "Express", "Python", "Solidity"]
+    }, 
+    {
+    "_id":"5",
+    "firstName": "Polly",
+    "lastName": "Gray",
+    "username": "pollyWannaCrackHer",
+    "email": "polly@gray.com",
+    "password": "password123",
+    "gitHub": "pollyWannaCrackHer",
+    "linkedin": "pollygray12",
+    "skills": ["HTML","CSS","Javascript", "react", "mongoDB", "Express"]
+    }
+]

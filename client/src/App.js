@@ -2,8 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
+
 // import Header from './components/Header';
 // import Footer from './components/Footer';
+
+import { setContext } from '@apollo/client/link/context'
+
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -11,8 +15,25 @@ import Discover from './pages/Discover';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 
+// create HTTP link for graphQL
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+// authLink variable to check local storage for token 
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers, 
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 const client = new ApolloClient({
   uri: '/graphql',
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
