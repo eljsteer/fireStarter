@@ -1,13 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-
-
-// import Header from './components/Header';
-// import Footer from './components/Footer';
-
+import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context'
 
+
+import Header from './components/Header';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -41,33 +39,37 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-          <div className="flex-column justify-center align-center min-100-vh bg-primary">
-            <Routes>
-              <Route 
-                path="/" 
-                element={<Home />}
-              />
-              <Route 
-                path="/login" 
-                element={<Login />}
-              />
-              <Route 
-                path="/signup" 
-                element={<Signup />}
-              />
-              <Route 
-                path="/discover" 
-                element={<Discover />}
-              />
-              <Route 
-                path="/profile/:id" 
-                element={<Profile />}
-              />
-              <Route 
-                path="*"
-                element={<NotFound />}
-              />
-            </Routes>
+          <div>
+            <Header />
+            <div className="container">
+              <Routes>
+                <Route 
+                  path="/" 
+                  element={<Home />}
+                />
+                <Route 
+                  path="/login" 
+                  element={<Login />}
+                />
+                <Route 
+                  path="/signup" 
+                  element={<Signup />}
+                />
+                <Route 
+                  path="/discover" 
+                  element={<Discover />}
+                />
+                <Route 
+                  path="/profile/:id" 
+                  element={<Profile />}
+                />
+                <Route 
+                  path="*"
+                  element={<NotFound />}
+                />
+              </Routes>
+            </div> 
+            <Footer />           
           </div>
       </Router>
     </ApolloProvider>
