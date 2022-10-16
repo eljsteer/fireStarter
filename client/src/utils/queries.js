@@ -49,7 +49,7 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_PROJECTS = gql`
-  query getProjects {
+  query userProjects {
     userProjects {
       _id
       title 
@@ -63,7 +63,7 @@ export const QUERY_PROJECTS = gql`
 `;
 
 export const QUERY_SINGLE_PROJECT = gql`
-  query getSingleProject($projectId: ID!) {
+  query singleProject($projectId: ID!) {
     project(projectId: $projectId) {
       _id
       title 
