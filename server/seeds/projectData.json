@@ -6,7 +6,7 @@
     "gitRepo": "garrisonpub",
     "userId": "4",
     "fundingGoal": "2000",
-    "currentFunds": "795",
+    "currentFunds": "795"
   },
   {
     "_id": "2",
@@ -15,7 +15,7 @@
     "gitRepo": "clinkclink888",
     "userId": "3",
     "fundingGoal": "4500",
-    "currentFunds": "1250",
+    "currentFunds": "1250"
   },
   {
     "_id": "3",
@@ -24,7 +24,7 @@
     "gitRepo": "poundperbuck",
     "userId": "2",
     "fundingGoal": "4650",
-    "currentFunds": "375",
+    "currentFunds": "375"
   },
   {
     "_id": "4",
@@ -33,7 +33,7 @@
     "gitRepo": "peaky123",
     "userId": "5",
     "fundingGoal": "10000",
-    "currentFunds": "1459",
+    "currentFunds": "1459"
   },
   {
     "_id": "5",
@@ -42,6 +42,6 @@
     "gitRepo": "fabergeaway",
     "userId": "1",
     "fundingGoal": "1490",
-    "currentFunds": "985",
-  },
+    "currentFunds": "985"
+  }
 ]
