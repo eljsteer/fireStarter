@@ -1,0 +1,48 @@
+[
+  {
+    "_id":"1",
+    "firstName": "Tommy",
+    "lastName": "Shelby",
+    "username": "tommyGuns",
+    "password": "password123",
+    "gitHub": "tommyGuns",
+    "linkedin": "www.tommyshelby@linkedin.com",
+    "skills": ["HTML","CSS","Javascript", "react", "mongoDB", "Express", "Python", "Java", "Angular"]
+  }, {
+    "_id":"2",
+    "firstName": "Arthur",
+    "lastName": "Shelby",
+    "username": "kingArthur",
+    "password": "password123",
+    "gitHub": "kingArthur",
+    "linkedin": "www.arthurshelby@linkedin.com",
+    "skills": ["HTML","CSS","Javascript"]
+  }, {
+    "_id":"3",
+    "firstName": "Alfie",
+    "lastName": "Solomons",
+    "username": "theBaker",
+    "password": "password123",
+    "gitHub": "theBaker",
+    "linkedin": "www.tommyshelby@linkedin.com",
+    "skills": ["HTML","CSS","Javascript", "react", "mongoDB", "Express"]
+  }, {
+    "_id":"4",
+    "firstName": "Michael",
+    "lastName": "Gray",
+    "username": "drGray",
+    "password": "password123",
+    "gitHub": "drGray",
+    "linkedin": "www.michaelgray@linkedin.com",
+    "skills": ["HTML","CSS","Javascript", "react", "mongoDB", "Express", "Python", "Solidity"]
+  }, {
+    "_id":"5",
+    "firstName": "Polly",
+    "lastName": "Gray",
+    "username": "pollyWannaCrackHer",
+    "password": "password123",
+    "gitHub": "pollyWannaCrackHer",
+    "linkedin": "www.pollyGray@linkedin.com",
+    "skills": ["HTML","CSS","Javascript", "react", "mongoDB", "Express"]
+  }
+]
