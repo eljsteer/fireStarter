@@ -4,7 +4,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@ap
 import { setContext } from '@apollo/client/link/context'
 
 
-import Header from './components/Header';
+// import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -40,7 +40,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
           <div>
-            <Header />
+            {/* <Header /> */}
             <div className="container">
               <Routes>
                 <Route 
