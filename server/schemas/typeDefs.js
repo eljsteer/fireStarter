@@ -3,7 +3,6 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type User {
     _id: ID!
-    username: String!
     email: String!
     password: String!
     firstName: String!
@@ -18,18 +17,18 @@ const typeDefs = gql`
     _id: ID!
     title: String!
     description: String!
-    createdAt: Date
+    createdAt: String
     gitRepo: String!
-    fundingGoal: Number!
-    currentFunds: Number!
+    fundingGoal: Float!
+    currentFunds: Float!
   }
 
   input ProjectInput {
     title: String!
-    description: String, 
-    gitRepo: String, 
-    fundingGoal: Number, 
-    currentFunds: Number
+    description: String 
+    gitRepo: String
+    fundingGoal: Float
+    currentFunds: Float
   }
 
   type Auth {
@@ -39,16 +38,16 @@ const typeDefs = gql`
 
   type Query {
     users: [User]
-    user(username: String!): User
-    userProjects(username: String): [Project]
+    user(email: String!): User
+    userProjects(email: String!): [Project]
     singleProject(projectId: ID!): Project
     me: User
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!, firstName: String!, lastName: String!): Auth
+    addUser(email: String!, password: String!, firstName: String!, lastName: String!): Auth
     login(email: String!, password: String!): Auth
-    addProject(title: String!, description: String!, gitRepo: String, fundingGoal: Number, currentFunds: Number): Project
+    addProject(title: String!, description: String!, gitRepo: String, fundingGoal: Float, currentFunds: Float): Project
     updateProject(projectData: ProjectInput!, projectId: ID!): Project
     removeProject(projectId: ID!): Project
   }
