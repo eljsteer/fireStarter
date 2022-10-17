@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!, $firstName: String!, $lastName: String!) {
-    addUser(username: $username, email: $email, password: $password, firstName: $firstName, lastName: $lastName) {
+  mutation addUser($email: String!, $password: String!, $firstName: String!, $lastName: String!) {
+    addUser(email: $email, password: $password, firstName: $firstName, lastName: $lastName) {
       token
       user {
         _id
@@ -42,7 +42,6 @@ export const UPDATE_PROJECT = gql`
     updateProject(projectData: $projectData, projectId: $projectId) {
       _id
       email 
-      username 
       firstName
       lastName
       github
@@ -65,7 +64,6 @@ export const REMOVE_PROJECT = gql`
     removeProject(projectId: $projectId) {
       _id
       email 
-      username 
       firstName
       lastName
       github
