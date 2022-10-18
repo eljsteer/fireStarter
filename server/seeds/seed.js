@@ -13,7 +13,7 @@ db.once('open', async () => {
     console.log(userInfo);
 
     for (let i = 0; i < projectData.length; i++) {
-      const { _id, userId } = await Project.create({...projectData[i], userId: userInfo[0]});
+      const { _id, userId } = await Project.create({...projectData[i], userId: userInfo[Math.floor(Math.random() * userInfo.length)]});
       const user = await User.findOneAndUpdate(
         { _id: userId },
         {

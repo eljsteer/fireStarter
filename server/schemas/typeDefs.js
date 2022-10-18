@@ -10,7 +10,7 @@ const typeDefs = gql`
     github: String!
     linkedin: String
     skills: String!
-    projects: [Project]
+    userProjects: [Project]
   }
 
   type Project {
