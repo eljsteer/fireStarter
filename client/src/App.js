@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import AddUserInfo from './pages/AddUserInfo';
 import Discover from './pages/Discover';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
@@ -53,6 +54,10 @@ function App() {
                 <Route 
                   path="/signup" 
                   element={<Signup />}
+                />
+                <Route 
+                  path="/adduserinfo" 
+                  element={<AddUserInfo />}
                 />
                 <Route 
                   path="/discover" 
