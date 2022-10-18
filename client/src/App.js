@@ -13,6 +13,7 @@ import Signup from './pages/Signup';
 import Discover from './pages/Discover';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
+import SingleProject from './pages/SingleProject';
 
 // create HTTP link for graphQL
 const httpLink = createHttpLink({
@@ -74,6 +75,10 @@ function App() {
                   <Route 
                     path="/profile/:id" 
                     element={<Profile />}
+                  />
+                  <Route 
+                    path="/project/:id" 
+                    element={<SingleProject />}
                   />
                   <Route 
                     path="*"
