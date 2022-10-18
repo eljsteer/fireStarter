@@ -46,6 +46,7 @@ export default function Discover() {
           {allProjects.map((project, i) => (
             <Grid sx={{ maxWidth: 500 }} xs={12} sm={12} md={10}>
               <Link
+                to={`/project/${project._id}`}
                 underline="none">
                 <Item
                   xs={12}
@@ -62,8 +63,6 @@ export default function Discover() {
           ))}        
         </Grid>
       </Box>
-    </>
-    
-    
+    </>    
   );
 }
