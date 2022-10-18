@@ -28,9 +28,11 @@ const userSchema = new Schema({
     linkedin: {
       type: String,
     },
-    skills: {
-      type: String,
-    },
+    skills: [
+      {
+        type: String, 
+      },
+    ], 
     userProjects: [
       {
         type: Schema.Types.ObjectId, 

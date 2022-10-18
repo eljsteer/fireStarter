@@ -15,9 +15,11 @@ const resolvers = {
     },
 
     // retrieves all projects
-    userProjects: async (parent, { email }) => {
-      const params = email ? { email } : {};
-      return Project.find(params).sort({ createdAt: -1 });
+    userProjects: async () => {
+      console.log("hello");
+      const projectInfo = await Project.find().sort({ createdAt: -1 });
+      console.log(projectInfo);
+      return projectInfo;
     },
 
     // retrieves single project
