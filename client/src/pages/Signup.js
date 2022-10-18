@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Alert,
   Box,
@@ -12,10 +13,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-
 import {validateEmail } from "../utils/helpers";
-import { Link } from "react-router-dom";
-
 import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "../utils/mutations";
 
@@ -28,6 +26,7 @@ const SignupForm = () => {
   const [inputError, setInputError] = useState(false);
   const [helperText, setHelperText] = useState(false);
   const [createUser, { error, data }] = useMutation(CREATE_USER);
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -88,9 +87,11 @@ const SignupForm = () => {
       });
 
       Auth.login(data.createUser.token);
+
     } catch (e) {
       console.error(e);
     }
+    navigate("/adduserinfo");
 
     setUserFormData({
       firstName: '',
@@ -182,17 +183,15 @@ const SignupForm = () => {
                 <Alert severity="error" onClose={() => {setShowAlert(false)}}>
                   Computer says No! It doesn"t like your Incorrect login details!
                 </Alert>}
-                {/* <Link to="/adduserinfo"> */}
-                  <Button
-                    disabled={!(userFormData.firstName && userFormData.lastName && userFormData.email && userFormData.password)}
-                    type="submit"
-                    variant="outlined"
-                    sx={{ width: "25ch" }}
-                    onSubmit={handleFormSubmit}
-                    >
-                    Sign Up
-                  </Button>
-                  {/* </Link> */}
+                <Button
+                  disabled={!(userFormData.firstName && userFormData.lastName && userFormData.email && userFormData.password)}
+                  type="submit"
+                  variant="outlined"
+                  sx={{ width: "25ch" }}
+                  onSubmit={handleFormSubmit}
+                  >
+                  Sign Up
+                </Button>
                 <Stack direction="row">
                   <hr></hr>
                   <div>OR</div>
