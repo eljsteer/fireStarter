@@ -1,8 +1,50 @@
-const Discover = () => {
+import React from 'react';
+import ProjectCard from '../components/ProjectCard';
+import { Link } from 'react-router-dom';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Unstable_Grid2';
 
-    return (
-      <p>Discover Page</p>
-    );
-  };
+import { useQuery } from '@apollo/client';
+import { QUERY_PROJECTS } from '../utils/queries';
 
-export default Discover;
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
+export default function Discover() {
+  const {loading, data} = useQuery(QUERY_PROJECTS);
+  console.log(data);
+  const allProjects = data?.userProjects || [];
+  console.log(allProjects);
+
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2}>
+        {allProjects.map((project, i) => (
+          <Grid xs={12}>
+            <Link
+              underline="none">
+              <Item
+                xs={12}
+                underline="none">
+                <ProjectCard 
+                  key={i}
+                  title={project.title}                
+                  description={project.description}
+                  fundingGoal={project.fundingGoal}
+                />
+              </Item>
+            </Link>            
+          </Grid>
+        ))}        
+      </Grid>
+    </Box>
+  );
+}

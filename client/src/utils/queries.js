@@ -47,7 +47,7 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_PROJECTS = gql`
-  query userProjects {
+  {
     userProjects {
       _id
       title 

@@ -1,46 +1,36 @@
 [
   {
-    "_id": "1",
     "title": "Racetrack Book-A-Thon",
     "description": "Make searching and connecting with racetrack bookies easy with our simple Racetrack bookies application. At the click of a button search race events near you.",
     "gitRepo": "garrisonpub",
-    "userId": "4",
     "fundingGoal": "2000",
     "currentFunds": "795"
   },
   {
-    "_id": "2",
     "title": "Bottle Clink",
     "description": "Online e-commerce application to search, purchase and deliver your favourite spirit products straight to your door with Bottle Clink.",
     "gitRepo": "clinkclink888",
-    "userId": "3",
     "fundingGoal": "4500",
     "currentFunds": "1250"
   },
   {
-    "_id": "3",
     "title": "Pound for every Dollar",
-    "description": "Convert currency between British Pounds and US dollars with this convinient application.",
+    "description": "Convert currency between British Pounds and US dollars with this convenient application.",
     "gitRepo": "poundperbuck",
-    "userId": "2",
     "fundingGoal": "4650",
     "currentFunds": "375"
   },
   {
-    "_id": "4",
     "title": "Peaky Universe",
     "description": "Google images API to search through everything Peaky Blinders related for costume inspiration for every occasion.",
     "gitRepo": "peaky123",
-    "userId": "5",
     "fundingGoal": "10000",
     "currentFunds": "1459"
   },
   {
-    "_id": "5",
     "title": "Faberge Today",
     "description": "A wonder of the modern world, the Faberge Egg search application allows users to search and view images and information of the 69 known created eggs.",
     "gitRepo": "fabergeaway",
-    "userId": "1",
     "fundingGoal": "1490",
     "currentFunds": "985"
   }
