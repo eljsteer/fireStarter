@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
@@ -34,43 +36,55 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
-          <div>          
-            <Navigation />
-            <div className="container">
-              <Routes>
-                <Route 
-                  path="/" 
-                  element={<Home />}
-                />
-                <Route 
-                  path="/login" 
-                  element={<Login />}
-                />
-                <Route 
-                  path="/signup" 
-                  element={<Signup />}
-                />
-                <Route 
-                  path="/discover" 
-                  element={<Discover />}
-                />
-                <Route 
-                  path="/profile/:id" 
-                  element={<Profile />}
-                />
-                <Route 
-                  path="*"
-                  element={<NotFound />}
-                />
-              </Routes>
-            </div> 
-            <Footer />           
-          </div>
-      </Router>
+      <ThemeProvider
+      theme={darkTheme}
+      breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
+      minBreakpoint="xxs">
+      <CssBaseline />
+        <Router>
+            <div>          
+              <Navigation />
+              <div className="container">
+                <Routes>
+                  <Route 
+                    path="/" 
+                    element={<Home />}
+                  />
+                  <Route 
+                    path="/login" 
+                    element={<Login />}
+                  />
+                  <Route 
+                    path="/signup" 
+                    element={<Signup />}
+                  />
+                  <Route 
+                    path="/discover" 
+                    element={<Discover />}
+                  />
+                  <Route 
+                    path="/profile/:id" 
+                    element={<Profile />}
+                  />
+                  <Route 
+                    path="*"
+                    element={<NotFound />}
+                  />
+                </Routes>
+              </div> 
+              <Footer />           
+            </div>
+        </Router>
+      </ThemeProvider>
     </ApolloProvider>
   );
 }
