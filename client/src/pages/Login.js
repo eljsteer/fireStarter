@@ -1,33 +1,36 @@
-// see SignupForm.js for comments
 import React, { useState } from "react";
-// import { Form, Button, Alert } from 'react-bootstrap';
-import Card from '@mui/material/Card';
-import Alert from '@mui/material/Alert';
-import Box from '@mui/material/Box';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import {validateEmail } from "../utils/helpers"
+import {
+  Alert,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Container,
+  Grid,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
+import {validateEmail } from "../utils/helpers";
+import { Link } from 'react-router-dom';
 
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
 
-import { loginUser } from "../utils/API";
 import Auth from "../utils/auth";
 
 const LoginForm = () => {
-
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-  const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [helperText, setHelperText] = useState(false);
+  const [loginUser, { error, data }] = useMutation(LOGIN_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
     if( name === "password") {
       if(!value) {
         setPasswordError(true);
@@ -37,12 +40,14 @@ const LoginForm = () => {
         setHelperText(false);
       }
     } 
-    setUserFormData({ ...userFormData, [name]: value });
-
+    setUserFormData({ 
+      ...userFormData, 
+      [name]: value 
+    });
   };
 
   const handleBlur = (event) => {
-    const { name } = event.target;
+    const { name, value } = event.target;
     const isValid = validateEmail(event.target.value);
     if (name === "email") {
       if(!isValid) {
@@ -52,7 +57,15 @@ const LoginForm = () => {
         setEmailError(false);
         setHelperText(false);
       }
-    }
+    } else if( name === "password") {
+      if(!value) {
+        setPasswordError(true);
+        setHelperText("A Valid Password is required");
+      } else if (value) {
+        setPasswordError(false);
+        setHelperText(false);
+      }
+    } 
   }
 
   const handleFormSubmit = async (event) => {
@@ -66,17 +79,10 @@ const LoginForm = () => {
     }
 
     try {
-      const login = await loginUser(userFormData);
-
-      if (!login.ok) {
-        throw new Error('something went wrong!');
-      }
-
-      const { token, user } = await login.json();
-
-      console.log(user);
-
-      Auth.login(token);
+      const { data } = await loginUser({ 
+        variables: { ...userFormData } 
+      });
+      Auth.loginUser(data.login.token);
 
     } catch (err) {
       console.error(err);
@@ -84,7 +90,6 @@ const LoginForm = () => {
     }
 
     setUserFormData({
-      username: '',
       email: '',
       password: '',
     });
@@ -132,6 +137,7 @@ const LoginForm = () => {
                     name="password"
                     placeholder="Please enter a Password"
                     onChange={handleInputChange}
+                    onBlur={handleBlur}
                     value={userFormData.password}
                     error={passwordError}
                     helperText={helperText}
@@ -142,12 +148,27 @@ const LoginForm = () => {
                 <Alert severity="error" onClose={() => {setShowAlert(false)}}>
                   Computer says No! It doesn't like your Incorrect login details!
                 </Alert>}
-                <Button
-                  disabled={!(userFormData.email && userFormData.password)}
-                  type='submit'
-                  variant='outlined'>
-                  Submit
-                </Button>
+                <div>
+                  <Button
+                    disabled={!(userFormData.email && userFormData.password)}
+                    type='submit'
+                    variant='outlined'
+                    sx={{ width: '25ch' }}
+                    onSubmit={handleFormSubmit}
+                    >
+                    Log In
+                  </Button>
+                </div>
+                <Stack direction="row">
+                  <hr></hr>
+                  <div>OR</div>
+                  <hr></hr>
+                </Stack>
+                <br/>
+                <Typography>Don't Have an Account? 
+                <Link to="/signup"> Sign Up</Link>
+                </Typography>
+                <br />
               </Card>
             </Grid>
           </Grid>
