@@ -11,12 +11,11 @@ const resolvers = {
 
     // retrieves all users 
     users: async () => {
-      return User.find().populate('userProjects');
+      return User.find({}).populate('userProjects');
     },
 
     // retrieves all projects
     userProjects: async () => {
-      console.log("hello");
       const projectInfo = await Project.find().sort({ createdAt: -1 });
       console.log(projectInfo);
       return projectInfo;

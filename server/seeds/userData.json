@@ -7,7 +7,7 @@
     "password": "password123",
     "gitHub": "tommyGuns",
     "linkedin": "tommyboss",
-    "skills": ["HTML","CSS","Javascript", "react", "mongoDB", "Express", "Python", "Java", "Angular"]
+    "skills": ["HTML","CSS","Javascript", "React", "MongoDB", "Express", "Python", "Java", "Angular"]
     }, 
     {
     "firstName": "Arthur",
@@ -27,7 +27,7 @@
     "password": "password123",
     "gitHub": "theBaker",
     "linkedin": "solomonsalfie",
-    "skills": ["HTML","CSS","Javascript", "react", "mongoDB", "Express"]
+    "skills": ["HTML","CSS","Javascript", "React", "MongoDB", "Express"]
     }, 
     {
     "firstName": "Michael",
@@ -37,7 +37,7 @@
     "password": "password123",
     "gitHub": "drGray",
     "linkedin": "mgray93",
-    "skills": ["HTML","CSS","Javascript", "react", "mongoDB", "Express", "Python", "Solidity"]
+    "skills": ["HTML","CSS","Javascript", "React", "MongoDB", "Express", "Python", "Solidity"]
     }, 
     {
     "firstName": "Polly",
@@ -47,6 +47,6 @@
     "password": "password123",
     "gitHub": "pollyWannaCrackHer",
     "linkedin": "pollygray12",
-    "skills": ["HTML","CSS","Javascript", "react", "mongoDB", "Express"]
+    "skills": ["HTML","CSS","Javascript", "React", "MongoDB", "Express"]
     }
 ]

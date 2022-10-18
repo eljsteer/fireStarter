@@ -82,7 +82,7 @@ function Navigation(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', margin: 8 }}>
             <AppBar component="nav">
                 <Toolbar>
                     <IconButton
