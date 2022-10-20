@@ -29,13 +29,14 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Profile() {
   const {loading, data} = useQuery(QUERY_ME);
   console.log(data);
-  const allUserProjects = data?.me.userProjects || [];
-  console.log(allUserProjects);
-  const welcomeUser = `${data.me.firstName} ${ data.me.lastName}`
-
+  
   if (loading) {
     return <div>Fire is starting...</div>;
   }
+  
+  const allUserProjects = data?.me.userProjects || [];
+
+  const welcomeUser = `${data.me.firstName} ${ data.me.lastName}`
 
   return (
     <>

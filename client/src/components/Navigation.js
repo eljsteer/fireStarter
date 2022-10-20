@@ -48,20 +48,21 @@ const navItems = [
 const loggedInItems = [
     ...navItems,
     {
-        id: 3,
-        icon: <LoginIcon />,
-        name: 'Login',
-        url: '/login'
+        id: 4,
+        icon: <LogoutIcon />,
+        name: 'Logout',
+        url: '/', 
+        onClick: () => Auth.logout()
     }
 ];
 
 const loggedOutItems = [
     ...navItems,
     {
-        id: 4,
-        icon: <LogoutIcon />,
-        name: 'Logout',
-        url: '/'
+        id: 3,
+        icon: <LoginIcon />,
+        name: 'Login',
+        url: '/login'
     }
 ];
 
@@ -81,10 +82,12 @@ function Navigation(props) {
             </Typography>
             <Divider />
             <List>
-                {(Auth.loggedIn ? loggedInItems: loggedOutItems).map((item) => (
+                {(Auth.loggedIn() ? loggedInItems: loggedOutItems).map((item) => (
                     <ListItem key={item.id} disablePadding>
                         <Link to={`${item.url}`}>
-                            <ListItemButton sx={{ textAlign: 'center' }}>
+                            <ListItemButton 
+                                sx={{ textAlign: 'center' }}
+                                onClick={item.onClick}>
                                 <ListItemIcon >
                                     <>{item.icon}</>
                                 </ListItemIcon>
@@ -120,10 +123,12 @@ function Navigation(props) {
                     FireStarter
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                        {(Auth.loggedIn ? loggedInItems: loggedOutItems).map((item) => (
+                        {(Auth.loggedIn() ? loggedInItems: loggedOutItems).map((item) => (
                             <Link to={`${item.url}`}>
                                 <Button key={item.id} sx={{ color: '#fff' }}>
-                                        <ListItemButton sx={{ textAlign: 'center' }}>
+                                        <ListItemButton 
+                                            sx={{ textAlign: 'center' }}
+                                            onClick={item.onClick}>
                                             <ListItemIcon >
                                                 <>{item.icon}</>
                                             </ListItemIcon>
