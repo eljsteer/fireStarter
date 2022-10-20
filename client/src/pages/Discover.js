@@ -41,7 +41,7 @@ export default function Discover() {
         </ThemeProvider>
       </div>
 
-      <Box sx={{ flexGrow: 1 }}>
+      <Box >
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
           {allProjects.map((project, i) => (
             <Grid sx={{ maxWidth: 500 }} xs={12} sm={12} md={10}>
