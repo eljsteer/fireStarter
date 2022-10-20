@@ -11,9 +11,14 @@ import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-import { useQuery } from '@apollo/client';
+import Auth from "../utils/auth";
+import { removeProjectId } from '../utils/localStorage';
+
+import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
+import { REMOVE_PROJECT } from '../utils/mutations';
 import { QUERY_SINGLE_PROJECT } from '../utils/queries';
 
 let theme = createTheme();
@@ -28,6 +33,26 @@ export default function SingleProject() {
 
     const singleProject = data?.singleProject || {};
     console.log(singleProject);
+    
+    const [removeProject] = useMutation(REMOVE_PROJECT);
+
+    const handleProjectDelete = async (projectId) => {
+        const token = Auth.loggedIn() ? Auth.getToken() : null; // checks if the user is logged in 
+
+        if (!token) {
+            return false;
+        }
+
+        try {
+            const { data } = await removeProject({
+                variables: { projectId }
+            });
+
+            removeProjectId(projectId); // remove project from local storage
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     if (loading) {
         return <div>Fire is starting...</div>;
@@ -83,12 +108,18 @@ export default function SingleProject() {
                 <Button variant="contained" color="success">
                     <AttachMoneyOutlinedIcon /> Fund this project
                 </Button>
-                <Link to='/discover'>
-                    <Button variant="outlined">
+                <Button 
+                    variant="outlined" 
+                    color="error"
+                    onClick={() => handleProjectDelete(singleProject.projectId)}>
+                    <DeleteIcon /> Delete this project
+                </Button>
+                <Link to='/profile'>
+                    <Button variant="contained">
                         <ChevronLeftIcon/> Go Back
                     </Button>
                 </Link>                
             </Stack>
         </>
     )
-}
+};
