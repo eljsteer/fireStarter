@@ -4,20 +4,32 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
-import {
-    createTheme,
-    responsiveFontSizes,
-    ThemeProvider,
-} from '@mui/material/styles';
+import { createTheme, responsiveFontSizes, ThemeProvider, } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import Divider from '@mui/material/Divider';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { QUERY_SINGLE_PROJECT } from '../utils/queries';
 
+// const Item = styled(Paper)(({ theme }) => ({
+//     // backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+//     ...theme.typography.body2,
+//     padding: theme.spacing(1),
+//     textAlign: 'center',
+//     color: theme.palette.text.secondary,
+// }));
+
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
+
+
 
 export default function SingleProject() {
     const { id } = useParams();
@@ -34,9 +46,8 @@ export default function SingleProject() {
     }
 
     return (
-
-        
-        <Card sx={{ maxWidth: 1250 }}>
+        <>
+          <Card sx={{ maxWidth: 1250 }}>
             <CardContent>
                 <ThemeProvider theme={theme}>
                     <Typography gutterBottom variant="h4" component="div">
@@ -58,22 +69,36 @@ export default function SingleProject() {
                     <Button 
                     variant="outlined"
                     underline='none'
-                    >
-                        GitHub Repo
-                    </Button>
-                </a>
-            </CardActions>
-            <CardContent>
-                <ThemeProvider theme={theme}>
-                    <Typography gutterBottom variant="body1" component="div">
-                        Funding Goal: ${singleProject.fundingGoal} <br />
-                    </Typography>
-                    <br />
-                    <Typography variant="body1">
-                        Current Funding: ${singleProject.currentFunds} <br />
-                    </Typography>
-                </ThemeProvider>
-            </CardContent>
-        </Card>
+                        >
+                            GitHub Repo
+                        </Button>
+                    </a>
+                </CardActions>
+                <CardContent>
+                    <ThemeProvider theme={theme}>
+                        <Typography gutterBottom variant="body1" component="div">
+                            Funding Goal: ${singleProject.fundingGoal} <br />
+                        </Typography>
+                        <br />
+                        <Typography variant="body1">
+                            Current Funding: ${singleProject.currentFunds} <br />
+                        </Typography>
+                    </ThemeProvider>
+                </CardContent>
+            </Card>
+            <Stack
+                direction="row"
+                divider={<Divider orientation="vertical" flexItem />}
+                spacing={2}
+                margin={2}
+            >
+                <Button variant="contained" color="success">
+                    <AttachMoneyOutlinedIcon /> Fund this project
+                </Button>
+                <Button variant="outlined">
+                    <ChevronLeftIcon /> Back to Discover
+                </Button>
+            </Stack>
+        </>
     )
 }
