@@ -10,7 +10,7 @@ export const QUERY_ME =gql`
       github
       linkedin
       skills
-      projects {
+      userProjects {
         _id
         title 
         description
@@ -24,8 +24,8 @@ export const QUERY_ME =gql`
 `;
 
 export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
+  query user($email: String!) {
+    user(email: $email) {
       _id
       email
       firstName
@@ -33,7 +33,7 @@ export const QUERY_USER = gql`
       github
       linkedin
       skills
-      projects {
+      userProjects {
         _id
         title 
         description
@@ -45,6 +45,14 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
+// export const QUERY_CHECKOUT = gql`
+//   query getCheckout($products: [ID]!) {
+//     checkout(products: $products) {
+//       session
+//     }
+//   }
+// `;
 
 export const QUERY_PROJECTS = gql`
   {
