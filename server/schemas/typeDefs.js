@@ -7,9 +7,9 @@ const typeDefs = gql`
     password: String!
     firstName: String!
     lastName: String!
-    github: String!
+    github: String
     linkedin: String
-    skills: String!
+    skills: [String]
     userProjects: [Project]
   }
 

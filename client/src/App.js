@@ -78,7 +78,7 @@ function App() {
                     element={<AddUserInfo />}
                   />
                   <Route 
-                    path="/profile/:id" 
+                    path="/profile" 
                     element={<Profile />}
                   />
                   <Route 
