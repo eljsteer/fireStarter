@@ -8,9 +8,7 @@ import { createTheme, responsiveFontSizes, ThemeProvider, } from '@mui/material/
 import Typography from '@mui/material/Typography';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import Divider from '@mui/material/Divider';
-import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
-import { styled } from '@mui/material/styles';
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 

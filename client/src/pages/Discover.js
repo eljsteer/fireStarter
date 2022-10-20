@@ -5,11 +5,7 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
-import {
-  createTheme,
-  responsiveFontSizes,
-  ThemeProvider,
-} from '@mui/material/styles';
+import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
 import { useQuery } from '@apollo/client';
@@ -41,7 +37,7 @@ export default function Discover() {
         </ThemeProvider>
       </Item>
 
-      <Box sx={{ flexGrow: 1, margin: 4, padding: 2 }}>
+      <Box sx={{ flexGrow: 1,  padding: 2 }}>
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
           {allProjects.map((project, i) => (
             <Grid sx={{ maxWidth: 500 }} xs={12} sm={12} md={10}>
@@ -63,6 +59,8 @@ export default function Discover() {
           ))}        
         </Grid>
       </Box>
+      <br/>
+      <br/>
     </>    
   );
 }
