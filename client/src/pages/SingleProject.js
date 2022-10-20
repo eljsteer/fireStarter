@@ -34,14 +34,18 @@ export default function SingleProject() {
     }
 
     return (
+
+        
         <Card sx={{ maxWidth: 1250 }}>
             <CardContent>
                 <ThemeProvider theme={theme}>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {singleProject.title} <br />
-                        <p><span><CalendarMonthOutlinedIcon /></span> created on {singleProject.createdAt}</p>
+                    <Typography gutterBottom variant="h4" component="div">
+                        {singleProject.title} <br />                        
                     </Typography>
-                    <Typography variant="body2">
+                    <Typography gutterBottom variant="p" component="div">
+                        <p><span><CalendarMonthOutlinedIcon /></span> Project created: {singleProject.createdAt}</p>
+                    </Typography>
+                    <Typography variant="body1">
                         {singleProject.description} <br />
                     </Typography>
                 </ThemeProvider>
