@@ -166,7 +166,7 @@ const LoginForm = () => {
                 </Stack>
                 <br/>
                 <Typography>Don't Have an Account? 
-                <Link to="/signup"> Sign Up</Link>
+                  <Link to="/signup"> Sign Up</Link>
                 </Typography>
                 <br />
               </Card>
