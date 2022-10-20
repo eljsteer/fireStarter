@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const secret = process.env.JWT_SECRET;
 const expiration = '2h';
+console.log(secret);
 
 module.exports = {
     // function for our authenticated routes
