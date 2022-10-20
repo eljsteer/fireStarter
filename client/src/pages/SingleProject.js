@@ -18,18 +18,8 @@ import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { QUERY_SINGLE_PROJECT } from '../utils/queries';
 
-// const Item = styled(Paper)(({ theme }) => ({
-//     // backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-//     ...theme.typography.body2,
-//     padding: theme.spacing(1),
-//     textAlign: 'center',
-//     color: theme.palette.text.secondary,
-// }));
-
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
-
-
 
 export default function SingleProject() {
     const { id } = useParams();
@@ -47,21 +37,21 @@ export default function SingleProject() {
 
     return (
         <>
-          <Card sx={{ maxWidth: 1250 }}>
-            <CardContent>
-                <ThemeProvider theme={theme}>
-                    <Typography gutterBottom variant="h4" component="div">
-                        {singleProject.title} <br />                        
-                    </Typography>
-                    <Typography gutterBottom variant="p" component="div">
-                        <p><span><CalendarMonthOutlinedIcon /></span> Project created: {singleProject.createdAt}</p>
-                    </Typography>
-                    <Typography variant="body1">
-                        {singleProject.description} <br />
-                    </Typography>
-                </ThemeProvider>
-            </CardContent>
-            <CardActions>
+            <Card sx={{ maxWidth: 1250 }}>
+                <CardContent>
+                    <ThemeProvider theme={theme}>
+                        <Typography gutterBottom variant="h4" component="div">
+                            {singleProject.title} <br />                        
+                        </Typography>
+                        <Typography gutterBottom variant="p" component="div">
+                            <p><span><CalendarMonthOutlinedIcon /></span> Project created: {singleProject.createdAt}</p>
+                        </Typography>
+                        <Typography variant="body1">
+                            {singleProject.description} <br />
+                        </Typography>
+                    </ThemeProvider>
+                </CardContent>
+                <CardActions>
                 <a
                     underline='none'
                     // href={'https://github.com/`${singleProject.gitRepo}`'}
@@ -95,9 +85,11 @@ export default function SingleProject() {
                 <Button variant="contained" color="success">
                     <AttachMoneyOutlinedIcon /> Fund this project
                 </Button>
-                <Button variant="outlined">
-                    <ChevronLeftIcon /> Back to Discover
-                </Button>
+                <Link to='/discover'>
+                    <Button variant="outlined">
+                        <ChevronLeftIcon/> Go Back
+                    </Button>
+                </Link>                
             </Stack>
         </>
     )
