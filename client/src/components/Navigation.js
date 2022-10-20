@@ -18,7 +18,9 @@ import HomeIcon from '@mui/icons-material/Home';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
-import LocalFireDepartmentOutlinedIcon from '@mui/icons-material/LocalFireDepartmentOutlined';
+import LogoutIcon from '@mui/icons-material/Logout';
+
+import Auth from "../utils/auth";
 
 const drawerWidth = 240;
 
@@ -40,7 +42,11 @@ const navItems = [
         icon: <SearchIcon />,
         name: 'Discover',
         url: '/discover'
-    },
+    }
+];
+
+const loggedInItems = [
+    ...navItems,
     {
         id: 3,
         icon: <LoginIcon />,
@@ -48,6 +54,17 @@ const navItems = [
         url: '/login'
     }
 ];
+
+const loggedOutItems = [
+    ...navItems,
+    {
+        id: 4,
+        icon: <LogoutIcon />,
+        name: 'Logout',
+        url: '/'
+    }
+];
+
 
 function Navigation(props) {
     const { window } = props;
@@ -64,7 +81,7 @@ function Navigation(props) {
             </Typography>
             <Divider />
             <List>
-                {navItems.map((item) => (
+                {(Auth.loggedIn ? loggedInItems: loggedOutItems).map((item) => (
                     <ListItem key={item.id} disablePadding>
                         <Link to={`${item.url}`}>
                             <ListItemButton sx={{ textAlign: 'center' }}>
@@ -103,7 +120,7 @@ function Navigation(props) {
                     FireStarter
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                        {navItems.map((item) => (
+                        {(Auth.loggedIn ? loggedInItems: loggedOutItems).map((item) => (
                             <Link to={`${item.url}`}>
                                 <Button key={item.id} sx={{ color: '#fff' }}>
                                         <ListItemButton sx={{ textAlign: 'center' }}>
