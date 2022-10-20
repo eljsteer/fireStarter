@@ -19,7 +19,7 @@ let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  // backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
@@ -34,14 +34,14 @@ export default function Discover() {
 
   return (
     <>
-      <div>
-        <ThemeProvider theme={theme} >
+      <Item>
+        <ThemeProvider sx={{maxWidth: "auto"}} theme={theme} >
           <Typography variant="h2" sx={{margin: 5}}>Welcome to FireStarter</Typography>
           <Typography variant="h5" sx={{margin: 5}}>A DAO inspired application to connect developers and light the spark of innovation for projects</Typography>
         </ThemeProvider>
-      </div>
+      </Item>
 
-      <Box >
+      <Box sx={{ flexGrow: 1, margin: 4, padding: 2 }}>
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
           {allProjects.map((project, i) => (
             <Grid sx={{ maxWidth: 500 }} xs={12} sm={12} md={10}>
