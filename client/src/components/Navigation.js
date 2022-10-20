@@ -33,12 +33,6 @@ const navItems = [
     },
     {
         id: 1,
-        icon: <AccountBoxIcon />,
-        name: 'Profile',
-        url: '/profile'
-    },
-    {
-        id: 2,
         icon: <SearchIcon />,
         name: 'Discover',
         url: '/discover'
@@ -48,7 +42,13 @@ const navItems = [
 const loggedInItems = [
     ...navItems,
     {
-        id: 4,
+        id: 2,
+        icon: <AccountBoxIcon />,
+        name: 'Profile',
+        url: '/profile'
+    },
+    {
+        id: 3,
         icon: <LogoutIcon />,
         name: 'Logout',
         url: '/', 
@@ -59,7 +59,7 @@ const loggedInItems = [
 const loggedOutItems = [
     ...navItems,
     {
-        id: 3,
+        id: 4,
         icon: <LoginIcon />,
         name: 'Login',
         url: '/login'
