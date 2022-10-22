@@ -1,7 +1,7 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Project } = require("../models");
 const { signToken } = require("../utils/auth");
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+// const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
@@ -78,6 +78,20 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+
+    // mutation to update a project 
+    updateUser: async (parent, { updateData }, context) => {
+      if (context.user) {
+          const updatedUser = await User.findByIdAndUpdate(
+              { _id: context.user._id },
+              { $push: { user: updateData } },
+              { new: true }
+          );
+            console.log(updatedUser);
+          return updatedUser;
+      }
+      throw new AuthenticationError('You must to be logged in!');
+    }, 
 
     // mutation to log in 
     login: async (parent, { email, password }) => {
