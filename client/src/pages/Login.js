@@ -146,7 +146,7 @@ const LoginForm = () => {
                 </CardContent>
                 {showAlert && 
                 <Alert severity="error" onClose={() => {setShowAlert(false)}}>
-                  Computer says No! It doesn't like your Incorrect login details!
+                  Computer says no! It doesn't like your incorrect login details!
                 </Alert>}
                 <div>
                   <Button
