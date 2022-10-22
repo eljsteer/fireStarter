@@ -30,7 +30,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Profile() {
   const {loading, data} = useQuery(QUERY_ME);
-  console.log(data);
   
   if (loading) {
     return <div>Fire is starting...</div>;

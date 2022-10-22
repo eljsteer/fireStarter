@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectCard from '../components/ProjectCard';
+import Carousel from '../components/Carousel';
 import { Link } from 'react-router-dom';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -24,8 +24,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Home = () => {
   const {loading, data} = useQuery(QUERY_PROJECTS);
-  console.log(data);
   const allProjects = data?.userProjects || [];
+
   console.log(allProjects);
 
   return (
@@ -47,7 +47,7 @@ const Home = () => {
                 <Item
                   xs={12}
                   underline="none">
-                  <ProjectCard 
+                  <Carousel 
                     key={i}
                     title={project.title}                
                     description={project.description}

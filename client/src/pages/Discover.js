@@ -24,10 +24,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Discover() {
   const {loading, data} = useQuery(QUERY_PROJECTS);
-  console.log(data);
   const allProjects = data?.userProjects || [];
-  console.log(allProjects);
-
+  
   return (
     <>
       <Item>
