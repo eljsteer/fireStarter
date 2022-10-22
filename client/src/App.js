@@ -13,6 +13,7 @@ import Signup from './pages/Signup';
 import AddUserInfo from './pages/AddUserInfo';
 import Discover from './pages/Discover';
 import Profile from './pages/Profile';
+import AddProject from './pages/AddProject';
 import NotFound from './pages/NotFound';
 import SingleProject from './pages/SingleProject';
 
@@ -80,6 +81,10 @@ function App() {
                   <Route 
                     path="/profile" 
                     element={<Profile />}
+                  />
+                  <Route 
+                    path="/addproject" 
+                    element={<AddProject />}
                   />
                   <Route 
                     path="/project/:id" 

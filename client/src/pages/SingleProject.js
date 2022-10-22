@@ -32,8 +32,6 @@ export default function SingleProject() {
     });
 
     const singleProject = data?.singleProject || {};
-    console.log(singleProject);
-    
     const [removeProject] = useMutation(REMOVE_PROJECT);
 
     const handleProjectDelete = async (projectId) => {
