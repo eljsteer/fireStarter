@@ -1,6 +1,7 @@
 import React from 'react';
 import ProjectCard from '../components/ProjectCard';
 import { Link } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -14,6 +15,7 @@ import Typography from '@mui/material/Typography';
 
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
+import { Button } from '@mui/material';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -28,7 +30,12 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Profile() {
   const {loading, data} = useQuery(QUERY_ME);
-  console.log(data);
+  // const navigate = useNavigate();
+
+  // const handleNavigation = (event) => {
+  //   event.preventDefault();
+  //   navigate("/adduserinfo");
+  // };
   
   if (loading) {
     return <div>Fire is starting...</div>;
@@ -43,6 +50,11 @@ export default function Profile() {
       <Item>
         <ThemeProvider sx={{maxWidth: "auto"}} theme={theme} >
           <Typography variant="h2" sx={{margin: 5}}>Welcome {welcomeUser}</Typography>
+          {/* <Button
+            onSubmit={handleNavigation}
+          >
+            Update User
+          </Button> */}
         </ThemeProvider>
       </Item>
 

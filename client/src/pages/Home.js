@@ -24,9 +24,12 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Home = () => {
   const {loading, data} = useQuery(QUERY_PROJECTS);
-  console.log(data);
+
+  if (loading) {
+    return <div>Fire is starting...</div>;
+  }
+
   const allProjects = data?.userProjects || [];
-  console.log(allProjects);
 
   return (
     <>

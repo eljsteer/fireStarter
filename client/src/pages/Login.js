@@ -25,7 +25,8 @@ const LoginForm = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const [helperText, setHelperText] = useState(false);
+  const [emailHelperText, setEmailHelperText] = useState(false);
+  const [passwordHelperText, setPasswordHelperText] = useState(false);
   const [loginUser, { error, data }] = useMutation(LOGIN_USER);
 
   const handleInputChange = (event) => {
@@ -34,10 +35,10 @@ const LoginForm = () => {
     if( name === "password") {
       if(!value) {
         setPasswordError(true);
-        setHelperText("A Valid Password is required");
+        setPasswordHelperText("A Valid Password is required");
       } else if (value) {
         setPasswordError(false);
-        setHelperText(false);
+        setPasswordHelperText(false);
       }
     } 
     setUserFormData({ 
@@ -52,18 +53,18 @@ const LoginForm = () => {
     if (name === "email") {
       if(!isValid) {
         setEmailError(true);
-        setHelperText("A Valid Email is required");
+        setEmailHelperText("A Valid Email is required");
       } else if (isValid) {
         setEmailError(false);
-        setHelperText(false);
+        setEmailHelperText(false);
       }
     } else if( name === "password") {
       if(!value) {
         setPasswordError(true);
-        setHelperText("A Valid Password is required");
+        setPasswordHelperText("A Valid Password is required");
       } else if (value) {
         setPasswordError(false);
-        setHelperText(false);
+        setPasswordHelperText(false);
       }
     } 
   }
@@ -127,7 +128,7 @@ const LoginForm = () => {
                     onBlur={handleBlur}
                     value={userFormData.email}
                     error={emailError}
-                    helperText={helperText}
+                    helperText={emailHelperText}
                     required
                   />
                   <TextField
@@ -140,7 +141,7 @@ const LoginForm = () => {
                     onBlur={handleBlur}
                     value={userFormData.password}
                     error={passwordError}
-                    helperText={helperText}
+                    helperText={passwordHelperText}
                     required
                   />
                 </CardContent>
