@@ -23,6 +23,12 @@ const typeDefs = gql`
     currentFunds: Float!
   }
 
+  input UserInput {
+    github: String
+    linkedin: String 
+    skills: [String]
+  }
+
   input ProjectInput {
     title: String!
     description: String 
@@ -46,6 +52,7 @@ const typeDefs = gql`
 
   type Mutation {
     createUser(email: String!, password: String!, firstName: String!, lastName: String!): Auth
+    updateUser(updateData: UserInput!, userId: ID!): User
     login(email: String!, password: String!): Auth
     addProject(title: String!, description: String!, gitRepo: String, fundingGoal: Float, currentFunds: Float): Project
     updateProject(projectData: ProjectInput!, projectId: ID!): Project

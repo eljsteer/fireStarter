@@ -24,15 +24,19 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Home = () => {
   const {loading, data} = useQuery(QUERY_PROJECTS);
-  console.log(data);
+
+  if (loading) {
+    return <div>Fire is starting...</div>;
+  }
+
   const allProjects = data?.userProjects || [];
-  console.log(allProjects);
 
   return (
     <>
       <Item>
         <ThemeProvider sx={{maxWidth: "auto"}} theme={theme} >
           <Typography variant="h2" sx={{margin: 5}}>Welcome to FireStarter</Typography>
+          <typography>Hello</typography>
           <Typography variant="h5" sx={{margin: 5}}>A DAO inspired application to connect developers and light the spark of innovation for projects</Typography>
         </ThemeProvider>
       </Item>
