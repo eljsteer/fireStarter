@@ -12,6 +12,8 @@ import {
   ThemeProvider,
 } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
 
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
@@ -50,13 +52,13 @@ export default function Profile() {
       <Item>
         <ThemeProvider sx={{maxWidth: "auto"}} theme={theme} >
           <Typography variant="h2" sx={{margin: 5}}>Welcome {welcomeUser}</Typography>
-          {/* <Button
-            onSubmit={handleNavigation}
-          >
-            Update User
-          </Button> */}
+          <Link to='/addproject'>
+            <Button variant="contained"><AddIcon /> Add a project</Button>
+          </Link>
         </ThemeProvider>
       </Item>
+
+      
 
       <Box sx={{ flexGrow: 1, margin: 4, padding: 2 }}>
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
