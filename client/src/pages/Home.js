@@ -36,6 +36,7 @@ const Home = () => {
       <Item>
         <ThemeProvider sx={{maxWidth: "auto"}} theme={theme} >
           <Typography variant="h2" sx={{margin: 5}}>Welcome to FireStarter</Typography>
+          <typography>Hello</typography>
           <Typography variant="h5" sx={{margin: 5}}>A DAO inspired application to connect developers and light the spark of innovation for projects</Typography>
         </ThemeProvider>
       </Item>
