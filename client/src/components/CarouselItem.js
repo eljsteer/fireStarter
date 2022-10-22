@@ -1,14 +1,21 @@
-import {Button, Paper} from '@mui/material';
-import CarouselData from "../utils/carouselData"
+import {Paper} from '@mui/material';
+// import {Button} from '@mui/material';
+// import { Link } from "react-router-dom";
 
-function CarouselItem() {
+// import { useQuery } from '@apollo/client';
+// import { QUERY_PROJECTS } from '../utils/queries';
+
+function CarouselItem({item}) {
+  // const {loading, data} = useQuery(QUERY_PROJECTS);
+  // const allProjects = data?.userProjects || [];
 
       return (
           <Paper>
-              <img className="resumeIcon" src={process.env.PUBLIC_URL + "/" + CarouselData.imageSrc} style={{width:"100%", height:"400px"}} alt={CarouselData.title}/>
-              <Button className="CheckButton">
-                  Check it out!
-              </Button>
+            {/* <Link 
+              // to={`/project/${project._id}`}
+              // underline="none"> */}
+              <img src={item.imageSrc} style={{width:"auto", height:"65vh"}} alt={item.title}/>
+            {/* </Link> */}
           </Paper>
       )
 }
