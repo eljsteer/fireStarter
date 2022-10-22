@@ -15,7 +15,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import Auth from "../utils/auth";
 import { removeProjectId } from '../utils/localStorage';
-
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { REMOVE_PROJECT } from '../utils/mutations';
@@ -94,6 +93,12 @@ export default function SingleProject() {
                         <Typography variant="body1">
                             Current Funding: ${singleProject.currentFunds} <br />
                         </Typography>
+                        <br />
+                        <Link to='/profile'>
+                            <Button variant="contained">
+                                <ChevronLeftIcon/> Go Back
+                            </Button>
+                        </Link> 
                     </ThemeProvider>
                 </CardContent>
             </Card>
@@ -104,19 +109,14 @@ export default function SingleProject() {
                 margin={2}
             >
                 <Button variant="contained" color="success">
-                    <AttachMoneyOutlinedIcon /> Fund this project
+                    <AttachMoneyOutlinedIcon /> Fund Me
                 </Button>
                 <Button 
                     variant="outlined" 
                     color="error"
                     onClick={() => handleProjectDelete(singleProject.projectId)}>
-                    <DeleteIcon /> Delete this project
-                </Button>
-                <Link to='/profile'>
-                    <Button variant="contained">
-                        <ChevronLeftIcon/> Go Back
-                    </Button>
-                </Link>                
+                    <DeleteIcon /> Delete
+                </Button>                              
             </Stack>
         </>
     )

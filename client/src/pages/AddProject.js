@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { experimentalStyled as styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
 import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
+
+import Paper from '@mui/material/Paper';
+import Container from '@mui/material/Box';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -11,8 +13,14 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
+import Alert from '@mui/material/Alert';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import AddIcon from '@mui/icons-material/Add';
+
+import Auth from "../utils/auth";
+import { useMutation } from '@apollo/client';
+import { ADD_PROJECT } from '../utils/mutations';
+
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -38,25 +46,40 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function AddProject() {
     const [value, setValue] = React.useState('Controlled');
+    const [projectFormData, setProjectFormData] = useState(
+        { 
+            title: '', 
+            description: '', 
+            gitRepo: '', 
+            fundingGoal: '', 
+            currentFunds: ''  
+        }
+    );
+    const [showAlert, setShowAlert] = useState(false);
+    const [ titleError, setTitleError] = useState(false);
+    const [ descriptionError, setDescriptionError] = useState(false);
+    const [ titleHelperText, setTitleHelperText ] = useState(false);
+    const [ addProject, { error, data }] = useMutation(ADD_PROJECT);
 
-    const handleChange = (event) => {
+
+    const handleInputChange = (event) => {
         setValue(event.target.value);
     };
 
     return (
-        <>
+        <Container sx={{display: 'flex', flexDirection: 'column', maxWidth: 900, justifyContent: 'center'}}>
             <Item>  
                 <ThemeProvider theme={theme}>
-                    <Typography variant="h3">Add a Project</Typography>
+                    <Typography variant="h3">Add Project</Typography>
                 </ThemeProvider>
             </Item>
 
             <Card sx={{ minWidth: 275 }}>
-                <CardContent>
+                <CardContent sx={{maxWidth: 1200}}>
                     <Box
                         component="form"
                         sx={{
-                            '& .MuiTextField-root': { m: 1, width: '25ch',  },
+                            '& .MuiTextField-root': { m: 1, width: '30ch'},
                         }}
                         noValidate
                         autoComplete="off"
@@ -86,6 +109,12 @@ export default function AddProject() {
                             placeholder="Enter funding goal"
                             multiline
                             />
+                            <TextField
+                            id="outlined-textarea"
+                            label="Current Funding"
+                            placeholder="Enter current funding"
+                            multiline
+                            />
                         </div>                       
                     </Box>
                 </CardContent>
@@ -96,7 +125,7 @@ export default function AddProject() {
                 margin={2}
                 >
                     <Button variant="contained" color="success">
-                        <AddIcon /> Add project
+                        <AddIcon /> Add
                     </Button>
                     <Link to='/profile'>
                         <Button variant="contained">
@@ -105,6 +134,6 @@ export default function AddProject() {
                     </Link>                
                 </Stack>                
             </Card>
-        </>
+        </Container>
     )
 }
