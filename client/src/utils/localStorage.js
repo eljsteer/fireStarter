@@ -27,7 +27,7 @@ export const removeProjectId = (projectId) => {
     }
 
     const updatedSavedProjectIds = savedProjectIds?.filter((savedProjectId) => savedProjectId !== projectId);
-    localStorage.setItem('saved_books', JSON.stringify(updatedSavedProjectIds));
+    localStorage.setItem('saved_projects', JSON.stringify(updatedSavedProjectIds));
 
     return true;
 };
