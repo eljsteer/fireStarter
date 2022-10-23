@@ -5,9 +5,7 @@ import Paper from '@mui/material/Paper';
 import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
-// import { useQuery } from '@apollo/client';
-// import { QUERY_PROJECTS } from '../utils/queries';
-import { Box, Container, Grid } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -21,18 +19,14 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Home = () => {
-  // const {loading, data} = useQuery(QUERY_PROJECTS);
-
-  // if (loading) {
-  //   return <div>Fire is starting...</div>;
-  // }
-
   return (
     <Container sx={{maxWidth: "auto"}}>
       <Item>
         <ThemeProvider sx={{maxWidth: "auto"}} theme={theme} >
           <Typography variant="h2" sx={{margin: 5}}>Welcome to FireStarter</Typography>
-          <Typography variant="h5" sx={{margin: 5}}>A DAO inspired application to connect developers and light the spark of innovation for projects</Typography>
+          <Typography variant="h6" sx={{margin: 2}}> We're a DAO (decentralised autonomous organisation) inspired application to connect a community of developers and contributors to assist in lighting the spark of innovation for projects.</Typography>
+          <br />
+          <Typography variant="h6" sx={{margin: 2}}>Discover projects you want to help turn into a reality. Firestarter is a community owned and operating platform, which enables projects you want to see come to life become funded by members of the community. A space where developers and contributors become connected by a common vision. Discover a project you're passionate about or create a project you want to see come to life. The opportunities are endless.</Typography>
         </ThemeProvider>
       </Item>
 
