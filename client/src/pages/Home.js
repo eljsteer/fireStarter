@@ -11,7 +11,7 @@ let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '##121212' : '#fff',
+  backgroundColor: "#0c1012",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
@@ -26,7 +26,7 @@ const Home = () => {
   // }
 
   return (
-    <Container sx={{maxWidth: "auto"}}>
+    <Container sx={{maxWidth: "auto", height: '100vh'}}>
       <Item>
         <ThemeProvider sx={{maxWidth: "auto"}} theme={theme} >
           <Typography variant="h2" sx={{margin: 5}}>Welcome to FireStarter</Typography>

@@ -3,6 +3,7 @@ import ProjectCard from '../components/ProjectCard';
 import { Link } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 import { experimentalStyled as styled } from '@mui/material/styles';
+import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -23,7 +24,7 @@ let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 const Item = styled(Paper)(({ theme }) => ({
-  // backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: '#0c1012',
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
@@ -48,7 +49,7 @@ export default function Profile() {
   const welcomeUser = `${data.me.firstName} ${ data.me.lastName}`
 
   return (
-    <>
+    <Container sx={{height: '100vh'}}>
       <Item>
         <ThemeProvider sx={{maxWidth: "auto"}} theme={theme} >
           <Typography variant="h2" sx={{margin: 5}}>Welcome {welcomeUser}</Typography>
@@ -61,8 +62,12 @@ export default function Profile() {
         </ThemeProvider>
       </Item>      
 
-      <Box sx={{ flexGrow: 1, margin: 4, padding: 2 }}>
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+      <Box sx={{ flexGrow: 1, margin: 3, }}>
+        <Grid 
+          container 
+          spacing={{ xs: 2, md: 3 }} 
+          columns={{ xs: 4, sm: 8, md: 12 }}
+          sx={{display: 'flex', justifyContent:"center", alignItems:"top"}}>
           {allUserProjects.map((project, i) => (
             <Grid sx={{ maxWidth: 500 }} xs={12} sm={12} md={10}>
               <Link
@@ -83,6 +88,6 @@ export default function Profile() {
           ))}        
         </Grid>
       </Box>
-    </>    
+    </Container>    
   );
 }

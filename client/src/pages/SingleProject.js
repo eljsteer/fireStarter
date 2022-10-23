@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -56,8 +58,8 @@ export default function SingleProject() {
     }
 
     return (
-        <>
-            <Card sx={{ maxWidth: 1250 }}>
+        <Container sx={{backgroundColor: '#0c1012', height: '100vh'}}>
+            <Card sx={{ maxWidth: 1250, backgroundColor: '#0c1012' }}>
                 <CardContent>
                     <ThemeProvider theme={theme}>
                         <Typography gutterBottom variant="h3" component="div" sx={{textAlign: 'center'}}>
@@ -131,6 +133,6 @@ export default function SingleProject() {
                     </Button> ) 
                     : null }                                             
             </Stack>
-        </>
+        </Container>
     )
 };
