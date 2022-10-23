@@ -91,12 +91,12 @@ const SignupForm = () => {
         variables: { ...userFormData },
       });
 
-      Auth.login(data.createUser.token);
+      Auth.signup(data.createUser.token);
 
     } catch (e) {
       console.error(e);
     }
-    navigate("/adduserinfo");
+    // navigate("/adduserinfo");
 
     setUserFormData({
       firstName: '',

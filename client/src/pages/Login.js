@@ -100,85 +100,81 @@ const LoginForm = () => {
   };
 
   return (
-    <>
-      <Container maxWidth="sm" alignItems="center">
-        <Box
-          component="form"
-          sx={{
-            '& .MuiTextField-root': { m: 1, width: '25ch' },
-            flexGrow: 1
-          }}
-          noValidate
-          onSubmit={handleFormSubmit}
-          autoComplete="off"
-        > 
-          <Grid container columns={12}>
-            <Grid display="flex" justifyContent="center" >
-              <Card sx={{ maxWidth: 400 }}>
-                <CardMedia
-                  component="img"
-                  alt="sparks_login_background"
-                  image={process.env.PUBLIC_URL + '/assets/images/LoginCardBkg-unsplash.jpg'}
-                  />
-                <CardContent>
-                  <TextField
-                    id="outlined-error-helper-text"
-                    label="Email"
-                    type="email"
-                    name="email"
-                    placeholder="Please enter your email"
-                    onChange={handleInputChange}
-                    onBlur={handleBlur}
-                    value={userFormData.email}
-                    error={emailError}
-                    helperText={emailHelperText}
-                    required
-                  />
-                  <TextField
-                    id="outlined-error-helper-text"
-                    label="Password"
-                    type="password"
-                    name="password"
-                    placeholder="Please enter a Password"
-                    onChange={handleInputChange}
-                    onBlur={handleBlur}
-                    value={userFormData.password}
-                    error={passwordError}
-                    helperText={passwordHelperText}
-                    required
-                  />
-                </CardContent>
-                {showAlert && 
-                <Alert severity="error" onClose={() => {setShowAlert(false)}}>
-                  Computer says no! It doesn't like your incorrect login details!
-                </Alert>}
-                <div>
-                  <Button
-                    disabled={!(userFormData.email && userFormData.password)}
-                    type='submit'
-                    variant='outlined'
-                    sx={{ width: '25ch' }}
-                    onSubmit={handleFormSubmit}
-                    >
-                    Log In
-                  </Button>
-                </div>
-                <Stack direction="row">
-                  <hr></hr>
-                  <div>OR</div>
-                  <hr></hr>
-                </Stack>
-                <br/>
-                <Typography>Don't Have an Account? 
-                  <Link to="/signup"> Sign Up</Link>
-                </Typography>
-                <br />
-              </Card>
-            </Grid>
-          </Grid>
-        </Box>
-      </Container>
-    </>
+    <Container maxWidth="sm" alignItems="center">
+      <Box
+        component="form"
+        sx={{
+          '& .MuiTextField-root': { m: 1, width: '25ch' },
+          flexGrow: 1,
+        }}
+        noValidate
+        onSubmit={handleFormSubmit}
+        autoComplete="off"
+      > 
+        <Grid container sx={{display: 'flex', justifyContent:"center"}}>
+            <Card sx={{ maxWidth: 400 }}>
+              <CardMedia
+                component="img"
+                alt="sparks_login_background"
+                image={process.env.PUBLIC_URL + '/assets/images/LoginCardBkg-unsplash.jpg'}
+                />
+              <CardContent>
+                <TextField
+                  id="outlined-error-helper-text"
+                  label="Email"
+                  type="email"
+                  name="email"
+                  placeholder="Please enter your email"
+                  onChange={handleInputChange}
+                  onBlur={handleBlur}
+                  value={userFormData.email}
+                  error={emailError}
+                  helperText={emailHelperText}
+                  required
+                />
+                <TextField
+                  id="outlined-error-helper-text"
+                  label="Password"
+                  type="password"
+                  name="password"
+                  placeholder="Please enter a Password"
+                  onChange={handleInputChange}
+                  onBlur={handleBlur}
+                  value={userFormData.password}
+                  error={passwordError}
+                  helperText={passwordHelperText}
+                  required
+                />
+              </CardContent>
+              {showAlert && 
+              <Alert severity="error" onClose={() => {setShowAlert(false)}}>
+                Computer says no! It doesn't like your incorrect login details!
+              </Alert>}
+              <div>
+                <Button
+                  disabled={!(userFormData.email && userFormData.password)}
+                  type='submit'
+                  variant='outlined'
+                  sx={{ width: '25ch' }}
+                  onSubmit={handleFormSubmit}
+                  >
+                  Log In
+                </Button>
+              </div>
+              <Stack direction="row">
+                <hr></hr>
+                <div>OR</div>
+                <hr></hr>
+              </Stack>
+              <br/>
+              <Typography>Don't Have an Account? 
+                <Link to="/signup"> Sign Up</Link>
+              </Typography>
+              <br />
+            </Card>
+        </Grid>
+      </Box>
+    </Container>
   );
 };
 
