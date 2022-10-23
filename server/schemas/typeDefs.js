@@ -18,9 +18,9 @@ const typeDefs = gql`
     title: String!
     description: String!
     createdAt: String
-    gitRepo: String!
-    fundingGoal: Float!
-    currentFunds: Float!
+    gitRepo: String
+    fundingGoal: String
+    currentFunds: String
   }
 
   input UserInput {
@@ -33,8 +33,8 @@ const typeDefs = gql`
     title: String!
     description: String 
     gitRepo: String
-    fundingGoal: Float
-    currentFunds: Float
+    fundingGoal: String
+    currentFunds: String
   }
 
   type Auth {
@@ -54,7 +54,7 @@ const typeDefs = gql`
     createUser(email: String!, password: String!, firstName: String!, lastName: String!): Auth
     updateUser(updateData: UserInput!, userId: ID!): User
     login(email: String!, password: String!): Auth
-    addProject(title: String!, description: String!, gitRepo: String, fundingGoal: Float, currentFunds: Float): Project
+    addProject(title: String!, description: String!, gitRepo: String, fundingGoal: String, currentFunds: String): Project
     updateProject(projectData: ProjectInput!, projectId: ID!): Project
     removeProject(projectId: ID!): Project
   }

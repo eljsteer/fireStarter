@@ -18,6 +18,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import AddIcon from '@mui/icons-material/Add';
 
 import Auth from "../utils/auth";
+import { saveProjectIds } from '../utils/localStorage';
 import { useMutation } from '@apollo/client';
 import { ADD_PROJECT } from '../utils/mutations';
 
@@ -57,14 +58,87 @@ export default function AddProject() {
     );
     const [showAlert, setShowAlert] = useState(false);
     const [ titleError, setTitleError] = useState(false);
-    const [ descriptionError, setDescriptionError] = useState(false);
     const [ titleHelperText, setTitleHelperText ] = useState(false);
+    const [ descriptionError, setDescriptionError] = useState(false);
+    const [ descriptionHelperText, setDescriptionHelperText ] = useState(false);
     const [ addProject, { error, data }] = useMutation(ADD_PROJECT);
 
 
     const handleInputChange = (event) => {
-        setValue(event.target.value);
+        const { name, value } = event.target;
+        if( name === 'title') {
+            if(!value) {
+                setTitleError(true);
+                setTitleHelperText('You must add a title for your project');
+            } else if (value) {
+                setTitleError(false);
+                setTitleHelperText(false);
+            }            
+        }
+
+        if( name === 'description') {
+            if(!value) {
+                setDescriptionError(true);
+                setDescriptionHelperText('You must add a description for your project');
+            } else if (value) {
+                setDescriptionError(false);
+                setDescriptionHelperText(false);
+            }            
+        }
+        setProjectFormData({
+            ...projectFormData,
+            [name]: value
+        });
     };
+
+    const handleBlur = (event) => {
+        const { name, value } = event.target;
+        if ( name === 'title') {
+            if(!value) {
+                setTitleError(true);
+                setTitleHelperText('You must add a title for your project');
+            } else if (value) {
+                setTitleError(false);
+                setTitleHelperText(false);
+            }            
+        } else if ( name === 'description') {
+            if(!value) {
+                setDescriptionError(true);
+                setDescriptionHelperText('You must add a description for your project');
+            } else if (value) {
+                setDescriptionError(false);
+                setDescriptionHelperText(false);
+            }
+        }
+    }
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+        event.preventDefault();
+        }
+        try {
+            const { data } = await addProject({
+                variables: { ...projectFormData }
+            })
+            console.log(data);
+        } catch (err) {
+            console.error(err);
+            setShowAlert(true);
+        }
+
+        setProjectFormData(
+            {
+                title: '', 
+                description: '', 
+                gitRepo: '', 
+                fundingGoal: '', 
+                currentFunds: '' 
+            }
+        )
+    }
 
     return (
         <Container sx={{display: 'flex', flexDirection: 'column', maxWidth: 900, justifyContent: 'center'}}>
@@ -83,50 +157,95 @@ export default function AddProject() {
                         }}
                         noValidate
                         autoComplete="off"
+                        onSubmit={handleFormSubmit}
                         >
                         <div>
                             <TextField
                             id="outlined-textarea"
                             label="Title"
+                            type="title"
+                            name="title"
                             placeholder="Enter project title"
                             multiline
+                            onChange={handleInputChange}
+                            onBlur={handleBlur}
+                            value={projectFormData.title}
+                            error={titleError}
+                            helperText={titleHelperText}
+                            required
                             />
                             <TextField
                             id="outlined-textarea"
                             label="Description"
+                            type="description"
+                            name="description"
                             placeholder="Enter project description"
                             multiline
+                            onChange={handleInputChange}
+                            onBlur={handleBlur}
+                            value={projectFormData.description}
+                            error={descriptionError}
+                            helperText={descriptionHelperText}
+                            required
                             />
                             <TextField
                             id="outlined-textarea"
                             label="Github Repository"
+                            type="gitRepo"
+                            name="gitRepo"
                             placeholder="Enter repository name"
                             multiline
+                            onChange={handleInputChange}
+                            onBlur={handleBlur}
+                            value={projectFormData.gitRepo}
                             />
                             <TextField
                             id="outlined-textarea"
                             label="Funding Goal"
+                            type="fundingGoal"
+                            name="fundingGoal"
                             placeholder="Enter funding goal"
                             multiline
+                            onChange={handleInputChange}
+                            onBlur={handleBlur}
+                            value={projectFormData.fundingGoal}
                             />
                             <TextField
                             id="outlined-textarea"
                             label="Current Funding"
+                            type="currentFunds"
+                            name="currentFunds"
                             placeholder="Enter current funding"
                             multiline
+                            onChange={handleInputChange}
+                            onBlur={handleBlur}
+                            value={projectFormData.currentFunds}
                             />
                         </div>                       
                     </Box>
                 </CardContent>
+                {showAlert && 
+                    <Alert severity="error" onClose={() => {setShowAlert(false)}}>
+                        All required fields must be completed
+                    </Alert>
+                }
                 <Stack
                 direction="row"
                 divider={<Divider orientation="vertical" flexItem />}
                 spacing={2}
                 margin={2}
                 >
-                    <Button variant="contained" color="success">
-                        <AddIcon /> Add
-                    </Button>
+                    <Link to='/profile'>
+                        <Button 
+                            variant="contained" 
+                            color="success"
+                            disabled={!(projectFormData.title && projectFormData.description)}
+                            type="submit"
+                            onClick={handleFormSubmit}
+                            >
+                            <AddIcon /> Add
+                        </Button>
+                    </Link>
                     <Link to='/profile'>
                         <Button variant="contained">
                             <ChevronLeftIcon /> Go Back

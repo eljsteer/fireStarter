@@ -35,7 +35,7 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_PROJECT = gql`
-  mutation addProject($title: String!, $description: String!, $gitRepo: String, $fundingGoal: Number, $currentFunds: Number) {
+  mutation addProject($title: String!, $description: String!, $gitRepo: String, $fundingGoal: String, $currentFunds: String) {
     addProject(title: $title, description: $description, gitRepo: $gitRepo, fundingGoal: $fundingGoal, currentFunds: $currentFunds) {
       _id
       title
