@@ -19,6 +19,12 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Home = () => {
+  // const {loading, data} = useQuery(QUERY_PROJECTS);
+
+  // if (loading) {
+  //   return <div>Fire is starting...</div>;
+  // }
+
   return (
     <Container sx={{maxWidth: "auto"}}>
       <Item>
@@ -26,7 +32,7 @@ const Home = () => {
           <Typography variant="h2" sx={{margin: 5}}>Welcome to FireStarter</Typography>
           <Typography variant="h6" sx={{margin: 2}}> We're a DAO (decentralised autonomous organisation) inspired application to connect a community of developers and contributors to assist in lighting the spark of innovation for projects.</Typography>
           <br />
-          <Typography variant="h6" sx={{margin: 2}}>Discover projects you want to help turn into a reality. Firestarter is a community owned and operating platform, which enables projects you want to see come to life become funded by members of the community. A space where developers and contributors become connected by a common vision. Discover a project you're passionate about or create a project you want to see come to life. The opportunities are endless.</Typography>
+          <Typography variant="h6" sx={{margin: 2}}>Discover projects you want to help turn into a reality. Firestarter is a community owned and operated platform, which enables projects you want to see come to life, through funding by members of the community. A space where developers and contributors become connected by a common vision. Discover a project you're passionate about or create a project you want to see come to life. The opportunities are endless.</Typography>
         </ThemeProvider>
       </Item>
 

@@ -14,6 +14,7 @@ import {
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
@@ -52,7 +53,10 @@ export default function Profile() {
         <ThemeProvider sx={{maxWidth: "auto"}} theme={theme} >
           <Typography variant="h2" sx={{margin: 5}}>Welcome {welcomeUser}</Typography>
           <Link to='/addproject'>
-            <Button variant="contained"><AddIcon /> Add a project</Button>
+            <Button variant="contained" sx={{margin: 2}}><AddIcon /> Add a project</Button>
+          </Link>
+          <Link to='/adduserinfo' >
+            <Button variant="contained" sx={{margin: 2}}><ModeEditIcon />  Update User</Button>
           </Link>
         </ThemeProvider>
       </Item>      

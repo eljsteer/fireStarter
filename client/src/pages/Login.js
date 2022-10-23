@@ -13,7 +13,7 @@ import {
   Typography,
 } from '@mui/material';
 import {validateEmail } from "../utils/helpers";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
@@ -28,6 +28,7 @@ const LoginForm = () => {
   const [emailHelperText, setEmailHelperText] = useState(false);
   const [passwordHelperText, setPasswordHelperText] = useState(false);
   const [loginUser, { error, data }] = useMutation(LOGIN_USER);
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -89,6 +90,8 @@ const LoginForm = () => {
       console.error(err);
       setShowAlert(true);
     }
+
+    navigate("/profile");
 
     setUserFormData({
       email: '',
