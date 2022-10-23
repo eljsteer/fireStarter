@@ -31,7 +31,7 @@ const typeDefs = gql`
 
   input ProjectInput {
     title: String!
-    description: String 
+    description: String! 
     gitRepo: String
     fundingGoal: String
     currentFunds: String
