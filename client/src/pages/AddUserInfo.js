@@ -65,7 +65,7 @@ const AddUserInfo = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    // check if form has everything (as per react-bootstrap docs)
+
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -174,7 +174,7 @@ const AddUserInfo = () => {
                     name="skipButton"
                     variant="outlined"
                     sx={{ width: "20ch", margin:"10px" }}
-                    onSubmit={e => navigate("/")}
+                    onClick={() => navigate("/")}
                     >
                     Skip
                     <ChevronRightIcon />
