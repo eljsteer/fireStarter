@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
-  Alert,
   Box,
   Button,
   Card,
@@ -21,7 +20,6 @@ import Auth from "../utils/auth";
 
 const SignupForm = () => {
   const [userFormData, setUserFormData] = useState({ firstName:"", lastName:"", email: "", password: "" });
-  const [showAlert, setShowAlert] = useState(false);
 
   const [firstInputError, setFirstInputError] = useState(false);
   const [lastInputError, setLastInputError] = useState(false);
@@ -33,7 +31,7 @@ const SignupForm = () => {
   const [emailHelperText, setEmailHelperText] = useState(false);
   const [passHelperText, setPassHelperText] = useState(false);
 
-  const [createUser, { error, data }] = useMutation(CREATE_USER);
+  const [createUser ] = useMutation(CREATE_USER);
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
@@ -82,7 +80,6 @@ const SignupForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();

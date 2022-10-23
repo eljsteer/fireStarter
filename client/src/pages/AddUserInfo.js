@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
+  Alert,
   Box,
   Button,
   Card,
@@ -19,50 +20,51 @@ import { UPDATE_USER } from "../utils/mutations";
 
 const AddUserInfo = () => {
   const [userFormData, setUserFormData] = useState({ github:"", linkedin:"", skills: "" });
+  const [showAlert, setShowAlert] = useState(false);
   const [gitHubError, setGitHubError] = useState(false);
   const [linkedinError, setLinkedinError] = useState(false);
-  const [submitButton, setSubmitButton] = useState(false);
+  const [submitButton, setSubmitButton] = useState(true);
   const [helperText, setHelperText] = useState(false);
   const [updateUser, { error, data }] = useMutation(UPDATE_USER);
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, error } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
-        if (gitHubError === true || linkedinError === true) {
-      setSubmitButton(true);
-    } else if (gitHubError === false && linkedinError === false) {
-      setSubmitButton(false);
-    }
+
+    if (name ==="github" || name === "linkedin" || name === "skills") {
+      if (error === true) {
+        setSubmitButton(false);
+      } else if (error === false) {
+        if (value) {
+          setSubmitButton(true);
+        } else {
+          setSubmitButton(false);
+        }
+      };
+    };
   };
 
   const handleBlur = (event) => {
     const { name, value } = event.target;
     const isValid = validateURL(event.target.value);
     if (name === "github") {
-      if(!isValid) {
+      if(value && !isValid) {
         setGitHubError(true);
         setHelperText("Please enter a valid github URL");
-      } else if (value) {
-        setGitHubError(false);
-        setHelperText(false);
       }
       console.log(gitHubError)
     } else if (name === "linkedin") {
-      if(!isValid) {
+      if(value && !isValid) {
         setLinkedinError(true);
         setHelperText("Please enter a valid linkedin URL");
-      } else if (value) {
-        setLinkedinError(false);
-        setHelperText(false);
       }
       console.log(linkedinError);
     }
-  }
+  };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -74,12 +76,16 @@ const AddUserInfo = () => {
       const { data } = await updateUser({
         variables: { ...userFormData,  },
       });
-      return data;
+
+      if(submitButton === true) {
+        navigate("/profile")
+      } else if (submitButton === false) {
+        setShowAlert(true);
+      }
 
     } catch (e) {
       console.error(e);
     }
-    navigate("/");
 
     setUserFormData({
       github: '',
@@ -149,9 +155,14 @@ const AddUserInfo = () => {
                     required
                   />
                 </CardContent>
+                  {showAlert && 
+                  <Alert severity="error" onClose={() => {setShowAlert(false)}}>
+                    <span>Computer says no!!</span> 
+                    <span>Please enter details in at least one field</span>
+                  </Alert>}
                   <Button
-                    disabled={submitButton}
                     type="submit"
+                    name="completeButton"
                     variant="outlined"
                     sx={{ width: "20ch", margin:"10px" }}
                     onSubmit={handleFormSubmit}
@@ -160,6 +171,7 @@ const AddUserInfo = () => {
                   </Button>
                   <Button
                     type="submit"
+                    name="skipButton"
                     variant="outlined"
                     sx={{ width: "20ch", margin:"10px" }}
                     onSubmit={e => navigate("/")}
