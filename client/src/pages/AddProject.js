@@ -37,7 +37,7 @@ theme.typography.h3 = {
 };
 
 const Item = styled(Paper)(({ theme }) => ({
-  // backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    backgroundColor: '#0c1012',
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: 'center',
@@ -141,19 +141,19 @@ export default function AddProject() {
     }
 
     return (
-        <Container sx={{display: 'flex', flexDirection: 'column', maxWidth: 900, justifyContent: 'center'}}>
+        <Container sx={{height: '100vh'}}>
             <Item>  
                 <ThemeProvider theme={theme}>
                     <Typography variant="h3">Add Project</Typography>
                 </ThemeProvider>
             </Item>
 
-            <Card sx={{ minWidth: 275 }}>
-                <CardContent sx={{maxWidth: 1200}}>
+            <Card sx={{ backgroundColor: '#0c1012', display: 'flex', justifyContent:"center", alignItems:"top", flexDirection: 'column' }}>
+                <CardContent>
                     <Box
                         component="form"
                         sx={{
-                            '& .MuiTextField-root': { m: 1, width: '30ch'},
+                            '& .MuiTextField-root': { m: 1, width: 'auto'},
                         }}
                         noValidate
                         autoComplete="off"
@@ -162,6 +162,7 @@ export default function AddProject() {
                         <div>
                             <TextField
                             id="outlined-textarea"
+                            sx={{display: 'flex', justifyContent:"center"}}
                             label="Title"
                             type="title"
                             name="title"
@@ -176,6 +177,7 @@ export default function AddProject() {
                             />
                             <TextField
                             id="outlined-textarea"
+                            sx={{display: 'flex', justifyContent:"center"}}
                             label="Description"
                             type="description"
                             name="description"
@@ -190,6 +192,7 @@ export default function AddProject() {
                             />
                             <TextField
                             id="outlined-textarea"
+                            sx={{display: 'flex', justifyContent:"center"}}
                             label="Github Repository"
                             type="gitRepo"
                             name="gitRepo"
@@ -201,6 +204,7 @@ export default function AddProject() {
                             />
                             <TextField
                             id="outlined-textarea"
+                            sx={{display: 'flex', justifyContent:"center"}}
                             label="Funding Goal"
                             type="fundingGoal"
                             name="fundingGoal"
@@ -212,6 +216,7 @@ export default function AddProject() {
                             />
                             <TextField
                             id="outlined-textarea"
+                            sx={{display: 'flex', justifyContent:"center"}}
                             label="Current Funding"
                             type="currentFunds"
                             name="currentFunds"
