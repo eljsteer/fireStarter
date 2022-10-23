@@ -19,6 +19,7 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 
 import Auth from "../utils/auth";
 
@@ -78,8 +79,10 @@ function Navigation(props) {
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
             <Typography variant="h6" sx={{ my: 2 }}>
+                <LocalFireDepartmentIcon fontSize='large' />
+                <br/>
                 FireStarter
-            </Typography>
+              </Typography>
             <Divider />
             <List>
                 {(Auth.loggedIn() ? loggedInItems: loggedOutItems).map((item) => (
@@ -118,8 +121,9 @@ function Navigation(props) {
                     <Typography
                     variant="h6"
                     component="div"
-                    sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                    sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' }}}
                     >
+                    <LocalFireDepartmentIcon fontSize='large' sx={{ mr: 2 }}/>
                     FireStarter
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>

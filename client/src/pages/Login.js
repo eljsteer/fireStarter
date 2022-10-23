@@ -8,10 +8,16 @@ import {
   CardMedia,
   Container,
   Grid,
+  IconButton,
+  InputAdornment,
   Stack,
   TextField,
   Typography,
+  InputLabel,
+  OutlinedInput,
 } from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 
@@ -30,7 +36,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const LoginForm = () => {
-  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [userFormData, setUserFormData] = useState({ email: '', password: '', showPassword: false});
   const [showAlert, setShowAlert] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
@@ -55,6 +61,17 @@ const LoginForm = () => {
       ...userFormData, 
       [name]: value 
     });
+  };
+
+  const handleClickShowPassword = () => {
+    setUserFormData({
+      ...userFormData,
+      showPassword: !userFormData.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
 
   const handleBlur = (event) => {
@@ -129,32 +146,47 @@ const LoginForm = () => {
                 image={process.env.PUBLIC_URL + '/assets/images/LoginCardBkg-unsplash.jpg'}
                 />
               <CardContent sx={{display: 'flex', justifyContent: 'center'}}>
-                <TextField
-                  id="outlined-error-helper-text"
-                  label="Email"
-                  type="email"
-                  name="email"
-                  placeholder="Please enter your email"
-                  onChange={handleInputChange}
-                  onBlur={handleBlur}
-                  value={userFormData.email}
-                  error={emailError}
-                  helperText={emailHelperText}
-                  required
-                />
-                <TextField
-                  id="outlined-error-helper-text"
-                  label="Password"
-                  type="password"
-                  name="password"
-                  placeholder="Please enter a Password"
-                  onChange={handleInputChange}
-                  onBlur={handleBlur}
-                  value={userFormData.password}
-                  error={passwordError}
-                  helperText={passwordHelperText}
-                  required
-                />
+                <InputLabel htmlFor="outlined-adornment-amount">Email</InputLabel>
+                  <TextField
+                    id="outlined-error-helper-text"
+                    // label="Email"
+                    type="email"
+                    name="email"
+                    placeholder="Please enter your email"
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
+                    value={userFormData.email}
+                    error={emailError}
+                    helperText={emailHelperText}
+                    required
+                  />
+                <InputLabel htmlFor="outlined-adornment-amount">Password</InputLabel>
+                  <OutlinedInput
+                    sx={{m:1}}
+                    id="outlined-adornment-password-error-helper-text"
+                    type={userFormData.showPassword ? "text" : "password"}
+                    name="password"
+                    // label="Password"
+                    placeholder="Please enter a Password"
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
+                    value={userFormData.password}
+                    error={passwordError}
+                    helperText={passwordHelperText}
+                    required
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                        {userFormData.showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
               </CardContent>
               {showAlert && 
               <Alert severity="error" onClose={() => {setShowAlert(false)}}>
