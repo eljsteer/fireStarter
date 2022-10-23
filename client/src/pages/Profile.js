@@ -56,7 +56,7 @@ export default function Profile() {
             <Button variant="contained" sx={{margin: 2}}><AddIcon /> Add a project</Button>
           </Link>
           <Link to='/adduserinfo' >
-            <Button variant="contained" sx={{margin: 2}}><ModeEditIcon /> Update User</Button>
+            <Button variant="contained" sx={{margin: 2}}><ModeEditIcon />  Update User</Button>
           </Link>
         </ThemeProvider>
       </Item>      

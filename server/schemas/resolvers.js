@@ -18,7 +18,6 @@ const resolvers = {
     // retrieves all projects
     userProjects: async () => {
       const projectInfo = await Project.find().sort({ createdAt: -1 });
-      console.log(projectInfo);
       return projectInfo;
     },
 

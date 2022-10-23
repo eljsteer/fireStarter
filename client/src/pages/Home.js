@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 
 // import { useQuery } from '@apollo/client';
 // import { QUERY_PROJECTS } from '../utils/queries';
-import { Box, Container, Grid } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -21,11 +21,6 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Home = () => {
-  // const {loading, data} = useQuery(QUERY_PROJECTS);
-
-  // if (loading) {
-  //   return <div>Fire is starting...</div>;
-  // }
 
   return (
     <Container sx={{maxWidth: "auto"}}>

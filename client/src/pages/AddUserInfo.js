@@ -53,13 +53,11 @@ const AddUserInfo = () => {
         setGitHubError(true);
         setHelperText("Please enter a valid github URL");
       }
-      console.log(gitHubError)
     } else if (name === "linkedin") {
       if(value && !isValid) {
         setLinkedinError(true);
         setHelperText("Please enter a valid linkedin URL");
       }
-      console.log(linkedinError);
     }
   };
 
