@@ -73,20 +73,11 @@ export const REMOVE_PROJECT = gql`
   mutation removeProject($projectId: ID!) {
     removeProject(projectId: $projectId) {
       _id
-      email 
-      firstName
-      lastName
-      github
-      linkedin
-      skills
-      userProjects {
-        # _id
-        title
-        description
-        gitRepo
-        fundingGoal
-        currentFunds
-      }
+      title
+      description
+      gitRepo
+      fundingGoal
+      currentFunds
     }
-  }
+  }  
 `;

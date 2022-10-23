@@ -3,6 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import Button from '@mui/material/Button';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 export default function ProjectCard(props) {
@@ -16,12 +17,14 @@ export default function ProjectCard(props) {
           <Typography variant="subtitle1" color="text.secondary">
             {props.description}
           </Typography>
+          <br />
           <Typography gutterBottom variant="body2" component="div">
             Funding Goal: ${props.fundingGoal}
-          </Typography>          
-          <Typography variant="subtitle1" color="text.secondary">
+          </Typography> 
+          <br />   
+          <Button variant="outlined">
             <AutoAwesomeIcon /> Click to discover more
-          </Typography>
+          </Button>      
         </CardContent>
       </CardActionArea>
     </Card>
