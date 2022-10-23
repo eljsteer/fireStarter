@@ -8,7 +8,7 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 export default function ProjectCard(props) {
   return (
-    <Card sx={{ maxWidth: 500 }} raised={'true'}>
+    <Card sx={{ maxWidth: 500, backgroundColor: '#000000' }} raised={'true'}>
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

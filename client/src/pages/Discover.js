@@ -15,7 +15,7 @@ let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 const Item = styled(Paper)(({ theme }) => ({
-  // backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: '#0c1012',
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',

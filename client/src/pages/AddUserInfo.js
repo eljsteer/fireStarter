@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import {
   Alert,
   Box,
@@ -8,15 +9,28 @@ import {
   CardContent,
   CardMedia,
   Container,
+  Stack,
   Grid,
   TextField,
   Typography,
 } from "@mui/material";
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import SaveIcon from '@mui/icons-material/Save';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 import {validateURL } from "../utils/helpers";
 import { useMutation } from "@apollo/client";
 import { UPDATE_USER } from "../utils/mutations";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: '#0c1012',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 const AddUserInfo = () => {
   const [userFormData, setUserFormData] = useState({ github:"", linkedin:"", skills: "" });
@@ -93,97 +107,119 @@ const AddUserInfo = () => {
   };
 
   return (
-    <>
-      <Container maxWidth="sm" alignItems="center">
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
-            flexGrow: 1
-          }}
-          noValidate
-          onSubmit={handleFormSubmit}
-          autoComplete="off"
-        > 
-          <Grid container columns={12}>
-            <Grid display="flex" justifyContent="center" >
-              <Card sx={{ maxWidth: 400 }}>
-                <CardMedia
-                  component="img"
-                  alt="sparks_login_background"
-                  image={process.env.PUBLIC_URL + "/assets/images/LoginCardBkg-unsplash.jpg"}
-                  />
-                <CardContent>
-                <Typography>Please provide some more details...</Typography>
-                  <TextField
-                    id="outlined-error-helper-text"
-                    label="Github URL"
-                    type="text"
-                    name="github"
-                    placeholder="Please your Github URL"
-                    onChange={handleInputChange}
-                    onBlur={handleBlur}
-                    value={userFormData.github}
-                    error={gitHubError}
-                    helperText={helperText}
-                    required
-                  />
-                  <TextField
-                    id="outlined-error-helper-text"
-                    label="Linkedin URL"
-                    type="text"
-                    name="linkedin"
-                    placeholder="Please enter your linkedin URL"
-                    onChange={handleInputChange}
-                    onBlur={handleBlur}
-                    value={userFormData.linkedin}
-                    error={linkedinError}
-                    helperText={helperText}
-                    required
-                  />
-                  <TextField
-                    id="outlined-error-helper-text"
-                    label="Skills"
-                    type="skills"
-                    name="skills"
-                    placeholder="Please enter your skills"
-                    onChange={handleInputChange}
-                    onBlur={handleBlur}
-                    value={userFormData.skills}
-                    required
-                  />
-                </CardContent>
-                  {showAlert && 
-                  <Alert severity="error" onClose={() => {setShowAlert(false)}}>
-                    <span>Computer says no!!</span> 
-                    <span>Please enter details in at least one field</span>
-                  </Alert>}
-                  <Button
-                    type="submit"
-                    name="completeButton"
-                    variant="outlined"
-                    sx={{ width: "20ch", margin:"10px" }}
-                    onSubmit={handleFormSubmit}
-                    >
-                    Complete
-                  </Button>
-                  <Button
-                    type="submit"
-                    name="skipButton"
-                    variant="outlined"
-                    sx={{ width: "20ch", margin:"10px" }}
-                    onClick={() => navigate("/")}
-                    >
-                    Skip
-                    <ChevronRightIcon />
-                  </Button>
+    <Container sx={{height: '100vh'}} maxWidth="sm" alignItems="center">
+      <Box
+        component="form"
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "25ch" },
+          flexGrow: 1
+        }}
+        noValidate
+        onSubmit={handleFormSubmit}
+        autoComplete="off"
+      > 
+        <Grid container columns={12}>
+          <Grid display="flex" justifyContent="center" >
+            <Card sx={{backgroundColor: '#0c1012' }}>
+              <CardMedia
+                component="img"
+                alt="sparks_login_background"
+                image={process.env.PUBLIC_URL + "/assets/images/LoginCardBkg-unsplash.jpg"}
+                />
+              <CardContent sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+                <Typography sx={{textAlign: 'center'}} variant="h6">Please provide some more information</Typography>
                 <br/>
-              </Card>
-            </Grid>
+                <TextField
+                  id="outlined-error-helper-text"
+                  label="Github URL"
+                  type="text"
+                  name="github"
+                  placeholder="Please your Github URL"
+                  onChange={handleInputChange}
+                  onBlur={handleBlur}
+                  value={userFormData.github}
+                  error={gitHubError}
+                  helperText={helperText}
+                  required
+                  fullWidth 
+                  sx={{alignSelf: 'center'}}
+                />
+                <TextField
+                  id="outlined-error-helper-text"
+                  label="Linkedin URL"
+                  type="text"
+                  name="linkedin"
+                  placeholder="Please enter your linkedin URL"
+                  onChange={handleInputChange}
+                  onBlur={handleBlur}
+                  value={userFormData.linkedin}
+                  error={linkedinError}
+                  helperText={helperText}
+                  required
+                  fullWidth 
+                  sx={{alignSelf: 'center'}}
+                />
+                <TextField
+                  id="outlined-error-helper-text"
+                  label="Skills"
+                  type="skills"
+                  name="skills"
+                  placeholder="Please enter your skills"
+                  onChange={handleInputChange}
+                  onBlur={handleBlur}
+                  value={userFormData.skills}
+                  required
+                  fullWidth 
+                  sx={{alignSelf: 'center',maxWidth: '100%'}}
+                />
+              </CardContent>
+                {showAlert && 
+                <Alert severity="error" onClose={() => {setShowAlert(false)}}>
+                  <span>Computer says no!</span> 
+                  <span>Please enter details in at least one field</span>
+                </Alert>}
+
+                <Box sx={{ width: '100%' }}>
+                  <Stack spacing={2}>
+                    <Item>
+                      <Button
+                        type="submit"
+                        name="completeButton"
+                        variant="outlined"
+                        sx={{ width: '50%' }}
+                        onSubmit={handleFormSubmit}
+                        >
+                        <SaveIcon />
+                        Save
+                      </Button>
+                    </Item>
+                    <Item>
+                      <Button
+                        type="submit"
+                        name="skipButton"
+                        variant="outlined"
+                        sx={{ width: '50%' }}
+                        onClick={() => navigate("/")}
+                        >
+                        Skip
+                        <ChevronRightIcon />
+                      </Button>
+                    </Item>
+                    <Item>
+                      <Link to='/profile'>
+                          <Button variant="contained">
+                              <ChevronLeftIcon /> Go Back
+                          </Button>
+                      </Link>
+                    </Item>
+                  </Stack>
+                </Box>                 
+              <br/>
+            </Card>
           </Grid>
-        </Box>
-      </Container>
-    </>
+        </Grid>
+      </Box>
+    </Container>
   );
 };
 
