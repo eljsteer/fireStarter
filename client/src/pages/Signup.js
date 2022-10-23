@@ -22,9 +22,17 @@ import Auth from "../utils/auth";
 const SignupForm = () => {
   const [userFormData, setUserFormData] = useState({ firstName:"", lastName:"", email: "", password: "" });
   const [showAlert, setShowAlert] = useState(false);
+
+  const [firstInputError, setFirstInputError] = useState(false);
+  const [lastInputError, setLastInputError] = useState(false);
   const [emailError, setEmailError] = useState(false);
-  const [inputError, setInputError] = useState(false);
-  const [helperText, setHelperText] = useState(false);
+  const [passInputError, setPassInputError] = useState(false);
+
+  const [firstHelperText, setFirstHelperText] = useState(false);
+  const [lastHelperText, setLastHelperText] = useState(false);
+  const [emailHelperText, setEmailHelperText] = useState(false);
+  const [passHelperText, setPassHelperText] = useState(false);
+
   const [createUser, { error, data }] = useMutation(CREATE_USER);
   const navigate = useNavigate();
 
@@ -38,35 +46,35 @@ const SignupForm = () => {
     const isValid = validateEmail(event.target.value);
     if (name === "firstName") {
       if(!value) {
-        setInputError(true);
-        setHelperText("Please enter your First Name");
+        setFirstInputError(true);
+        setFirstHelperText("Please enter your First Name");
       } else if (value) {
-        setInputError(false);
-        setHelperText(false);
+        setFirstInputError(false);
+        setFirstHelperText(false);
       }
     } else if (name === "lastName") {
       if(!value) {
-        setInputError(true);
-        setHelperText("Please enter your Last Name");
+        setLastInputError(true);
+        setLastHelperText("Please enter your Last Name");
       } else if (value) {
-        setInputError(false);
-        setHelperText(false);
+        setLastInputError(false);
+        setLastHelperText(false);
       }
     } else if (name === "email") {
       if(!isValid) {
         setEmailError(true);
-        setHelperText("A valid Email is required");
+        setEmailHelperText("A valid Email is required");
       } else if (isValid) {
         setEmailError(false);
-        setHelperText(false);
+        setEmailHelperText(false);
       }
     } else if( name === "password") {
       if(!value) {
-        setInputError(true);
-        setHelperText("A valid Password is required");
+        setPassInputError(true);
+        setPassHelperText("A valid Password is required");
       } else if (value) {
-        setInputError(false);
-        setHelperText(false);
+        setPassInputError(false);
+        setPassHelperText(false);
       }
     } 
   }
@@ -135,8 +143,8 @@ const SignupForm = () => {
                     onChange={handleInputChange}
                     onBlur={handleBlur}
                     value={userFormData.firstName}
-                    error={emailError}
-                    helperText={helperText}
+                    error={firstInputError}
+                    helperText={firstHelperText}
                     required
                   />
                   <TextField
@@ -148,8 +156,8 @@ const SignupForm = () => {
                     onChange={handleInputChange}
                     onBlur={handleBlur}
                     value={userFormData.lastName}
-                    error={inputError}
-                    helperText={helperText}
+                    error={lastInputError}
+                    helperText={lastHelperText}
                     required
                   />
                   <TextField
@@ -161,8 +169,8 @@ const SignupForm = () => {
                     onChange={handleInputChange}
                     onBlur={handleBlur}
                     value={userFormData.email}
-                    error={inputError}
-                    helperText={helperText}
+                    error={emailError}
+                    helperText={emailHelperText}
                     required
                   />
                   <TextField
@@ -174,17 +182,13 @@ const SignupForm = () => {
                     onChange={handleInputChange}
                     onBlur={handleBlur}
                     value={userFormData.password}
-                    error={inputError}
-                    helperText={helperText}
+                    error={passInputError}
+                    helperText={passHelperText}
                     required
                   />
                 </CardContent>
-                {showAlert && 
-                <Alert severity="error" onClose={() => {setShowAlert(false)}}>
-                  Computer says No! It doesn"t like your Incorrect login details!
-                </Alert>}
                 <Button
-                  disabled={!(userFormData.firstName && userFormData.lastName && userFormData.email && userFormData.password)}
+                  disabled={!(userFormData.firstName && userFormData.lastName && userFormData.email && userFormData.password) || emailError === true}
                   type="submit"
                   variant="outlined"
                   sx={{ width: "25ch" }}
