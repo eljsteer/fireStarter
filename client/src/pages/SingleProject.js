@@ -60,18 +60,20 @@ export default function SingleProject() {
             <Card sx={{ maxWidth: 1250 }}>
                 <CardContent>
                     <ThemeProvider theme={theme}>
-                        <Typography gutterBottom variant="h4" component="div">
+                        <Typography gutterBottom variant="h3" component="div" sx={{textAlign: 'center'}}>
                             {singleProject.title} <br />                        
                         </Typography>
-                        <Typography gutterBottom variant="p" component="div">
+                        <br/>
+                        <Typography gutterBottom variant="p" component="div" sx={{textAlign: 'center'}}>
                             <p><span><CalendarMonthOutlinedIcon /></span> Project created: {singleProject.createdAt}</p>
                         </Typography>
-                        <Typography variant="body1">
+                        <br/>
+                        <Typography sx={{textAlign: 'center'}} variant="body1">
                             {singleProject.description} <br />
                         </Typography>
                     </ThemeProvider>
                 </CardContent>
-                <CardActions>
+                <CardActions style={{justifyContent: 'center'}}>
                 <a
                     underline='none'
                     // href={'https://github.com/`${singleProject.gitRepo}`'}
@@ -84,13 +86,14 @@ export default function SingleProject() {
                         </Button>
                     </a>
                 </CardActions>
+                <br/>
                 <CardContent>
                     <ThemeProvider theme={theme}>
-                        <Typography gutterBottom variant="body1" component="div">
+                        <Typography gutterBottom variant="body1" component="div" sx={{textAlign: 'center'}}>
                             Funding Goal: ${singleProject.fundingGoal} <br />
                         </Typography>
                         <br />
-                        <Typography variant="body1">
+                        <Typography variant="body1" sx={{textAlign: 'center'}}>
                             Current Funding: ${singleProject.currentFunds} <br />
                         </Typography>
                         <br />
@@ -101,7 +104,7 @@ export default function SingleProject() {
                                 </Button>
                             </Link> 
                         ) : (
-                            <Link to='/'>
+                            <Link to='/discover'>
                                 <Button variant="contained">
                                     <ChevronLeftIcon/> Go Back
                                 </Button>
