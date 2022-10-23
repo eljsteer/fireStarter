@@ -94,11 +94,19 @@ export default function SingleProject() {
                             Current Funding: ${singleProject.currentFunds} <br />
                         </Typography>
                         <br />
-                        <Link to='/profile'>
-                            <Button variant="contained">
-                                <ChevronLeftIcon/> Go Back
-                            </Button>
-                        </Link> 
+                        {Auth.loggedIn() ? (
+                            <Link to='/profile'>
+                                <Button variant="contained">
+                                    <ChevronLeftIcon/> Go Back
+                                </Button>
+                            </Link> 
+                        ) : (
+                            <Link to='/'>
+                                <Button variant="contained">
+                                    <ChevronLeftIcon/> Go Back
+                                </Button>
+                            </Link> 
+                        )}
                     </ThemeProvider>
                 </CardContent>
             </Card>
@@ -111,12 +119,14 @@ export default function SingleProject() {
                 <Button variant="contained" color="success">
                     <AttachMoneyOutlinedIcon /> Fund Me
                 </Button>
-                <Button 
-                    variant="outlined" 
-                    color="error"
-                    onClick={() => handleProjectDelete(singleProject.projectId)}>
-                    <DeleteIcon /> Delete
-                </Button>                              
+                {Auth.loggedIn() ? (
+                    <Button 
+                        variant="outlined" 
+                        color="error"
+                        onClick={() => handleProjectDelete(singleProject.projectId)}>
+                        <DeleteIcon /> Delete
+                    </Button> ) 
+                    : null }                                             
             </Stack>
         </>
     )

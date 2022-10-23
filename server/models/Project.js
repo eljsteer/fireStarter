@@ -11,7 +11,7 @@ const projectSchema = new Schema({
     description: {
       type: String,
       required: true,
-      minlength: 10,
+      minlength: 5,
       maxlength: 300,
       trim: true,
     },
@@ -30,13 +30,13 @@ const projectSchema = new Schema({
       ref: "User",
     },
     fundingGoal: {
-      type: Number,
+      type: String,
       required: true,
       unique: true,
       trim: true
     },
     currentFunds: {
-      type: Number,
+      type: String,
       required: true,
       unique: true,
       trim: true

@@ -17,7 +17,6 @@ import AddIcon from '@mui/icons-material/Add';
 
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
-import { Button } from '@mui/material';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
