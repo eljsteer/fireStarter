@@ -36,13 +36,13 @@ const Home = () => {
         </ThemeProvider>
       </Item>
 
-      <Container maxWidth="xl" sx={{ flexGrow: 1,  margin: 5 }}>
-        <Grid sx={{ maxWidth: 1000 }} xs={12} sm={12} md={10}>
+      <Item maxWidth="auto" sx={{ objectFit: 'cover', flexGrow: 1 }}>
+        <Grid sx={{ maxWidth: 'auto' }} xs={12} sm={12} md={10}>
           <Item>
             <CarouselHome />
           </Item>
         </Grid>
-      </Container>
+      </Item>
       <br/>
       <br/>
     </Container>   

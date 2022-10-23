@@ -14,7 +14,7 @@ function CarouselItem({item}) {
             {/* <Link 
               // to={`/project/${project._id}`}
               // underline="none"> */}
-              <img src={item.imageSrc} style={{width:"auto", height:"65vh"}} alt={item.title}/>
+              <img src={item.imageSrc} sx={{ backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', flexGrow: 1,   width: '100%', height: 'auto', }} style={{width: '100%', height: 'auto', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',backgroundPosition: 'center'}} alt={item.title}/>
             {/* </Link> */}
           </Paper>
       )
