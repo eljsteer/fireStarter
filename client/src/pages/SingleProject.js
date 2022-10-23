@@ -31,7 +31,7 @@ export default function SingleProject() {
     });
 
     const singleProject = data?.singleProject || {};
-    const [removeProject] = useMutation(REMOVE_PROJECT);
+    const [removeProject, { error }] = useMutation(REMOVE_PROJECT);
 
     const handleProjectDelete = async (projectId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null; // checks if the user is logged in 

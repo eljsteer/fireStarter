@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+# Firestarter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### By Mackenzie Gray and Jason Steer
 
-## Available Scripts
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-In the project directory, you can run:
+## Description
 
-### `npm start`
+A DAO (decentralised autonomous organisation) inspired application to connect developers with developers, and assist in lighting the spark of innovation for projects. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Developers can signup and post new projects they are working on as well as browse other projects from other developers. Projects of interest then have the ability to be funded by developers or people who are not signed up but browsing the site. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This is a full stack MERN application. 
 
-### `npm test`
+## User Story 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+AS A developer passionate about technology and projects  
+I WANT to create a collaborative space for the developer community  
+SO THAT I can connect with projects and developers and gain access to funding  
+```
 
-### `npm run build`
+## Link to deployed application
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[Click here to view Heroku application]()
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Table of Contents
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* [Installation](#Installation)
+* [Usage](#Usage)
+* [License](#License)
+* [Screenshots](#Screenshots)
+* [Contributing](#Contributing)
+* [Tests](#Tests)
+* [Acknowledgments](#Acknowledgments)
+* [Questions](#Questions)
 
-### `npm run eject`
+## Installation 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The application is installed with the following command: 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`npm install` 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The application is initiated with the following command: 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+`npm run develop`.
 
-## Learn More
+## Usage
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Fork the repository, install the dependencies and start the fire of imagination and collaboration. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
+MIT
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### For more information on the license, click the badge icon in the title section.
 
-### Analyzing the Bundle Size
+## Screenshots
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![Screenshot1]()
+![Screenshot2]()
+![Screenshot3]()
 
-### Making a Progressive Web App
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Fork the repo and/or get in contact with the authors to suggest changes or contributions. 
 
-### Advanced Configuration
+## Tests
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The application can be tested by running the following command:
 
-### Deployment
+`npm test`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Acknowledgments
 
-### `npm run build` fails to minify
+University of Sydney Coding Bootcamp
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Questions
+
+### For further information contact using the following:
+
+#### GitHub: 
+
+[mdkgray](https://github.com/mdkgray)
+[eljsteer](https://github.com/eljsteer)
+
+#### Email: mdkulen@gmail.com el.jsteer@gmail.com
