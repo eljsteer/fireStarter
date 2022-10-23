@@ -77,15 +77,15 @@ const AddUserInfo = () => {
         variables: { ...userFormData,  },
       });
 
-      if(submitButton === true) {
-        navigate("/profile")
-      } else if (submitButton === false) {
-        setShowAlert(true);
-      }
-
     } catch (e) {
       console.error(e);
-    }
+    };
+
+    if(submitButton === true) {
+      navigate("/profile")
+    } else if (submitButton === false) {
+      setShowAlert(true);
+    };
 
     setUserFormData({
       github: '',
