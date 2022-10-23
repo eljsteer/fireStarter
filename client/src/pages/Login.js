@@ -8,17 +8,16 @@ import {
   CardMedia,
   Container,
   Grid,
+  IconButton,
+  InputAdornment,
   Stack,
   TextField,
   Typography,
-  // IconButton,
-  // InputAdornment,
-  // InputLabel,
-  // FormControl,
+  InputLabel,
+  OutlinedInput,
 } from '@mui/material';
-
-// import Visibility from '@mui/icons-material/Visibility';
-// import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {validateEmail } from "../utils/helpers";
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -55,16 +54,16 @@ const LoginForm = () => {
     });
   };
 
-  // const handleClickShowPassword = () => {
-  //   setUserFormData({
-  //     ...userFormData,
-  //     showPassword: !userFormData.showPassword,
-  //   });
-  // };
+  const handleClickShowPassword = () => {
+    setUserFormData({
+      ...userFormData,
+      showPassword: !userFormData.showPassword,
+    });
+  };
 
-  // const handleMouseDownPassword = (event) => {
-  //   event.preventDefault();
-  // };
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   const handleBlur = (event) => {
     const { name, value } = event.target;
@@ -122,6 +121,7 @@ const LoginForm = () => {
       <Box
         component="form"
         sx={{
+          '& .MuiTextField-root': { m: 1, width: '25ch' },
           flexGrow: 1,
         }}
         noValidate
@@ -136,20 +136,22 @@ const LoginForm = () => {
                 image={process.env.PUBLIC_URL + '/assets/images/LoginCardBkg-unsplash.jpg'}
                 />
               <CardContent>
-                  <TextField
-                    id="outlined-error-helper-text"
-                    label="Email"
-                    type="email"
-                    name="email"
-                    placeholder="Please enter your email"
-                    onChange={handleInputChange}
-                    onBlur={handleBlur}
-                    value={userFormData.email}
-                    error={emailError}
-                    helperText={emailHelperText}
-                    required
-                  />
-                  <TextField
+                <TextField
+                  id="outlined-error-helper-text"
+                  label="Email"
+                  type="email"
+                  name="email"
+                  placeholder="Please enter your email"
+                  onChange={handleInputChange}
+                  onBlur={handleBlur}
+                  value={userFormData.email}
+                  error={emailError}
+                  helperText={emailHelperText}
+                  required
+                />
+                <InputLabel htmlFor="outlined-adornment-amount">Password</InputLabel>
+                  <OutlinedInput
+                    sx={{m:1}}
                     id="outlined-adornment-password-error-helper-text"
                     type={userFormData.showPassword ? "text" : "password"}
                     name="password"
@@ -161,20 +163,18 @@ const LoginForm = () => {
                     error={passwordError}
                     helperText={passwordHelperText}
                     required
-                    // inputProps={
-                    //   endAdornment=(
-                    //     <InputAdornment position="end">
-                    //       <IconButton
-                    //         aria-label="toggle password visibility"
-                    //         onClick={handleClickShowPassword}
-                    //         onMouseDown={handleMouseDownPassword}
-                    //         edge="end"
-                    //       >
-                    //       {userFormData.showPassword ? <VisibilityOff /> : <Visibility />}
-                    //       </IconButton>
-                    //     </InputAdornment>
-                    //   )
-                    // }
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                        {userFormData.showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
                   />
               </CardContent>
               {showAlert && 
