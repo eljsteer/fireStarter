@@ -136,26 +136,27 @@ const LoginForm = () => {
                 image={process.env.PUBLIC_URL + '/assets/images/LoginCardBkg-unsplash.jpg'}
                 />
               <CardContent>
-                <TextField
-                  id="outlined-error-helper-text"
-                  label="Email"
-                  type="email"
-                  name="email"
-                  placeholder="Please enter your email"
-                  onChange={handleInputChange}
-                  onBlur={handleBlur}
-                  value={userFormData.email}
-                  error={emailError}
-                  helperText={emailHelperText}
-                  required
-                />
+                <InputLabel htmlFor="outlined-adornment-amount">Email</InputLabel>
+                  <TextField
+                    id="outlined-error-helper-text"
+                    // label="Email"
+                    type="email"
+                    name="email"
+                    placeholder="Please enter your email"
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
+                    value={userFormData.email}
+                    error={emailError}
+                    helperText={emailHelperText}
+                    required
+                  />
                 <InputLabel htmlFor="outlined-adornment-amount">Password</InputLabel>
                   <OutlinedInput
                     sx={{m:1}}
                     id="outlined-adornment-password-error-helper-text"
                     type={userFormData.showPassword ? "text" : "password"}
                     name="password"
-                    label="Password"
+                    // label="Password"
                     placeholder="Please enter a Password"
                     onChange={handleInputChange}
                     onBlur={handleBlur}
