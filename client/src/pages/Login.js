@@ -145,9 +145,9 @@ const LoginForm = () => {
                 alt="sparks_login_background"
                 image={process.env.PUBLIC_URL + '/assets/images/LoginCardBkg-unsplash.jpg'}
                 />
-              <CardContent sx={{display: 'flex', justifyContent: 'center'}}>
+              <CardContent sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
                 <InputLabel htmlFor="outlined-adornment-amount">Email</InputLabel>
-                  <TextField
+                  <OutlinedInput
                     id="outlined-error-helper-text"
                     // label="Email"
                     type="email"
@@ -160,9 +160,9 @@ const LoginForm = () => {
                     helperText={emailHelperText}
                     required
                   />
+                  <br/>
                 <InputLabel htmlFor="outlined-adornment-amount">Password</InputLabel>
                   <OutlinedInput
-                    sx={{m:1}}
                     id="outlined-adornment-password-error-helper-text"
                     type={userFormData.showPassword ? "text" : "password"}
                     name="password"

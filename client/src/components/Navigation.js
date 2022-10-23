@@ -82,7 +82,7 @@ function Navigation(props) {
                 <LocalFireDepartmentIcon fontSize='large' />
                 <br/>
                 FireStarter
-              </Typography>
+            </Typography>
             <Divider />
             <List>
                 {(Auth.loggedIn() ? loggedInItems: loggedOutItems).map((item) => (

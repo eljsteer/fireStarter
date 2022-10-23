@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
 
@@ -62,6 +62,7 @@ export default function AddProject() {
     const [ descriptionError, setDescriptionError] = useState(false);
     const [ descriptionHelperText, setDescriptionHelperText ] = useState(false);
     const [ addProject, { error, data }] = useMutation(ADD_PROJECT);
+    const navigate = useNavigate();
 
 
     const handleInputChange = (event) => {
@@ -128,6 +129,8 @@ export default function AddProject() {
             console.error(err);
             setShowAlert(true);
         }
+
+        navigate("/profile");
 
         setProjectFormData(
             {
@@ -240,17 +243,15 @@ export default function AddProject() {
                 spacing={2}
                 margin={2}
                 >
-                    <Link to='/profile'>
-                        <Button 
-                            variant="contained" 
-                            color="success"
-                            disabled={!(projectFormData.title && projectFormData.description)}
-                            type="submit"
-                            onClick={handleFormSubmit}
-                            >
-                            <AddIcon /> Add
-                        </Button>
-                    </Link>
+                    <Button 
+                        variant="contained" 
+                        color="success"
+                        disabled={!(projectFormData.title && projectFormData.description)}
+                        type="submit"
+                        onClick={handleFormSubmit}
+                        >
+                        <AddIcon /> Add
+                    </Button>
                     <Link to='/profile'>
                         <Button variant="contained">
                             <ChevronLeftIcon /> Go Back
