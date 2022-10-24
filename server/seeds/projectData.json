@@ -28,11 +28,11 @@
     "currentFunds": "1459"
   },
   {
-    "title": "Faberge Today",
-    "description": "A wonder of the modern world, the Faberge Egg search application allows users to search and view images and information of the 69 known created eggs.",
-    "gitRepo": "fabergeaway",
-    "fundingGoal": "140",
-    "currentFunds": "985"
+    "title": "Faberge Antiques",
+    "description": "A specialised application for all thigns Antiques, Art and History where users can connect with buyers and sellers of these specialised antiques and art pieces. Users are able to take part or host auctions or other methods trade to transact over the app.",
+    "gitRepo": "fabergeAntiques",
+    "fundingGoal": "8900",
+    "currentFunds": "5670"
   },
   {
     "title": "Idle Hands",
@@ -40,5 +40,19 @@
     "gitRepo": "idleHands",
     "fundingGoal": "32500",
     "currentFunds": "31000"
+  },
+  {
+    "title": "Saffires",
+    "description": "An Gem super site for all exquisite Gem business, Purchase, Sell and Trade and discuss all things related to Gems",
+    "gitRepo": "saffires4All",
+    "fundingGoal": "22500",
+    "currentFunds": "11000"
+  },
+  {
+    "title": "New World Exports",
+    "description": "An application that utilises NFT's verification in the exporting of Engineering and automobiles and other expensive products",
+    "gitRepo": "newWorldExports",
+    "fundingGoal": "105500",
+    "currentFunds": "65000"
   }
 ]
