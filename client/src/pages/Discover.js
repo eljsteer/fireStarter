@@ -2,6 +2,7 @@ import React from 'react';
 import ProjectCard from '../components/ProjectCard';
 import { Link } from 'react-router-dom';
 import { experimentalStyled as styled } from '@mui/material/styles';
+import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -15,7 +16,7 @@ let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#0c1012',
+  // backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
@@ -27,7 +28,7 @@ export default function Discover() {
   const allProjects = data?.userProjects || [];
   
   return (
-    <>
+    <Container sx={{height: '100vh'}}>
       <Item>
         <ThemeProvider sx={{maxWidth: "auto"}} theme={theme} >
           <Typography variant="h3" sx={{margin: 5}}>PROJECTS</Typography>
@@ -37,7 +38,7 @@ export default function Discover() {
       <Box sx={{flexGrow: 1,  padding: 2 }}>
         <Grid 
           container 
-          sx={{display: 'flex', justifyContent:"center", alignItems:"top", minHeight:"100vh"}} 
+          sx={{display: 'flex', justifyContent:"center", alignItems:"top"}} 
           spacing={{ xs: 2, md: 3 }} 
           columns={{ xs: 4, sm: 8, md: 12 }}
           >
@@ -63,6 +64,6 @@ export default function Discover() {
       </Box>
       <br/>
       <br/>
-    </>    
+    </Container>    
   );
 }
