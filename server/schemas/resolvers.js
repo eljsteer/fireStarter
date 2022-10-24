@@ -119,7 +119,8 @@ const resolvers = {
           description, 
           gitRepo, 
           fundingGoal, 
-          currentFunds
+          currentFunds,
+          userId : context.user._id
         });
 
         await User.findOneAndUpdate(
@@ -149,9 +150,19 @@ const resolvers = {
     // mutation to delete a project
     removeProject: async (parent, { projectId }, context) => {
       if (context.user) {
+
+        const project = await Project.findOne(
+          { _id: projectId}
+        );
+
+        if (project.userId != context.user._id) {
+          throw new AuthenticationError('You can only remove your own project!');
+        }
+
         const deletedProject = await Project.findOneAndDelete(
           { _id: projectId}
         );
+
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { userProjects: { projectId }}},

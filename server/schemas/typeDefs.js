@@ -21,6 +21,7 @@ const typeDefs = gql`
     gitRepo: String
     fundingGoal: String
     currentFunds: String
+    userId: String
   }
 
   input UserInput {

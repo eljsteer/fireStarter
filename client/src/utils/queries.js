@@ -12,6 +12,7 @@ export const QUERY_ME =gql`
       skills
       userProjects {
         _id
+        userId
         title 
         description
         createdAt
@@ -72,6 +73,7 @@ export const QUERY_SINGLE_PROJECT = gql`
   query singleProject($projectId: ID!) {
     singleProject(projectId: $projectId) {
       _id
+      userId
       title 
       description
       createdAt

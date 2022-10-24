@@ -125,98 +125,97 @@ const AddUserInfo = () => {
         onSubmit={handleFormSubmit}
         autoComplete="off"
       > 
-            <Card sx={{backgroundColor: '#0c1012' }}>
-              <CardContent>
-                <Typography sx={{textAlign: 'center'}} variant="h6">Please provide some more information</Typography>
-                <br/>
-                <TextField
-                  id="outlined-error-helper-text"
-                  sx={{display: 'flex', justifyContent:"center"}}
-                  label="Github URL"
-                  type="text"
-                  name="github"
-                  placeholder="Please your Github URL"
-                  onChange={handleInputChange}
-                  onBlur={handleBlur}
-                  value={userFormData.github}
-                  error={gitHubError}
-                  helperText={helperText}
-                  required
-                  fullWidth 
-                />
-                <TextField
-                  id="outlined-error-helper-text"
-                  sx={{display: 'flex', justifyContent:"center"}}
-                  label="Linkedin URL"
-                  type="text"
-                  name="linkedin"
-                  placeholder="Please enter your linkedin URL"
-                  onChange={handleInputChange}
-                  onBlur={handleBlur}
-                  value={userFormData.linkedin}
-                  error={linkedinError}
-                  helperText={helperText}
-                  required
-                  fullWidth 
-                />
-                <TextField
-                  id="outlined-error-helper-text"
-                  sx={{display: 'flex', justifyContent:"center"}}
-                  label="Skills"
-                  type="skills"
-                  name="skills"
-                  placeholder="Please enter your skills"
-                  onChange={handleInputChange}
-                  onBlur={handleBlur}
-                  value={userFormData.skills}
-                  required
-                  fullWidth 
-                />
-              </CardContent>
-                {showAlert && 
-                <Alert severity="error" onClose={() => {setShowAlert(false)}}>
-                  <span>Computer says no!</span> 
-                  <span>Please enter details in at least one field</span>
-                </Alert>}
+        <Card sx={{backgroundColor: '#0c1012' }}>
+          <CardContent>
+            <Typography sx={{textAlign: 'center'}} variant="h6">Please provide some more information</Typography>
+            <br/>
+            <TextField
+              id="outlined-error-helper-text"
+              sx={{display: 'flex', justifyContent:"center"}}
+              label="Github URL"
+              type="text"
+              name="github"
+              placeholder="Please your Github URL"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              value={userFormData.github}
+              error={gitHubError}
+              helperText={helperText}
+              required
+              fullWidth 
+            />
+            <TextField
+              id="outlined-error-helper-text"
+              sx={{display: 'flex', justifyContent:"center"}}
+              label="Linkedin URL"
+              type="text"
+              name="linkedin"
+              placeholder="Please enter your linkedin URL"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              value={userFormData.linkedin}
+              error={linkedinError}
+              helperText={helperText}
+              required
+              fullWidth 
+            />
+            <TextField
+              id="outlined-error-helper-text"
+              sx={{display: 'flex', justifyContent:"center"}}
+              label="Skills"
+              type="skills"
+              name="skills"
+              placeholder="Please enter your skills"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              value={userFormData.skills}
+              required
+              fullWidth 
+            />
+          </CardContent>
+            {showAlert && 
+            <Alert severity="error" onClose={() => {setShowAlert(false)}}>
+              <span>Computer says no!</span> 
+              <span>Please enter details in at least one field</span>
+            </Alert>}
 
-                <Box sx={{ width: '100%' }}>
-                  <Stack spacing={2}>
-                    <Item>
-                      <Button
-                        type="submit"
-                        name="completeButton"
-                        variant="outlined"
-                        sx={{ width: '45%' }}
-                        onSubmit={handleFormSubmit}
-                        >
-                        <SaveIcon />
-                        Save
+            <Box sx={{ width: '100%' }}>
+              <Stack spacing={2}>
+                <Item>
+                  <Button
+                    type="submit"
+                    name="completeButton"
+                    variant="outlined"
+                    sx={{ width: '45%' }}
+                    onSubmit={handleFormSubmit}
+                    >
+                    <SaveIcon />
+                    Save
+                  </Button>
+                </Item>
+                <Item>
+                  <Button
+                    type="submit"
+                    name="skipButton"
+                    variant="outlined"
+                    sx={{ width: '45%' }}
+                    onClick={() => navigate("/")}
+                    >
+                    Skip
+                    <ChevronRightIcon />
+                  </Button>
+                </Item>
+                <Item>
+                  <Link to='/profile'>
+                      <Button variant="contained">
+                          <ChevronLeftIcon /> Go Back
                       </Button>
-                    </Item>
-                    <Item>
-                      <Button
-                        type="submit"
-                        name="skipButton"
-                        variant="outlined"
-                        sx={{ width: '45%' }}
-                        onClick={() => navigate("/")}
-                        >
-                        Skip
-                        <ChevronRightIcon />
-                      </Button>
-                    </Item>
-                    <Item>
-                      <Link to='/profile'>
-                          <Button variant="contained">
-                              <ChevronLeftIcon /> Go Back
-                          </Button>
-                      </Link>
-                    </Item>
-                  </Stack>
-                </Box>                 
-              <br/>
-            </Card>
-        
+                  </Link>
+                </Item>
+              </Stack>
+            </Box>                 
+          <br/>
+        </Card>        
       </Box>
     </Container>
   );
