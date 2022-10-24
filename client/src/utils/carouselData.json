@@ -23,5 +23,21 @@
     "fundingGoal": "13,500",
     "currentFunds": "1,250",
     "imageSrc": "assets/images/carousel/bottleClink.jpg"
+  }, {
+    "id":4,
+    "title": "Saffires",
+    "description": "A Gem super site for all exquisite Gem business, Purchase, Sell and Trade and discuss all things related to Gems",
+    "gitRepo": "saffires4All",
+    "fundingGoal": "22,500",
+    "currentFunds": "11,000",
+    "imageSrc": "assets/images/carousel/saFFires.jpg"
+  }, {
+    "id":5,
+    "title": "Faberge Antiques",
+    "description": "Online e-commerce application to search, purchase and deliver your favourite spirit products straight to your door with Bottle Clink.",
+    "gitRepo": "fabergeAntiques",
+    "fundingGoal": "8900",
+    "currentFunds": "5670",
+    "imageSrc": "assets/images/carousel/fabergeAntiques.jpg"
   }
 ]
