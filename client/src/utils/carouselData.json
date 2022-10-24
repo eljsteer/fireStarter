@@ -30,7 +30,7 @@
     "gitRepo": "saffires4All",
     "fundingGoal": "22,500",
     "currentFunds": "11,000",
-    "imageSrc": "assets/images/carousel/saFFires.jpg"
+    "imageSrc": "assets/images/carousel/pexels-murilo-fonseca-10582459.jpg"
   }, {
     "id":5,
     "title": "Faberge Antiques",
@@ -46,6 +46,6 @@
     "gitRepo": "newWorldExports",
     "fundingGoal": "105500",
     "currentFunds": "65000",
-    "imageSrc": "assets/images/carousel/NFT2.jpg"
+    "imageSrc": "assets/images/carousel/pexels-ivan-babydov-7788009.jpg"
   }
 ]
