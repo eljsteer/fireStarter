@@ -32,14 +32,15 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const AddUserInfo = () => {
-  const [userFormData, setUserFormData] = useState({ github:"", linkedin:"", skills: "" });
   const [showAlert, setShowAlert] = useState(false);
   const [gitHubError, setGitHubError] = useState(false);
   const [linkedinError, setLinkedinError] = useState(false);
   const [submitButton, setSubmitButton] = useState(true);
   const [helperText, setHelperText] = useState(false);
-  const [updateUser, { error, data }] = useMutation(UPDATE_USER);
   const navigate = useNavigate();
+
+  const [updateUser, { error, data }] = useMutation(UPDATE_USER);
+  const [userFormData, setUserFormData] = useState({ github:"", linkedin:"", skills: "" });
 
   const handleInputChange = (event) => {
     const { name, value, error } = event.target;
@@ -83,9 +84,17 @@ const AddUserInfo = () => {
       event.stopPropagation();
     }
 
+    const updateUserData = {
+      github: userFormData.github,
+      linkedin: userFormData.linkedin,
+      skills: userFormData.skills.split(",")
+    }
+
+    console.log({userFormData});
+
     try {
       const { data } = await updateUser({
-        variables: { ...userFormData,  },
+        variables: { updateData: updateUserData },
       });
 
     } catch (e) {
@@ -98,11 +107,11 @@ const AddUserInfo = () => {
       setShowAlert(true);
     };
 
-    setUserFormData({
-      github: '',
-      linkedin: '',
-      skills: '',
-    });
+    // setUserFormData({
+    //   github: '',
+    //   linkedin: '',
+    //   skills: '',
+    // });
   };
 
   return (

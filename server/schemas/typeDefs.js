@@ -9,7 +9,7 @@ const typeDefs = gql`
     lastName: String!
     github: String
     linkedin: String
-    skills: [String]
+    skills: [String!]
     userProjects: [Project]
   }
 
@@ -26,7 +26,7 @@ const typeDefs = gql`
   input UserInput {
     github: String
     linkedin: String 
-    skills: [String]
+    skills: [String!]
   }
 
   input ProjectInput {
@@ -52,7 +52,7 @@ const typeDefs = gql`
 
   type Mutation {
     createUser(email: String!, password: String!, firstName: String!, lastName: String!): Auth
-    updateUser(updateData: UserInput!, userId: ID!): User
+    updateUser(updateData: UserInput!): User
     login(email: String!, password: String!): Auth
     addProject(title: String!, description: String!, gitRepo: String, fundingGoal: String, currentFunds: String): Project
     updateProject(projectData: ProjectInput!, projectId: ID!): Project

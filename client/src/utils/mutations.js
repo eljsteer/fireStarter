@@ -13,8 +13,8 @@ export const CREATE_USER = gql`
 `;
 
 export const UPDATE_USER = gql`
-mutation updateUser($updateData: UserInput!, $userId: ID!) {
-  updateUser(updateData: $updateData, userId: $userId) {
+mutation updateUser($updateData: UserInput!) {
+  updateUser(updateData: $updateData) {
     github
     linkedin
     skills
