@@ -21,9 +21,6 @@
     "node": "^19.0.0",
     "stripe": "^8.222.0"
   },
-  "engines": {
-    "node": "16.x"
-  },
   "devDependencies": {
     "nodemon": "^2.0.6"
   }
