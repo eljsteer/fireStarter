@@ -108,7 +108,7 @@ function Navigation(props) {
     return (
         <Box sx={{ display: 'flex', margin: 8 }}>
             <AppBar component="nav">
-                <Toolbar>
+                <Toolbar sx={{height: '6vh'}}>
                     <IconButton
                     color="inherit"
                     aria-label="open drawer"
