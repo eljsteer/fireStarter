@@ -7,7 +7,6 @@ import {
   Button,
   Card,
   CardContent,
-  CardMedia,
   Container,
   Stack,
   TextField,
@@ -118,11 +117,6 @@ const AddUserInfo = () => {
         autoComplete="off"
       > 
             <Card sx={{backgroundColor: '#0c1012' }}>
-              <CardMedia
-                component="img"
-                alt="sparks_login_background"
-                image={process.env.PUBLIC_URL + "/assets/images/LoginCardBkg-unsplash.jpg"}
-                />
               <CardContent>
                 <Typography sx={{textAlign: 'center'}} variant="h6">Please provide some more information</Typography>
                 <br/>

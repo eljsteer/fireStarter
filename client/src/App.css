@@ -2,6 +2,17 @@
   background-color: #a42603bd;
 }
 
+.bg_image {
+  background-image: url('../public/assets/images/bgimage.jpg');
+  height: 650vh;
+  width: 100vw;
+  position: sticky;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover
+}
+
 #root {
   background-color: #0c1012;
 }

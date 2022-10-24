@@ -11,14 +11,14 @@ export default function ProjectCard(props) {
     <Card sx={{ maxWidth: 500, backgroundColor: '#000000' }} raised={'true'}>
       <CardActionArea>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h4" component="div">
             {props.title}
           </Typography>
-          <Typography variant="subtitle1" color="text.secondary">
+          <Typography variant="h6" color="text.secondary">
             {props.description}
           </Typography>
           <br />
-          <Typography gutterBottom variant="body2" component="div">
+          <Typography gutterBottom variant="h6" component="div">
             Funding Goal: ${props.fundingGoal}
           </Typography> 
           <br />   

@@ -54,52 +54,54 @@ function App() {
       breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
       minBreakpoint="xxs">
       <CssBaseline />
+      <div class="bg_image">
         <Router>
-            <div>          
-              <Navigation />
-              <div className="container">
-                <Routes>
-                  <Route 
-                    path="/" 
-                    element={<Home />}
-                  />
-                  <Route 
-                    path="/login" 
-                    element={<Login />}
-                  />
-                  <Route 
-                    path="/signup" 
-                    element={<Signup />}
-                  />
-                  <Route 
-                    path="/discover" 
-                    element={<Discover />}
-                  />
-                  <Route 
-                    path="/adduserinfo" 
-                    element={<AddUserInfo />}
-                  />
-                  <Route 
-                    path="/profile" 
-                    element={<Profile />}
-                  />
-                  <Route 
-                    path="/addproject" 
-                    element={<AddProject />}
-                  />
-                  <Route 
-                    path="/project/:id" 
-                    element={<SingleProject />}
-                  />
-                  <Route 
-                    path="*"
-                    element={<NotFound />}
-                  />
-                </Routes>
-              </div> 
-              <Footer />           
-            </div>
-        </Router>
+              <div>          
+                <Navigation />
+                <div className="container">
+                  <Routes>
+                    <Route 
+                      path="/" 
+                      element={<Home />}
+                    />
+                    <Route 
+                      path="/login" 
+                      element={<Login />}
+                    />
+                    <Route 
+                      path="/signup" 
+                      element={<Signup />}
+                    />
+                    <Route 
+                      path="/discover" 
+                      element={<Discover />}
+                    />
+                    <Route 
+                      path="/adduserinfo" 
+                      element={<AddUserInfo />}
+                    />
+                    <Route 
+                      path="/profile" 
+                      element={<Profile />}
+                    />
+                    <Route 
+                      path="/addproject" 
+                      element={<AddProject />}
+                    />
+                    <Route 
+                      path="/project/:id" 
+                      element={<SingleProject />}
+                    />
+                    <Route 
+                      path="*"
+                      element={<NotFound />}
+                    />
+                  </Routes>
+                </div> 
+                <Footer />           
+              </div>
+          </Router>
+      </div>        
       </ThemeProvider>
     </ApolloProvider>
   );

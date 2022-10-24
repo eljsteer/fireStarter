@@ -5,7 +5,6 @@ import {
   Button,
   Card,
   CardContent,
-  CardMedia,
   Container,
   Grid,
   IconButton,
@@ -129,95 +128,86 @@ const LoginForm = () => {
       <Box
         component="form"
         sx={{
-          '& .MuiTextField-root': { m: 1, width: '25ch' },
+          '& .MuiTextField-root': { m: 1, width: "auto" },
           flexGrow: 1
         }}
         noValidate
         onSubmit={handleFormSubmit}
         autoComplete="off"
       > 
-        <Grid container columns={12}>
-          <Grid display="flex" justifyContent="center" >
-            <Card sx={{ maxWidth: 700, backgroundColor: '#0c1012' }}>
-              <CardMedia
-                component="img"
-                alt="sparks_login_background"
-                image={process.env.PUBLIC_URL + '/assets/images/LoginCardBkg-unsplash.jpg'}
-                />
-              <CardContent sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
-                <InputLabel htmlFor="outlined-adornment-amount">Email</InputLabel>
-                  <OutlinedInput
-                    id="outlined-error-helper-text"
-                    // label="Email"
-                    type="email"
-                    name="email"
-                    placeholder="Please enter your email"
-                    onChange={handleInputChange}
-                    onBlur={handleBlur}
-                    value={userFormData.email}
-                    error={emailError}
-                    helperText={emailHelperText}
-                    required
-                  />
-                  <br/>
-                <InputLabel htmlFor="outlined-adornment-amount">Password</InputLabel>
-                  <OutlinedInput
-                    id="outlined-adornment-password-error-helper-text"
-                    type={userFormData.showPassword ? "text" : "password"}
-                    name="password"
-                    // label="Password"
-                    placeholder="Please enter a Password"
-                    onChange={handleInputChange}
-                    onBlur={handleBlur}
-                    value={userFormData.password}
-                    error={passwordError}
-                    helperText={passwordHelperText}
-                    required
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                        >
-                        {userFormData.showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                  />
-              </CardContent>
-              {showAlert && 
-              <Alert severity="error" onClose={() => {setShowAlert(false)}}>
-                Computer says no! It doesn't like your incorrect login details!
-              </Alert>}
-              
-              <Box sx={{ width: '100%' }}>
-                <Stack spacing={2}>
-                  <Item>
-                    <Button
-                    disabled={!(userFormData.email && userFormData.password)}
-                    type='submit'
-                    variant='contained'
-                    sx={{ width: '50%' }}
-                    onSubmit={handleFormSubmit}
+        <Card sx={{ maxWidth: 700, backgroundColor: '#0c1012' }}>
+          <CardContent sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+            <InputLabel htmlFor="outlined-adornment-amount">Email</InputLabel>
+              <OutlinedInput
+                id="outlined-error-helper-text"
+                // label="Email"
+                type="email"
+                name="email"
+                placeholder="Please enter your email"
+                onChange={handleInputChange}
+                onBlur={handleBlur}
+                value={userFormData.email}
+                error={emailError}
+                helperText={emailHelperText}
+                required
+              />
+              <br/>
+            <InputLabel htmlFor="outlined-adornment-amount">Password</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password-error-helper-text"
+                type={userFormData.showPassword ? "text" : "password"}
+                name="password"
+                // label="Password"
+                placeholder="Please enter a Password"
+                onChange={handleInputChange}
+                onBlur={handleBlur}
+                value={userFormData.password}
+                error={passwordError}
+                helperText={passwordHelperText}
+                required
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
                     >
-                      Log In
-                    </Button>
-                  </Item>
-                  <Item>OR</Item>
-                  <Item>
-                    <Typography>Don't Have an Account? 
-                      <br />
-                      <br />
-                      <Link to="/signup"> Sign Up</Link>
-                    </Typography>
-                  </Item>
-                </Stack>
-              </Box>
-            </Card>
-          </Grid>
-        </Grid>
+                    {userFormData.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+          </CardContent>
+          {showAlert && 
+          <Alert severity="error" onClose={() => {setShowAlert(false)}}>
+            Computer says no! It doesn't like your incorrect login details!
+          </Alert>}
+          
+          <Box sx={{ width: '100%' }}>
+            <Stack spacing={2}>
+              <Item>
+                <Button
+                disabled={!(userFormData.email && userFormData.password)}
+                type='submit'
+                variant='contained'
+                sx={{ width: '50%' }}
+                onSubmit={handleFormSubmit}
+                >
+                  Log In
+                </Button>
+              </Item>
+              <Item>OR</Item>
+              <Item>
+                <Typography>Don't Have an Account? 
+                  <br />
+                  <br />
+                  <Link to="/signup"> Sign Up</Link>
+                </Typography>
+              </Item>
+            </Stack>
+          </Box>
+        </Card>
       </Box>
     </Container>
   );
