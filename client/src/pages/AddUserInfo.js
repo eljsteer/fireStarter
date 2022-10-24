@@ -10,7 +10,6 @@ import {
   CardMedia,
   Container,
   Stack,
-  Grid,
   TextField,
   Typography,
 } from "@mui/material";
@@ -111,26 +110,25 @@ const AddUserInfo = () => {
       <Box
         component="form"
         sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
+          "& .MuiTextField-root": { m: 1, width: "auto" },
           flexGrow: 1
         }}
         noValidate
         onSubmit={handleFormSubmit}
         autoComplete="off"
       > 
-        <Grid container columns={12}>
-          <Grid display="flex" justifyContent="center" >
             <Card sx={{backgroundColor: '#0c1012' }}>
               <CardMedia
                 component="img"
                 alt="sparks_login_background"
                 image={process.env.PUBLIC_URL + "/assets/images/LoginCardBkg-unsplash.jpg"}
                 />
-              <CardContent sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+              <CardContent>
                 <Typography sx={{textAlign: 'center'}} variant="h6">Please provide some more information</Typography>
                 <br/>
                 <TextField
                   id="outlined-error-helper-text"
+                  sx={{display: 'flex', justifyContent:"center"}}
                   label="Github URL"
                   type="text"
                   name="github"
@@ -142,10 +140,10 @@ const AddUserInfo = () => {
                   helperText={helperText}
                   required
                   fullWidth 
-                  sx={{alignSelf: 'center'}}
                 />
                 <TextField
                   id="outlined-error-helper-text"
+                  sx={{display: 'flex', justifyContent:"center"}}
                   label="Linkedin URL"
                   type="text"
                   name="linkedin"
@@ -157,10 +155,10 @@ const AddUserInfo = () => {
                   helperText={helperText}
                   required
                   fullWidth 
-                  sx={{alignSelf: 'center'}}
                 />
                 <TextField
                   id="outlined-error-helper-text"
+                  sx={{display: 'flex', justifyContent:"center"}}
                   label="Skills"
                   type="skills"
                   name="skills"
@@ -170,7 +168,6 @@ const AddUserInfo = () => {
                   value={userFormData.skills}
                   required
                   fullWidth 
-                  sx={{alignSelf: 'center',maxWidth: '100%'}}
                 />
               </CardContent>
                 {showAlert && 
@@ -186,7 +183,7 @@ const AddUserInfo = () => {
                         type="submit"
                         name="completeButton"
                         variant="outlined"
-                        sx={{ width: '50%' }}
+                        sx={{ width: '45%' }}
                         onSubmit={handleFormSubmit}
                         >
                         <SaveIcon />
@@ -198,7 +195,7 @@ const AddUserInfo = () => {
                         type="submit"
                         name="skipButton"
                         variant="outlined"
-                        sx={{ width: '50%' }}
+                        sx={{ width: '45%' }}
                         onClick={() => navigate("/")}
                         >
                         Skip
@@ -216,8 +213,7 @@ const AddUserInfo = () => {
                 </Box>                 
               <br/>
             </Card>
-          </Grid>
-        </Grid>
+        
       </Box>
     </Container>
   );

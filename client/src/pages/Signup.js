@@ -7,16 +7,25 @@ import {
   CardContent,
   CardMedia,
   Container,
-  Grid,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+
 import {validateEmail } from "../utils/helpers";
 import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "../utils/mutations";
-
 import Auth from "../utils/auth";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: '#0c1012',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 const SignupForm = () => {
   const [userFormData, setUserFormData] = useState({ firstName:"", lastName:"", email: "", password: "" });
@@ -106,109 +115,108 @@ const SignupForm = () => {
     });
   };
 
-
-
-
   return (
-    <>
-      <Container maxWidth="sm" alignItems="center">
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
-            flexGrow: 1
-          }}
-          noValidate
-          onSubmit={handleFormSubmit}
-          autoComplete="off"
-        > 
-          <Grid container columns={12}>
-            <Grid display="flex" justifyContent="center" >
-              <Card sx={{ maxWidth: 400 }}>
-                <CardMedia
-                  component="img"
-                  alt="sparks_login_background"
-                  image={process.env.PUBLIC_URL + "/assets/images/LoginCardBkg-unsplash.jpg"}
-                  />
-                <CardContent>
-                  <TextField
-                    id="outlined-error-helper-text"
-                    label="First Name"
-                    type="text"
-                    name="firstName"
-                    placeholder="Please enter First Name"
-                    onChange={handleInputChange}
-                    onBlur={handleBlur}
-                    value={userFormData.firstName}
-                    error={firstInputError}
-                    helperText={firstHelperText}
-                    required
-                  />
-                  <TextField
-                    id="outlined-error-helper-text"
-                    label="Last Name"
-                    type="text"
-                    name="lastName"
-                    placeholder="Please enter Last Name"
-                    onChange={handleInputChange}
-                    onBlur={handleBlur}
-                    value={userFormData.lastName}
-                    error={lastInputError}
-                    helperText={lastHelperText}
-                    required
-                  />
-                  <TextField
-                    id="outlined-error-helper-text"
-                    label="Email"
-                    type="email"
-                    name="email"
-                    placeholder="Please enter your email"
-                    onChange={handleInputChange}
-                    onBlur={handleBlur}
-                    value={userFormData.email}
-                    error={emailError}
-                    helperText={emailHelperText}
-                    required
-                  />
-                  <TextField
-                    id="outlined-error-helper-text"
-                    label="Password"
-                    type="password"
-                    name="password"
-                    placeholder="Please enter a Password"
-                    onChange={handleInputChange}
-                    onBlur={handleBlur}
-                    value={userFormData.password}
-                    error={passInputError}
-                    helperText={passHelperText}
-                    required
-                  />
-                </CardContent>
+    <Container sx={{height: '100vh'}} maxWidth="sm" alignItems="center">
+      <Box
+        component="form"
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "auto" },
+          flexGrow: 1
+        }}
+        noValidate
+        onSubmit={handleFormSubmit}
+        autoComplete="off"
+      > 
+        <Card sx={{ backgroundColor: '#0c1012' }}>
+          <CardMedia
+            component="img"
+            alt="sparks_login_background"
+            image={process.env.PUBLIC_URL + "/assets/images/LoginCardBkg-unsplash.jpg"}
+            />
+          <CardContent>
+            <TextField
+              id="outlined-error-helper-text"
+              sx={{display: 'flex', justifyContent:"center"}}
+              label="First Name"
+              type="text"
+              name="firstName"
+              placeholder="Please enter First Name"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              value={userFormData.firstName}
+              error={firstInputError}
+              helperText={firstHelperText}
+              required
+            />
+            <TextField
+              id="outlined-error-helper-text"
+              sx={{display: 'flex', justifyContent:"center"}}
+              label="Last Name"
+              type="text"
+              name="lastName"
+              placeholder="Please enter Last Name"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              value={userFormData.lastName}
+              error={lastInputError}
+              helperText={lastHelperText}
+              required
+            />
+            <TextField
+              id="outlined-error-helper-text"
+              sx={{display: 'flex', justifyContent:"center"}}
+              label="Email"
+              type="email"
+              name="email"
+              placeholder="Please enter your email"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              value={userFormData.email}
+              error={emailError}
+              helperText={emailHelperText}
+              required
+            />
+            <TextField
+              id="outlined-error-helper-text"
+              sx={{display: 'flex', justifyContent:"center"}}
+              label="Password"
+              type="password"
+              name="password"
+              placeholder="Please enter a Password"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              value={userFormData.password}
+              error={passInputError}
+              helperText={passHelperText}
+              required
+            />
+          </CardContent>
+          <Box sx={{ width: '100%' }}>
+            <Stack spacing={2}>
+              <Item>
                 <Button
                   disabled={!(userFormData.firstName && userFormData.lastName && userFormData.email && userFormData.password) || emailError === true}
                   type="submit"
-                  variant="outlined"
-                  sx={{ width: "25ch" }}
+                  variant="contained"
+                  sx={{ width: '50%' }}
                   onSubmit={handleFormSubmit}
                   >
                   Sign Up
                 </Button>
-                <Stack direction="row">
-                  <hr></hr>
-                  <div>OR</div>
-                  <hr></hr>
-                </Stack>
-                <br/>
+              </Item>
+              <Item>OR</Item>
+              <Item>
                 <Typography>Already have an Account? 
-                <Link to="/login"> Log In</Link>
+                  <br />
+                  <br />
+                  <Link to="/login"> Log In</Link>
                 </Typography>
-                <br />
-              </Card>
-            </Grid>
-          </Grid>
-        </Box>
-      </Container>
-    </>
+              </Item>
+            </Stack>
+          </Box>
+        </Card>
+      </Box>
+    </Container>
   );
 };
 
