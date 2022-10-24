@@ -61,6 +61,10 @@ MIT
 
 Fork the repo and/or get in contact with the authors to suggest changes or contributions. 
 
+## Credits
+
+- [Julie Bryrd](https://www.artstation.com/artwork/O9dek)
+
 ## Tests
 
 The application can be tested by running the following command:
