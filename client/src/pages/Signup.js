@@ -104,7 +104,6 @@ const SignupForm = () => {
     } catch (e) {
       console.error(e);
     }
-    // navigate("/adduserinfo");
 
     setUserFormData({
       firstName: '',

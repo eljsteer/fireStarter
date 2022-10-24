@@ -16,16 +16,25 @@ let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 const Item = styled(Paper)(({ theme }) => ({
-  // backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
+  backgroundColor: '#0c1012',
+    ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
 
 export default function Discover() {
-  const {loading, data} = useQuery(QUERY_PROJECTS);
+  const {loading, data} = useQuery(QUERY_PROJECTS, {
+    refetchQueries: [
+      {query: QUERY_PROJECTS}
+  ]
+  });
+
   const allProjects = data?.userProjects || [];
+  
+  if (loading) {
+    return <h2>Fire is starting...</h2>;
+  }
   
   return (
     <Container sx={{height: '100vh'}}>

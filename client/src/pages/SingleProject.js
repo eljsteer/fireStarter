@@ -34,7 +34,7 @@ export default function SingleProject() {
     });
 
     const singleProject = data?.singleProject || {};
-    console.log({singleProject});
+
     const [removeProject, { error }] = useMutation(REMOVE_PROJECT, {
         refetchQueries: [
             {query: QUERY_ME}
@@ -62,11 +62,11 @@ export default function SingleProject() {
     };
 
     if (loading) {
-        return <div>Fire is starting...</div>;
+        return <h2>Fire is starting...</h2>;
     }
 
     return (
-        <Container sx={{backgroundColor: '#0c1012', height: '100vh'}}>
+        <Container sx={{backgroundColor: '#0c1012', height: 'auto', padding: 2}}>
             <Card sx={{ maxWidth: 1250, backgroundColor: '#0c1012' }}>
                 <CardContent>
                     <ThemeProvider theme={theme}>
@@ -132,7 +132,7 @@ export default function SingleProject() {
                 <Button variant="contained" color="success">
                     <AttachMoneyOutlinedIcon /> Fund Me
                 </Button>
-                {Auth.loggedIn() ? (
+                {Auth.loggedIn() && singleProject.userId === Auth.getProfile().data._id ? (
                     <Button 
                         variant="outlined" 
                         color="error"

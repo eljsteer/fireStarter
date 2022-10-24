@@ -15,7 +15,6 @@ import AddUserInfo from './pages/AddUserInfo';
 import Discover from './pages/Discover';
 import Profile from './pages/Profile';
 import AddProject from './pages/AddProject';
-import NotFound from './pages/NotFound';
 import SingleProject from './pages/SingleProject';
 
 // create HTTP link for graphQL
@@ -56,51 +55,47 @@ function App() {
       <CssBaseline />
       <div class="bg_image">
         <Router>
-              <div>          
-                <Navigation />
-                <div className="container">
-                  <Routes>
-                    <Route 
-                      path="/" 
-                      element={<Home />}
-                    />
-                    <Route 
-                      path="/login" 
-                      element={<Login />}
-                    />
-                    <Route 
-                      path="/signup" 
-                      element={<Signup />}
-                    />
-                    <Route 
-                      path="/discover" 
-                      element={<Discover />}
-                    />
-                    <Route 
-                      path="/adduserinfo" 
-                      element={<AddUserInfo />}
-                    />
-                    <Route 
-                      path="/profile" 
-                      element={<Profile />}
-                    />
-                    <Route 
-                      path="/addproject" 
-                      element={<AddProject />}
-                    />
-                    <Route 
-                      path="/project/:id" 
-                      element={<SingleProject />}
-                    />
-                    <Route 
-                      path="*"
-                      element={<NotFound />}
-                    />
-                  </Routes>
-                </div> 
-                <Footer />           
-              </div>
-          </Router>
+          <div>          
+            <Navigation />
+            <div className="container">
+              <Routes>
+                <Route 
+                  path="/" 
+                  element={<Home />}
+                />
+                <Route 
+                  path="/login" 
+                  element={<Login />}
+                />
+                <Route 
+                  path="/signup" 
+                  element={<Signup />}
+                />
+                <Route 
+                  path="/discover" 
+                  element={<Discover />}
+                />
+                <Route 
+                  path="/adduserinfo" 
+                  element={<AddUserInfo />}
+                />
+                <Route 
+                  path="/profile" 
+                  element={<Profile />}
+                />
+                <Route 
+                  path="/addproject" 
+                  element={<AddProject />}
+                />
+                <Route 
+                  path="/project/:id" 
+                  element={<SingleProject />}
+                />
+              </Routes>
+            </div> 
+            <Footer />           
+          </div>
+        </Router>
       </div>        
       </ThemeProvider>
     </ApolloProvider>

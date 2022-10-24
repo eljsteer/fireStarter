@@ -17,11 +17,9 @@ import Alert from '@mui/material/Alert';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import AddIcon from '@mui/icons-material/Add';
 
-import Auth from "../utils/auth";
-import { saveProjectIds } from '../utils/localStorage';
-import { useMutation,useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { ADD_PROJECT } from '../utils/mutations';
-import { QUERY_ME } from '../utils/queries';
+import { QUERY_ME, QUERY_PROJECTS } from '../utils/queries';
 
 
 let theme = createTheme();
@@ -47,7 +45,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function AddProject() {
-    const [value, setValue] = React.useState('Controlled');
+    
     const [projectFormData, setProjectFormData] = useState(
         { 
             title: '', 
@@ -64,7 +62,8 @@ export default function AddProject() {
     const [ descriptionHelperText, setDescriptionHelperText ] = useState(false);
     const [ addProject, { error, data }] = useMutation(ADD_PROJECT, {
         refetchQueries: [
-            {query: QUERY_ME}
+            {query: QUERY_ME},
+            {query: QUERY_PROJECTS}
         ]
     });
 

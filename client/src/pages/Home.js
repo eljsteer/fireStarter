@@ -19,11 +19,6 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Home = () => {
-  // const {loading, data} = useQuery(QUERY_PROJECTS);
-
-  // if (loading) {
-  //   return <div>Fire is starting...</div>;
-  // }
 
   return (
     <Container sx={{maxWidth: "auto", height: '100vh'}}>

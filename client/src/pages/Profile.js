@@ -33,12 +33,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Profile() {
   const {loading, data} = useQuery(QUERY_ME);
-  // const navigate = useNavigate();
-
-  // const handleNavigation = (event) => {
-  //   event.preventDefault();
-  //   navigate("/adduserinfo");
-  // };
   
   if (loading) {
     return <div>Fire is starting...</div>;
