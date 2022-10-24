@@ -149,12 +149,15 @@ const resolvers = {
     // mutation to delete a project
     removeProject: async (parent, { projectId }, context) => {
       if (context.user) {
-        const updatedProject = await User.findOneAndUpdate(
+        const deletedProject = await Project.findOneAndDelete(
+          { _id: projectId}
+        );
+        await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { userProjects: { projectId }}},
           { new: true }
         );
-        return updatedProject;
+        return deletedProject;        
       }
       throw new AuthenticationError('You must to be logged in!');
     },

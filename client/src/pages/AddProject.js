@@ -19,8 +19,9 @@ import AddIcon from '@mui/icons-material/Add';
 
 import Auth from "../utils/auth";
 import { saveProjectIds } from '../utils/localStorage';
-import { useMutation } from '@apollo/client';
+import { useMutation,useQuery } from '@apollo/client';
 import { ADD_PROJECT } from '../utils/mutations';
+import { QUERY_ME } from '../utils/queries';
 
 
 let theme = createTheme();
@@ -61,9 +62,13 @@ export default function AddProject() {
     const [ titleHelperText, setTitleHelperText ] = useState(false);
     const [ descriptionError, setDescriptionError] = useState(false);
     const [ descriptionHelperText, setDescriptionHelperText ] = useState(false);
-    const [ addProject, { error, data }] = useMutation(ADD_PROJECT);
-    const navigate = useNavigate();
+    const [ addProject, { error, data }] = useMutation(ADD_PROJECT, {
+        refetchQueries: [
+            {query: QUERY_ME}
+        ]
+    });
 
+    const navigate = useNavigate();
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -130,8 +135,6 @@ export default function AddProject() {
             setShowAlert(true);
         }
 
-        navigate("/profile");
-
         setProjectFormData(
             {
                 title: '', 
@@ -141,6 +144,8 @@ export default function AddProject() {
                 currentFunds: '' 
             }
         )
+        
+        navigate("/profile");
     }
 
     return (

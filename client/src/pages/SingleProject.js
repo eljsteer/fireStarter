@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
@@ -20,23 +20,29 @@ import { removeProjectId } from '../utils/localStorage';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { REMOVE_PROJECT } from '../utils/mutations';
-import { QUERY_SINGLE_PROJECT } from '../utils/queries';
+import { QUERY_SINGLE_PROJECT, QUERY_ME } from '../utils/queries';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 export default function SingleProject() {
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const {loading, data } = useQuery(QUERY_SINGLE_PROJECT, {
         variables: { projectId: id },
     });
 
     const singleProject = data?.singleProject || {};
-    const [removeProject, { error }] = useMutation(REMOVE_PROJECT);
+    console.log({singleProject});
+    const [removeProject, { error }] = useMutation(REMOVE_PROJECT, {
+        refetchQueries: [
+            {query: QUERY_ME}
+        ]
+    });
 
     const handleProjectDelete = async (projectId) => {
-        const token = Auth.loggedIn() ? Auth.getToken() : null; // checks if the user is logged in 
+        const token = Auth.loggedIn() ? Auth.getToken() : null; // checks if the user is logged in
 
         if (!token) {
             return false;
@@ -48,6 +54,8 @@ export default function SingleProject() {
             });
 
             removeProjectId(projectId); // remove project from local storage
+            navigate("/profile");
+
         } catch (err) {
             console.log(err);
         }
@@ -128,7 +136,7 @@ export default function SingleProject() {
                     <Button 
                         variant="outlined" 
                         color="error"
-                        onClick={() => handleProjectDelete(singleProject.projectId)}>
+                        onClick={() => handleProjectDelete(singleProject._id)}>
                         <DeleteIcon /> Delete
                     </Button> ) 
                     : null }                                             
