@@ -34,10 +34,18 @@
   }, {
     "id":5,
     "title": "Faberge Antiques",
-    "description": "Online e-commerce application to search, purchase and deliver your favourite spirit products straight to your door with Bottle Clink.",
+    "description": "A specialised application for all things Antiques, Art and History. This E-commerce enables users to connect with buyers and sellers of these specialised antiques and art pieces. Users are able to take part or host auctions or other methods trade to transact over the app.",
     "gitRepo": "fabergeAntiques",
     "fundingGoal": "8900",
     "currentFunds": "5670",
     "imageSrc": "assets/images/carousel/fabergeAntiques.jpg"
+  }, {
+    "id":6,
+    "title": "New World Exports",
+    "description": "An application that utilises NFT's verification in the exporting of Engineering and automobiles and other expensive products",
+    "gitRepo": "newWorldExports",
+    "fundingGoal": "105500",
+    "currentFunds": "65000",
+    "imageSrc": "assets/images/carousel/NFT2.jpg"
   }
 ]

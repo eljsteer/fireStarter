@@ -47,5 +47,12 @@
     "gitRepo": "saffires4All",
     "fundingGoal": "22500",
     "currentFunds": "11000"
+  },
+  {
+    "title": "New World Exports",
+    "description": "An application that utilises NFT's verification in the exporting of Engineering and automobiles and other expensive products",
+    "gitRepo": "newWorldExports",
+    "fundingGoal": "105500",
+    "currentFunds": "65000"
   }
 ]
