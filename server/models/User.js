@@ -1,4 +1,6 @@
 const { Schema, model } = require('mongoose');
+
+// variable for bcrypt password hashing
 const bcrypt = require('bcrypt');
 
 const Project = require('./Project');
