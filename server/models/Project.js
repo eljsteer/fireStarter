@@ -1,4 +1,6 @@
 const { Schema, model } = require('mongoose');
+
+// variable for date formatting for createdAt
 const dateFormat = require('../utils/dateFormat');
 
 const projectSchema = new Schema({
