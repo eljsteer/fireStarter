@@ -18,6 +18,11 @@ import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 
+// >>------------------>>
+// Signup Page Code
+// >>------------------>>
+
+// Page Theme Material UI
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#0c1012',
   ...theme.typography.body2,
@@ -113,6 +118,7 @@ const SignupForm = () => {
     });
   };
 
+// JSX Page Returned
   return (
     <Container sx={{height: '100vh'}} maxWidth="sm" alignItems="center">
       <Box

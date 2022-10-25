@@ -6,6 +6,10 @@ import { CardActionArea } from '@mui/material';
 import Button from '@mui/material/Button';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
+// >>----------------------------->>
+// Project Details & Info Component
+// >>----------------------------->>
+
 export default function ProjectCard(props) {
   return (
     <Card sx={{ maxWidth: 500, backgroundColor: '#000000' }} raised={'true'}>

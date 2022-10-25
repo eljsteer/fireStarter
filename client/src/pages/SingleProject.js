@@ -22,6 +22,11 @@ import { useParams } from 'react-router-dom';
 import { REMOVE_PROJECT } from '../utils/mutations';
 import { QUERY_SINGLE_PROJECT, QUERY_ME } from '../utils/queries';
 
+// >>------------------>>
+// Signup Page Code
+// >>------------------>>
+
+// Page Theme Material UI
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
@@ -65,6 +70,7 @@ export default function SingleProject() {
         return <h2>Fire is starting...</h2>;
     }
 
+// JSX Page Returned
     return (
         <Container sx={{backgroundColor: '#0c1012', height: 'auto', padding: 2}}>
             <Card sx={{ maxWidth: 1250, backgroundColor: '#0c1012' }}>
@@ -97,6 +103,7 @@ export default function SingleProject() {
                     </a>
                 </CardActions>
                 <br/>
+                {/* Conditional Rendering for whether User is logged in */}
                 <CardContent>
                     <ThemeProvider theme={theme}>
                         <Typography gutterBottom variant="body1" component="div" sx={{textAlign: 'center'}}>

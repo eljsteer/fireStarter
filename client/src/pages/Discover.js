@@ -12,6 +12,11 @@ import Typography from '@mui/material/Typography';
 import { useQuery } from '@apollo/client';
 import { QUERY_PROJECTS } from '../utils/queries';
 
+// >>---------------------------------->>
+// Discover Page Code
+// >>---------------------------------->>
+
+// Page Material UI Theme
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
@@ -35,7 +40,8 @@ export default function Discover() {
   if (loading) {
     return <h2>Fire is starting...</h2>;
   }
-  
+
+  // JSX Page Returned
   return (
     <Container sx={{height: '100vh'}}>
       <Item>
@@ -59,6 +65,7 @@ export default function Discover() {
                 <Item
                   xs={12}
                   underline="none">
+                {/* Project Card Component inserted */}
                   <ProjectCard 
                     key={i}
                     title={project.title}                

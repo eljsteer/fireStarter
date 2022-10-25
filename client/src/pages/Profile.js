@@ -20,6 +20,11 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 
+// >>------------------>>
+// Profile Page Code
+// >>------------------>>
+
+// Page Material UI Theme
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
@@ -30,6 +35,7 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
+
 
 export default function Profile() {
   const {loading, data} = useQuery(QUERY_ME);
@@ -42,6 +48,7 @@ export default function Profile() {
 
   const welcomeUser = `${data.me.firstName} ${ data.me.lastName}`
 
+// JSX Page Returned
   return (
     <Container sx={{height: '100vh'}}>
       <Item>
