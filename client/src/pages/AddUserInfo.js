@@ -22,6 +22,11 @@ import {validateURL } from "../utils/helpers";
 import { useMutation } from "@apollo/client";
 import { UPDATE_USER } from "../utils/mutations";
 
+// >>---------------------------------->>
+// Add and Update User Info Page
+// >>---------------------------------->>
+
+// Page Material UI Theme
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#0c1012',
   ...theme.typography.body2,
@@ -30,6 +35,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+// Page Logic and React hooks
 const AddUserInfo = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [gitHubError, setGitHubError] = useState(false);
@@ -105,14 +111,9 @@ const AddUserInfo = () => {
     } else if (submitButton === false) {
       setShowAlert(true);
     };
-
-    // setUserFormData({
-    //   github: '',
-    //   linkedin: '',
-    //   skills: '',
-    // });
   };
 
+ // JSX Page Returned
   return (
     <Container sx={{height: '100vh'}} maxWidth="sm" alignItems="center">
       <Box

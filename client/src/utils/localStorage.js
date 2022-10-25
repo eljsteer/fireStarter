@@ -1,3 +1,7 @@
+// >>------------------>>
+// LocalStorage Functions
+// >>------------------>>
+
 // function to retrieve saved projects 
 export const getSavedProjectIds = () => {
     const savedProjectIds = localStorage.getItem('saved_projects')

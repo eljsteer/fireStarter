@@ -21,7 +21,11 @@ import { useMutation, useQuery } from '@apollo/client';
 import { ADD_PROJECT } from '../utils/mutations';
 import { QUERY_ME, QUERY_PROJECTS } from '../utils/queries';
 
+// >>------------------------>>
+// Add Project Page
+// >>------------------------>>
 
+// Page Material UI Theme
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
@@ -147,6 +151,7 @@ export default function AddProject() {
         navigate("/profile");
     }
 
+  // JSX Page Returned
     return (
         <Container sx={{height: '100vh'}}>
             <Item>  

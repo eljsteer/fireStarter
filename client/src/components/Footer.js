@@ -3,6 +3,10 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import LocalFireDepartmentOutlinedIcon from '@mui/icons-material/LocalFireDepartmentOutlined';
 
+// >>---------------------->>
+// Footer Component
+// >>---------------------->>
+
 const Footer = () => {
 
   return (

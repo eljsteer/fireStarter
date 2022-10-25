@@ -1,3 +1,7 @@
+// >>------------------------>>
+// Authentication Code Functions
+// >>------------------------>>
+
 // Used to decode a token and retrieve the  user's information
 import decode from 'jwt-decode';
 

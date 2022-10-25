@@ -1,9 +1,14 @@
 import {Paper} from '@mui/material';
-// import {Button} from '@mui/material';
-// import { Link } from "react-router-dom";
+
+////// TODO: To add dynamic display and retrieval of "Hot Projects" with highest votes or funding ///////////
+////// TODO: Also to add links to projects from Hot-Projects image to Project details page ///////////
 
 // import { useQuery } from '@apollo/client';
 // import { QUERY_PROJECTS } from '../utils/queries';
+
+// >>---------------------------------->>
+// Carousel Inner Content Component
+// >>---------------------------------->>
 
 function CarouselItem({item}) {
   // const {loading, data} = useQuery(QUERY_PROJECTS);

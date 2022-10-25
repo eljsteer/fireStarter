@@ -17,6 +17,10 @@ import Profile from './pages/Profile';
 import AddProject from './pages/AddProject';
 import SingleProject from './pages/SingleProject';
 
+// >>------------------>>
+// Main App Root Page Code
+// >>------------------>>
+
 // create HTTP link for graphQL
 const httpLink = createHttpLink({
   uri: '/graphql',

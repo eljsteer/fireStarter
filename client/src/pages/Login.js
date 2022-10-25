@@ -25,6 +25,11 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from "../utils/auth";
 
+// >>------------------>>
+// Login Page Code
+// >>------------------>>
+
+// Page Material UI Theme
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#0c1012',
   ...theme.typography.body2,
@@ -122,6 +127,7 @@ const LoginForm = () => {
     });
   };
 
+// JSX Page Returned
   return (
     <Container sx={{height: '100vh'}} maxWidth="sm" alignItems="center">
       <Box

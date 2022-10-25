@@ -23,6 +23,11 @@ import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 
 import Auth from "../utils/auth";
 
+// >>------------------------>>
+// Navigation and Header Component
+// >>------------------------>>
+
+
 const drawerWidth = 240;
 
 const navItems = [
