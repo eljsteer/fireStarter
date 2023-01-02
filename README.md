@@ -31,7 +31,7 @@ SO THAT I can connect with projects and developers and gain access to funding
 ```
 ## Link to deployed application
 
-[Click here to view Heroku application](https://secret-headland-78641.herokuapp.com/)
+[Click here to view Heroku application](firestarter.herokuapp.com/)
 
 ## Table of Contents
 
