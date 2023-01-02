@@ -31,7 +31,7 @@ SO THAT I can connect with projects and developers and gain access to funding
 ```
 ## Link to deployed application
 
-[Click here to view Heroku application](https://secret-headland-78641.herokuapp.com/)
+[Click here to view Heroku application](https://firestarter.herokuapp.com/)
 
 ## Table of Contents
 
@@ -89,6 +89,11 @@ The application can be tested by running the following command:
 ## Acknowledgments
 
 - University of Sydney Coding Bootcamp
+- [MUI](https://mui.com/)
+- [Stack Overflow](https://stackoverflow.com/)
+===============================================
+Photos
+===============================================
 - [Julie Bryrd](https://www.artstation.com/artwork/O9dek)
 - [Photo by Elevate from Pexels:](ttps://www.pexels.com/photo/brown-wooden-barrel-1267358/)
 - [Photo by cottonbro from Pexels:](https://www.pexels.com/photo/photo-of-person-holding-a-handgun-7265995/)
@@ -96,8 +101,7 @@ The application can be tested by running the following command:
 - [Photo by Ivan Babydov from Pexels:](https://www.pexels.com/photo/gold-bitcoin-coin-on-background-of-growth-chart-7788009/)
 - [Photo by Abdul Matloob from Pexels:](https://www.pexels.com/photo/blue-topaz-13303468/)
 - [Photo by Murilo Fonseca from Pexels:](https://www.pexels.com/photo/wood-love-art-dark-10582459/)
-- [MUI](https://mui.com/)
-- [Stack Overflow](https://stackoverflow.com/)
+
 
 
 ## Questions
