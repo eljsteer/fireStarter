@@ -89,6 +89,8 @@ The application can be tested by running the following command:
 ## Acknowledgments
 
 - University of Sydney Coding Bootcamp
+- [MUI](https://mui.com/)
+- [Stack Overflow](https://stackoverflow.com/)
 =======================================
 Photos
 =======================================
@@ -99,9 +101,6 @@ Photos
 - [Photo by Ivan Babydov from Pexels:](https://www.pexels.com/photo/gold-bitcoin-coin-on-background-of-growth-chart-7788009/)
 - [Photo by Abdul Matloob from Pexels:](https://www.pexels.com/photo/blue-topaz-13303468/)
 - [Photo by Murilo Fonseca from Pexels:](https://www.pexels.com/photo/wood-love-art-dark-10582459/)
-- [MUI](https://mui.com/)
-- [Stack Overflow](https://stackoverflow.com/)
-
 
 ## Questions
 
