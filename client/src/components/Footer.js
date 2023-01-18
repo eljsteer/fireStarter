@@ -10,7 +10,7 @@ import LocalFireDepartmentOutlinedIcon from '@mui/icons-material/LocalFireDepart
 const Footer = () => {
 
   return (
-    <Box sx={{ backgroundColor: '#0c1012', width: '100%', maxWidth: 'auto', display: 'flex', justifyContent: 'center', position: 'fixed', bottom: 0, height: 30 }}>
+    <Box sx={{ backgroundColor: '#2d2b2b', width: '100%', maxWidth: 'auto', display: 'flex', justifyContent: 'center', position: 'fixed', bottom: 0, height: 30 }}>
       <LocalFireDepartmentOutlinedIcon /> 
       <Typography sx={{alignItems: 'center'}} variant="overline" display="block" gutterBottom>
         Created by Jason Steer and Mackenzie Gray

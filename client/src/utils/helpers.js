@@ -8,7 +8,7 @@ export function validateEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
-// Validator Function to vlidate user inputs URL
+// Validator Function to validate user inputs URL
 export function validateURL(url) {
   let re = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
   return re.test(String(url).toLowerCase());

@@ -46,6 +46,29 @@ export default function SingleProject() {
         ]
     });
 
+    const stripeDonate =  (donationIndex) => {
+        console.log(donationIndex)
+        fetch('/donation', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                items: [
+                    { id: donationIndex, quantity: 1}
+                ]
+            })
+        }).then(res => {
+            if (res.ok) return res.json()
+            return res.json().then(json => Promise.reject(json))
+        }).then(({ url }) => {
+            console.log(url)
+            window.location = url;
+        }).catch(e => {
+            console.error(e.error)
+        })
+    };
+
     const handleProjectDelete = async (projectId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null; // checks if the user is logged in
 
@@ -136,7 +159,11 @@ export default function SingleProject() {
                 spacing={2}
                 margin={2}
             >
-                <Button variant="contained" color="success">
+                <Button 
+                    variant="contained" 
+                    color="success"
+                    onClick={() => stripeDonate(singleProject._id)}
+                    >
                     <AttachMoneyOutlinedIcon /> Fund Me
                 </Button>
                 {Auth.loggedIn() && singleProject.userId === Auth.getProfile().data._id ? (
