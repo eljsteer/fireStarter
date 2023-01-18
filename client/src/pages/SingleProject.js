@@ -115,7 +115,7 @@ export default function SingleProject() {
                 <CardActions style={{justifyContent: 'center'}}>
                 <a
                     underline='none'
-                    // href={'https://github.com/`${singleProject.gitRepo}`'}
+                    href={'https://github.com/`${singleProject.gitRepo}`'}
                 >
                     <Button 
                     variant="outlined"

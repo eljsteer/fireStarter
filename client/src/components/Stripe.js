@@ -1,3 +1,37 @@
+import React from 'react';
+import Button from '@mui/material/Button';
+import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
+
+<Button variant="contained" color="success">
+  <AttachMoneyOutlinedIcon /> Checkout
+</Button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import {loadStripe} from '@stripe/stripe-js';
 // import {Elements, PaymentElement, useStripe, useElements} from '@stripe/react-stripe-js';
 
