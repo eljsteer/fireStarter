@@ -5,21 +5,46 @@ const db = require('./config/connection');
 const { ApolloServer } = require('apollo-server-express');
 const { authMiddleware } = require("./utils/auth");
 const { typeDefs, resolvers } = require('./schemas');
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
-const fundingAmount = new Map([
-  [1, {priceInCents: 1000, name: "Invest $10"}],
-  [2, {priceInCents: 2000, name: "Invest $20"}],
-  [3, {priceInCents: 4000, name: "Invest $40"}],
-  [4, {priceInCents: 5000, name: "Invest $50"}],
-  [5, {priceInCents: 10000, name: "Invest $100"}],
-  [6, {priceInCents: 20000, name: "Invest $200"}],
-  [7, {priceInCents: 50000, name: "Invest $500"}],
-  [8, {priceInCents: 100000, name: "Invest $1000"}],
+const storeItems = new Map ([
+  [1, {priceInCents: 500, name:'$5 Donation'}],
+  [2, {priceInCents: 1000, name:'$10 Donation'}],
+  [3, {priceInCents: 2000, name:'$20 Donation'}],
+  [4, {priceInCents: 5000, name:'$50 Donation'}],
+  [5, {priceInCents: 10000, name:'$100 Donation'}],
 ])
+
+app.post('/donation', async (req, res) => {
+  const url = new URL(req.headers.referer).origin;
+    try { 
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            mode: 'payment',
+            line_items: req.body.items.map(item => {
+                const storeItem = storeItems.get(item.id)
+                return {
+                    price_data: {
+                        currency: 'aud',
+                        product_data: {
+                            name: storeItem.name
+                        },
+                        unit_amount: storeItem.priceInCents
+                    },
+                    quantity: item.quantity
+                }
+            }),
+            success_url: `${url}/thankyou`,
+            cancel_url: `${url}/donate`,
+        })
+        res.json({ url: session.url})
+    } catch (e) {
+        res.status(500).json({error: e.message})
+    }
+})
 
 // create new Apollo server and integrate with express
 const server = new ApolloServer({
