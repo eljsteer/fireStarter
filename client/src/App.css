@@ -2,23 +2,27 @@
 Standard CSS for App
 */
 
+html {
+  background-color: #2d2b2b;
+}
+
 .MuiToolbar-root {
   background-color: #a42603bd;
 }
 
-.bg_image {
+/* .bg_image {
   background-image: url('../public/assets/images/bgimage.jpg');
-  height: 650vh;
+  height: 110vh;
   width: 100vw;
   position: sticky;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   background-size: cover
-}
+} */
 
 #root {
-  background-color: #0c1012;
+  background-color: #2d2b2b;
 }
 
 .App {
