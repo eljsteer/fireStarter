@@ -208,7 +208,7 @@ export default function AddProject() {
                             label="Github Repository"
                             type="gitRepo"
                             name="gitRepo"
-                            placeholder="Enter repository name"
+                            placeholder="Enter GitHub repository Link"
                             multiline
                             onChange={handleInputChange}
                             onBlur={handleBlur}
