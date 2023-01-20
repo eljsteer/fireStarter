@@ -106,9 +106,11 @@ const SignupForm = () => {
 
       Auth.signup(data.createUser.token);
 
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
     }
+
+    navigate("/profile");
 
     setUserFormData({
       firstName: '',
