@@ -113,17 +113,17 @@ export default function SingleProject() {
                     </ThemeProvider>
                 </CardContent>
                 <CardActions style={{justifyContent: 'center'}}>
-                <a
+                  <a
                     underline='none'
-                    href={'https://github.com/`${singleProject.gitRepo}`'}
-                >
+                    href={singleProject.gitRepo}
+                    target="_blank" 
+                    rel="noopener noreferrer">
                     <Button 
-                    variant="outlined"
-                    underline='none'
-                        >
-                            GitHub Repo
-                        </Button>
-                    </a>
+                      variant="outlined"
+                      underline='none'>
+                      GitHub Repo
+                    </Button>
+                  </a>
                 </CardActions>
                 <br/>
                 {/* Conditional Rendering for whether User is logged in */}

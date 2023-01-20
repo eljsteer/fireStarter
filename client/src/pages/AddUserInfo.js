@@ -18,7 +18,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import SaveIcon from '@mui/icons-material/Save';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
-import {validateURL } from "../utils/helpers";
+import { validateURL } from "../utils/helpers";
 import { useMutation } from "@apollo/client";
 import { UPDATE_USER } from "../utils/mutations";
 
@@ -40,7 +40,6 @@ const AddUserInfo = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [gitHubError, setGitHubError] = useState(false);
   const [linkedinError, setLinkedinError] = useState(false);
-  const [submitButton, setSubmitButton] = useState(true);
   const [helperText, setHelperText] = useState(false);
   const navigate = useNavigate();
 
@@ -48,32 +47,20 @@ const AddUserInfo = () => {
   const [userFormData, setUserFormData] = useState({ github:"", linkedin:"", skills: "" });
 
   const handleInputChange = (event) => {
-    const { name, value, error } = event.target;
+    const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
-
-    if (name ==="github" || name === "linkedin" || name === "skills") {
-      if (error === true) {
-        setSubmitButton(false);
-      } else if (error === false) {
-        if (value) {
-          setSubmitButton(true);
-        } else {
-          setSubmitButton(false);
-        }
-      };
-    };
   };
 
   const handleBlur = (event) => {
     const { name, value } = event.target;
-    const isValid = validateURL(event.target.value);
+    const isValidURL = validateURL(event.target.value);
     if (name === "github") {
-      if(value && !isValid) {
+      if(value && !isValidURL) {
         setGitHubError(true);
         setHelperText("Please enter a valid github URL");
       }
     } else if (name === "linkedin") {
-      if(value && !isValid) {
+      if(value && !isValidURL) {
         setLinkedinError(true);
         setHelperText("Please enter a valid linkedin URL");
       }
@@ -87,30 +74,27 @@ const AddUserInfo = () => {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+    } else {
+      console.log(error)
     }
 
     const updateUserData = {
       github: userFormData.github,
       linkedin: userFormData.linkedin,
       skills: userFormData.skills.split(",")
-    }
+    } 
 
-    console.log({userFormData});
+    console.log(data);
 
     try {
       const { data } = await updateUser({
         variables: { updateData: updateUserData },
       });
-
-    } catch (e) {
-      console.error(e);
+      console.log(data);
+    } catch (error) {
+      console.error(error);
     };
-
-    if(submitButton === true) {
       navigate("/profile")
-    } else if (submitButton === false) {
-      setShowAlert(true);
-    };
   };
 
  // JSX Page Returned
@@ -188,6 +172,7 @@ const AddUserInfo = () => {
                     name="completeButton"
                     variant="outlined"
                     sx={{ width: '45%' }}
+                    disabled={ gitHubError || linkedinError === true}
                     onSubmit={handleFormSubmit}
                     >
                     <SaveIcon />

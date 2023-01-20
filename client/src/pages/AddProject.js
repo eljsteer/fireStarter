@@ -1,25 +1,26 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { experimentalStyled as styled } from '@mui/material/styles';
-import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { experimentalStyled as styled } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 
-import Paper from '@mui/material/Paper';
-import Container from '@mui/material/Box';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import Divider from '@mui/material/Divider';
-import Alert from '@mui/material/Alert';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import AddIcon from '@mui/icons-material/Add';
+import Paper from "@mui/material/Paper";
+import Container from "@mui/material/Box";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+import Divider from "@mui/material/Divider";
+import Alert from "@mui/material/Alert";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import AddIcon from "@mui/icons-material/Add";
 
-import { useMutation, useQuery } from '@apollo/client';
-import { ADD_PROJECT } from '../utils/mutations';
-import { QUERY_ME, QUERY_PROJECTS } from '../utils/queries';
+import { useMutation } from "@apollo/client";
+import { ADD_PROJECT } from "../utils/mutations";
+import { QUERY_ME, QUERY_PROJECTS } from "../utils/queries";
+import {validateURL } from "../utils/helpers";
 
 // >>------------------------>>
 // Add Project Page
@@ -30,20 +31,20 @@ let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 theme.typography.h3 = {
-    fontSize: '2rem',
-    '@media (min-width:600px)': {
-        fontSize: '1.5rem',
+    fontSize: "2rem",
+    "@media (min-width:600px)": {
+        fontSize: "1.5rem",
     },
-    [theme.breakpoints.up('md')]: {
-        fontSize: '2rem',
+    [theme.breakpoints.up("md")]: {
+        fontSize: "2rem",
     },
 };
 
 const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: '#0c1012',
+    backgroundColor: "#0c1012",
     ...theme.typography.body2,
     padding: theme.spacing(1),
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.text.secondary,
     margin: 25
 }));
@@ -52,19 +53,26 @@ export default function AddProject() {
     
     const [projectFormData, setProjectFormData] = useState(
         { 
-            title: '', 
-            description: '', 
-            gitRepo: '', 
-            fundingGoal: '', 
-            currentFunds: ''  
+            title: "", 
+            description: "", 
+            gitRepo: "", 
+            fundingGoal: "", 
+            currentFunds: ""  
         }
     );
-    const [showAlert, setShowAlert] = useState(false);
+    const [ showAlert, setShowAlert ] = useState(false);
     const [ titleError, setTitleError] = useState(false);
     const [ titleHelperText, setTitleHelperText ] = useState(false);
-    const [ descriptionError, setDescriptionError] = useState(false);
+    const [ descriptionError, setDescriptionError ] = useState(false);
     const [ descriptionHelperText, setDescriptionHelperText ] = useState(false);
-    const [ addProject, { error, data }] = useMutation(ADD_PROJECT, {
+    const [ gitHubError, setGitHubError ] = useState(false);
+    const [ gitHubHelperText, setGitHubHelperText ] = useState(false);
+    const [ fundingGoalError, setFundingGoalError ] = useState(false);
+    const [ fundingGoalHelperText, setFundingGoalHelperText ] = useState(false);
+    const [ currentFundsError, setCurrentFundsError ] = useState(false);
+    const [ currentFundsHelperText, setcurrentFundsHelperText ] = useState(false);
+    // const [ addProjectButton, setAddProjectButton ] = useState(true);
+    const [ addProject, { error, data } ] = useMutation(ADD_PROJECT, {
         refetchQueries: [
             {query: QUERY_ME},
             {query: QUERY_PROJECTS}
@@ -75,25 +83,51 @@ export default function AddProject() {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        if( name === 'title') {
+        const isValidURL = validateURL(event.target.value);
+        if( name === "title") {
             if(!value) {
                 setTitleError(true);
-                setTitleHelperText('You must add a title for your project');
+                setTitleHelperText("You must add a title for your project");
             } else if (value) {
                 setTitleError(false);
                 setTitleHelperText(false);
             }            
-        }
-
-        if( name === 'description') {
+        } else if( name === "description") {
             if(!value) {
                 setDescriptionError(true);
-                setDescriptionHelperText('You must add a description for your project');
+                setDescriptionHelperText("You must add a description for your project");
             } else if (value) {
                 setDescriptionError(false);
                 setDescriptionHelperText(false);
             }            
-        }
+        } else if( name === "gitRepo") {
+            if(!value) {
+              setGitHubError(true);
+              setGitHubHelperText("You must add a Github URL for your project");
+            } else if (value && !isValidURL) {
+                setGitHubError(true);
+                setGitHubHelperText("Please add a valid URL");            
+            } else if (value && isValidURL) {
+                setGitHubError(false);
+                setGitHubHelperText(false);
+            } 
+        }  else if( name === "fundingGoal") {
+            if(isNaN(value)) {
+              setFundingGoalError(true);
+              setFundingGoalHelperText("Please enter numbers Only");          
+            } else {
+              setFundingGoalError(false);
+              setFundingGoalHelperText(false);
+            }   
+        } else if( name === "currentFunds") {
+              if(isNaN(value)) {
+                setCurrentFundsError(true);
+                setcurrentFundsHelperText("Please enter numbers Only");      
+              } else {
+                setCurrentFundsError(false);
+                setFundingGoalHelperText(false);
+              }
+          }
         setProjectFormData({
             ...projectFormData,
             [name]: value
@@ -102,22 +136,34 @@ export default function AddProject() {
 
     const handleBlur = (event) => {
         const { name, value } = event.target;
-        if ( name === 'title') {
+        const isValid = validateURL(event.target.value);
+        if ( name === "title") {
             if(!value) {
                 setTitleError(true);
-                setTitleHelperText('You must add a title for your project');
+                setTitleHelperText("You must add a title for your project");
             } else if (value) {
                 setTitleError(false);
                 setTitleHelperText(false);
             }            
-        } else if ( name === 'description') {
+        } else if ( name === "description") {
             if(!value) {
                 setDescriptionError(true);
-                setDescriptionHelperText('You must add a description for your project');
+                setDescriptionHelperText("You must add a description for your project");
             } else if (value) {
                 setDescriptionError(false);
                 setDescriptionHelperText(false);
             }
+        } else if( name === "gitRepo") {
+            if(!value) {
+                setGitHubError(true);
+                setGitHubHelperText("You must add a Github URL for your project");
+              } else if (value && !isValid) {
+                  setGitHubError(true);
+                  setGitHubHelperText("Please add a valid URL");            
+              } else if (value && isValid) {
+                  setGitHubError(false);
+                  setGitHubHelperText(false);
+              }            
         }
     }
 
@@ -127,24 +173,29 @@ export default function AddProject() {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
         event.preventDefault();
+        event.stopPropagation();
+        } else {
+          console.log(error)
         }
+        console.log(data);
+        
         try {
             const { data } = await addProject({
                 variables: { ...projectFormData }
             })
             console.log(data);
-        } catch (err) {
-            console.error(err);
+        } catch (error) {
+            console.error(error);
             setShowAlert(true);
         }
 
         setProjectFormData(
             {
-                title: '', 
-                description: '', 
-                gitRepo: '', 
-                fundingGoal: '', 
-                currentFunds: '' 
+                title: "", 
+                description: "", 
+                gitRepo: "", 
+                fundingGoal: "", 
+                currentFunds: "" 
             }
         )
         
@@ -153,19 +204,19 @@ export default function AddProject() {
 
   // JSX Page Returned
     return (
-        <Container sx={{height: '100vh'}}>
+        <Container sx={{height: "100vh"}}>
             <Item>  
                 <ThemeProvider theme={theme}>
                     <Typography variant="h3">Add Project</Typography>
                 </ThemeProvider>
             </Item>
 
-            <Card sx={{ backgroundColor: '#0c1012', display: 'flex', justifyContent:"center", alignItems:"top", flexDirection: 'column' }}>
+            <Card sx={{ backgroundColor: "#0c1012", display: "flex", justifyContent:"center", alignItems:"top", flexDirection: "column" }}>
                 <CardContent>
                     <Box
                         component="form"
                         sx={{
-                            '& .MuiTextField-root': { m: 1, width: 'auto'},
+                            "& .MuiTextField-root": { m: 1, width: "auto"},
                         }}
                         noValidate
                         autoComplete="off"
@@ -174,7 +225,7 @@ export default function AddProject() {
                         <div>
                             <TextField
                             id="outlined-textarea"
-                            sx={{display: 'flex', justifyContent:"center"}}
+                            sx={{display: "flex", justifyContent:"center"}}
                             label="Title"
                             type="title"
                             name="title"
@@ -189,7 +240,7 @@ export default function AddProject() {
                             />
                             <TextField
                             id="outlined-textarea"
-                            sx={{display: 'flex', justifyContent:"center"}}
+                            sx={{display: "flex", justifyContent:"center"}}
                             label="Description"
                             type="description"
                             name="description"
@@ -204,19 +255,21 @@ export default function AddProject() {
                             />
                             <TextField
                             id="outlined-textarea"
-                            sx={{display: 'flex', justifyContent:"center"}}
+                            sx={{display: "flex", justifyContent:"center"}}
                             label="Github Repository"
                             type="gitRepo"
                             name="gitRepo"
-                            placeholder="Enter repository name"
+                            placeholder="Enter GitHub repository Link"
                             multiline
                             onChange={handleInputChange}
                             onBlur={handleBlur}
                             value={projectFormData.gitRepo}
+                            error={gitHubError}
+                            helperText={gitHubHelperText}
                             />
                             <TextField
                             id="outlined-textarea"
-                            sx={{display: 'flex', justifyContent:"center"}}
+                            sx={{display: "flex", justifyContent:"center"}}
                             label="Funding Goal"
                             type="fundingGoal"
                             name="fundingGoal"
@@ -225,10 +278,12 @@ export default function AddProject() {
                             onChange={handleInputChange}
                             onBlur={handleBlur}
                             value={projectFormData.fundingGoal}
+                            error={fundingGoalError}
+                            helperText={fundingGoalHelperText}
                             />
                             <TextField
                             id="outlined-textarea"
-                            sx={{display: 'flex', justifyContent:"center"}}
+                            sx={{display: "flex", justifyContent:"center"}}
                             label="Current Funding"
                             type="currentFunds"
                             name="currentFunds"
@@ -237,6 +292,8 @@ export default function AddProject() {
                             onChange={handleInputChange}
                             onBlur={handleBlur}
                             value={projectFormData.currentFunds}
+                            error={currentFundsError}
+                            helperText={currentFundsHelperText}
                             />
                         </div>                       
                     </Box>
@@ -255,13 +312,13 @@ export default function AddProject() {
                     <Button 
                         variant="contained" 
                         color="success"
-                        disabled={!(projectFormData.title && projectFormData.description)}
+                        disabled={!(projectFormData.title && projectFormData.description && projectFormData.gitRepo) || (gitHubError || fundingGoalError || currentFundsError === true)}
                         type="submit"
                         onClick={handleFormSubmit}
                         >
                         <AddIcon /> Add
                     </Button>
-                    <Link to='/profile'>
+                    <Link to="/profile">
                         <Button variant="contained">
                             <ChevronLeftIcon /> Go Back
                         </Button>
