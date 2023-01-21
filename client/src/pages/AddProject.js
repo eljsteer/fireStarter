@@ -72,7 +72,7 @@ export default function AddProject() {
     const [ currentFundsError, setCurrentFundsError ] = useState(false);
     const [ currentFundsHelperText, setcurrentFundsHelperText ] = useState(false);
     // const [ addProjectButton, setAddProjectButton ] = useState(true);
-    const [ addProject, { error, data } ] = useMutation(ADD_PROJECT, {
+    const [ addProject ] = useMutation(ADD_PROJECT, {
         refetchQueries: [
             {query: QUERY_ME},
             {query: QUERY_PROJECTS}
@@ -174,11 +174,7 @@ export default function AddProject() {
         if (form.checkValidity() === false) {
         event.preventDefault();
         event.stopPropagation();
-        } else {
-          console.log(error)
         }
-        console.log(data);
-        
         try {
             const { data } = await addProject({
                 variables: { ...projectFormData }
