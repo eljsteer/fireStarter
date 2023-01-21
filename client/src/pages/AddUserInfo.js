@@ -28,7 +28,7 @@ import { UPDATE_USER } from "../utils/mutations";
 
 // Page Material UI Theme
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#0c1012',
+  backgroundColor: "var(--ComponentGBColor)",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
@@ -110,7 +110,7 @@ const AddUserInfo = () => {
         onSubmit={handleFormSubmit}
         autoComplete="off"
       > 
-        <Card sx={{backgroundColor: '#0c1012' }}>
+        <Card sx={{backgroundColor: "var(--ComponentGBColor)" }}>
           <CardContent>
             <Typography sx={{textAlign: 'center'}} variant="h6">Please provide some more information</Typography>
             <br/>

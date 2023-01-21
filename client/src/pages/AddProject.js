@@ -41,7 +41,7 @@ theme.typography.h3 = {
 };
 
 const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: "#0c1012",
+    backgroundColor: "var(--ComponentGBColor)",
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: "center",
@@ -211,7 +211,7 @@ export default function AddProject() {
                 </ThemeProvider>
             </Item>
 
-            <Card sx={{ backgroundColor: "#0c1012", display: "flex", justifyContent:"center", alignItems:"top", flexDirection: "column" }}>
+            <Card sx={{ backgroundColor: "var(--ComponentGBColor)", display: "flex", justifyContent:"center", alignItems:"top", flexDirection: "column" }}>
                 <CardContent>
                     <Box
                         component="form"

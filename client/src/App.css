@@ -2,12 +2,20 @@
 Standard CSS for App
 */
 
+:root {
+  --ComponentGBColor:#000213;
+}
+
 html {
-  background-color: #2d2b2b;
+  background-color: #b7ceff;
 }
 
 .MuiToolbar-root {
   background-color: #a42603bd;
+}
+
+.MuiListItemText-root span {
+  font-size: 1.25rem;
 }
 
 /* .bg_image {
@@ -22,7 +30,7 @@ html {
 } */
 
 #root {
-  background-color: #2d2b2b;
+  background-color: #b7ceff;
 }
 
 .App {
@@ -41,7 +49,7 @@ html {
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #1d2536;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
