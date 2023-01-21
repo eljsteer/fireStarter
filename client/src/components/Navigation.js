@@ -1,25 +1,25 @@
-import React from 'react'
+import React from "react"
 import { Link } from "react-router-dom";
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import HomeIcon from '@mui/icons-material/Home';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import SearchIcon from '@mui/icons-material/Search';
-import LoginIcon from '@mui/icons-material/Login';
-import LogoutIcon from '@mui/icons-material/Logout';
-import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import HomeIcon from "@mui/icons-material/Home";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import SearchIcon from "@mui/icons-material/Search";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
+import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 
 import Auth from "../utils/auth";
 
@@ -34,14 +34,14 @@ const navItems = [
     {
         id: 0,
         icon: <HomeIcon />,
-        name: 'Home',
-        url: '/'
+        name: "Home",
+        url: "/"
     },
     {
         id: 1,
         icon: <SearchIcon />,
-        name: 'Discover',
-        url: '/discover'
+        name: "Discover",
+        url: "/discover"
     }
 ];
 
@@ -50,14 +50,14 @@ const loggedInItems = [
     {
         id: 2,
         icon: <AccountBoxIcon />,
-        name: 'Profile',
-        url: '/profile'
+        name: "Profile",
+        url: "/profile"
     },
     {
         id: 3,
         icon: <LogoutIcon />,
-        name: 'Logout',
-        url: '/', 
+        name: "Logout",
+        url: "/", 
         onClick: () => Auth.logout()
     }
 ];
@@ -67,8 +67,8 @@ const loggedOutItems = [
     {
         id: 4,
         icon: <LoginIcon />,
-        name: 'Login',
-        url: '/login'
+        name: "Login",
+        url: "/login"
     }
 ];
 
@@ -81,9 +81,9 @@ function Navigation(props) {
     };
 
     const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+        <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
             <Typography variant="h6" sx={{ my: 2 }}>
-                <LocalFireDepartmentIcon fontSize='large' />
+                <LocalFireDepartmentIcon fontSize="large" />
                 <br/>
                 FireStarter
             </Typography>
@@ -93,7 +93,7 @@ function Navigation(props) {
                     <ListItem key={item.id} disablePadding>
                         <Link to={`${item.url}`}>
                             <ListItemButton 
-                                sx={{ textAlign: 'center' }}
+                                sx={{ textAlign: "center" }}
                                 onClick={item.onClick}>
                                 <ListItemIcon >
                                     <>{item.icon}</>
@@ -110,32 +110,32 @@ function Navigation(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: 'flex', margin: 8 }}>
+        <Box sx={{ display: "flex", margin: 8 }}>
             <AppBar component="nav">
-                <Toolbar sx={{height: '6vh'}}>
+                <Toolbar sx={{height: "8vh"}}>
                     <IconButton
                     color="inherit"
                     aria-label="open drawer"
                     edge="start"
                     onClick={handleDrawerToggle}
-                    sx={{ mr: 2, display: { sm: 'none' } }}
+                    sx={{ mr: 2, display: { sm: "none" } }}
                     >
                     <MenuIcon />
                     </IconButton>
                     <Typography
                     variant="h6"
                     component="div"
-                    sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' }}}
+                    sx={{ flexGrow: 1, fontSize: "1.6rem", display: { xs: "none", sm: "flex" }}}
                     >
-                    <LocalFireDepartmentIcon fontSize='large' sx={{ mr: 2 }}/>
+                    <LocalFireDepartmentIcon fontSize="large" sx={{ mr: 2 }}/>
                     FireStarter
                     </Typography>
-                    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                    <Box sx={{ display: { xs: "none", sm: "block" } }}>
                         {(Auth.loggedIn() ? loggedInItems: loggedOutItems).map((item) => (
                             <Link to={`${item.url}`}>
-                                <Button key={item.id} sx={{ color: '#fff' }}>
+                                <Button key={item.id} sx={{ color: "#fff"}}>
                                         <ListItemButton 
-                                            sx={{ textAlign: 'center' }}
+                                            sx={{ textAlign: "center" }}
                                             onClick={item.onClick}>
                                             <ListItemIcon >
                                                 <>{item.icon}</>
@@ -160,6 +160,7 @@ function Navigation(props) {
                     }}
                     sx={{
                     display: { xs: 'block', sm: 'none' },
+                    backgroundColor: "var(--ComponentGBColor)",
                     '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
                 >

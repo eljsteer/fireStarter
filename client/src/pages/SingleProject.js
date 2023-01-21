@@ -95,8 +95,8 @@ export default function SingleProject() {
 
 // JSX Page Returned
     return (
-        <Container sx={{backgroundColor: '#0c1012', height: 'auto', padding: 2}}>
-            <Card sx={{ maxWidth: 1250, backgroundColor: '#0c1012' }}>
+        <Container sx={{backgroundColor: "var(--ComponentGBColor)", height: 'auto', padding: 2}}>
+            <Card sx={{ maxWidth: 1250, backgroundColor: "var(--ComponentGBColor)" }}>
                 <CardContent>
                     <ThemeProvider theme={theme}>
                         <Typography gutterBottom variant="h3" component="div" sx={{textAlign: 'center'}}>

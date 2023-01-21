@@ -24,7 +24,7 @@ import Auth from "../utils/auth";
 
 // Page Theme Material UI
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#0c1012',
+  backgroundColor: "var(--ComponentGBColor)",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
@@ -133,7 +133,7 @@ const SignupForm = () => {
         onSubmit={handleFormSubmit}
         autoComplete="off"
       > 
-        <Card sx={{ backgroundColor: '#0c1012' }}>
+        <Card sx={{ backgroundColor: "var(--ComponentGBColor)" }}>
           <CardContent>
             <TextField
               id="outlined-error-helper-text"
