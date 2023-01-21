@@ -99,8 +99,6 @@ The application can be tested by running the following command:
 - [Photo by Abdul Matloob from Pexels:](https://www.pexels.com/photo/blue-topaz-13303468/)
 - [Photo by Murilo Fonseca from Pexels:](https://www.pexels.com/photo/wood-love-art-dark-10582459/)
 
-
-
 ## Questions
 
 ### For further information contact using the following:

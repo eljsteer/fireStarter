@@ -30,7 +30,7 @@ import Auth from "../utils/auth";
 
 // Page Material UI Theme
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#0c1012',
+  backgroundColor: "var(--ComponentGBColor)",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
@@ -44,7 +44,7 @@ const LoginForm = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [emailHelperText, setEmailHelperText] = useState(false);
   const [passwordHelperText, setPasswordHelperText] = useState(false);
-  const [loginUser, { error, data }] = useMutation(LOGIN_USER);
+  const [ loginUser ] = useMutation(LOGIN_USER);
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
@@ -106,7 +106,7 @@ const LoginForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
-
+    
     try {
       const { data } = await loginUser({ 
         variables: { ...userFormData } 
@@ -139,7 +139,7 @@ const LoginForm = () => {
         onSubmit={handleFormSubmit}
         autoComplete="off"
       > 
-        <Card sx={{ maxWidth: 700, backgroundColor: '#0c1012' }}>
+        <Card sx={{ maxWidth: 700, backgroundColor: "var(--ComponentGBColor)" }}>
           <CardContent sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
             <InputLabel htmlFor="outlined-adornment-amount">Email</InputLabel>
               <OutlinedInput

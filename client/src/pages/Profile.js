@@ -29,7 +29,7 @@ let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#0c1012',
+  backgroundColor: "var(--ComponentGBColor)",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
