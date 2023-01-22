@@ -17,7 +17,7 @@ Developers can signup and post new projects they are working on as well as brows
 - MongoDB/Mongoose ODM for the database
 - Apollo client 
 - MUI
-- bcrypt 
+- Bcrypt 
 - JWT authentication
 - Nodemon
 - Concurrently
@@ -89,8 +89,6 @@ The application can be tested by running the following command:
 ## Acknowledgments
 
 - University of Sydney Coding Bootcamp
-- [MUI](https://mui.com/)
-- [Stack Overflow](https://stackoverflow.com/)
 - [Julie Bryrd](https://www.artstation.com/artwork/O9dek)
 - [Photo by Elevate from Pexels:](ttps://www.pexels.com/photo/brown-wooden-barrel-1267358/)
 - [Photo by cottonbro from Pexels:](https://www.pexels.com/photo/photo-of-person-holding-a-handgun-7265995/)

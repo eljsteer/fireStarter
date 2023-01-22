@@ -39,7 +39,6 @@ const projectSchema = new Schema({
     },
     currentFunds: {
       type: String,
-      required: true,
       unique: true,
       trim: true
     }

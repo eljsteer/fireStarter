@@ -72,7 +72,7 @@ export default function AddProject() {
     const [ currentFundsError, setCurrentFundsError ] = useState(false);
     const [ currentFundsHelperText, setcurrentFundsHelperText ] = useState(false);
     // const [ addProjectButton, setAddProjectButton ] = useState(true);
-    const [ addProject, { error, data } ] = useMutation(ADD_PROJECT, {
+    const [ addProject ] = useMutation(ADD_PROJECT, {
         refetchQueries: [
             {query: QUERY_ME},
             {query: QUERY_PROJECTS}
@@ -106,13 +106,16 @@ export default function AddProject() {
               setGitHubHelperText("You must add a Github URL for your project");
             } else if (value && !isValidURL) {
                 setGitHubError(true);
-                setGitHubHelperText("Please add a valid URL");            
+                setGitHubHelperText("Please enter a valid URL");            
             } else if (value && isValidURL) {
                 setGitHubError(false);
                 setGitHubHelperText(false);
             } 
         }  else if( name === "fundingGoal") {
-            if(isNaN(value)) {
+            if(!value) {
+              setFundingGoalError(true);
+              setFundingGoalHelperText("Funding Goal is required");          
+            } else if(isNaN(value)) {
               setFundingGoalError(true);
               setFundingGoalHelperText("Please enter numbers Only");          
             } else {
@@ -149,9 +152,12 @@ export default function AddProject() {
             if(!value) {
                 setDescriptionError(true);
                 setDescriptionHelperText("You must add a description for your project");
-            } else if (value) {
-                setDescriptionError(false);
-                setDescriptionHelperText(false);
+            } else if (value.length < 5 || value.length > 300) {
+                setDescriptionError(true);
+                setDescriptionHelperText("Description must be at least 5 characters and less than 300 characters");
+            } else {
+              setDescriptionError(false);
+              setDescriptionHelperText(false);
             }
         } else if( name === "gitRepo") {
             if(!value) {
@@ -174,11 +180,7 @@ export default function AddProject() {
         if (form.checkValidity() === false) {
         event.preventDefault();
         event.stopPropagation();
-        } else {
-          console.log(error)
         }
-        console.log(data);
-        
         try {
             const { data } = await addProject({
                 variables: { ...projectFormData }
