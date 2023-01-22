@@ -7,11 +7,11 @@ Standard CSS for App
 }
 
 html {
-  background-color: #b7ceff;
+  background-color: #dddcdc;
 }
 
 .MuiToolbar-root {
-  background-color: #a42603bd;
+  background-color: #ab2f16;
 }
 
 .MuiListItemText-root span {
@@ -30,7 +30,7 @@ html {
 } */
 
 #root {
-  background-color: #b7ceff;
+  background-color: #dddcdc;
 }
 
 .App {
@@ -60,7 +60,7 @@ html {
 }
 
 .App-link {
-  color: #61dafb;
+  color: #fcfcfc;
 }
 
 @keyframes App-logo-spin {
