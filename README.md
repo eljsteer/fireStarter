@@ -17,7 +17,7 @@ Developers can signup and post new projects they are working on as well as brows
 - MongoDB/Mongoose ODM for the database
 - Apollo client 
 - MUI
-- bcrypt 
+- Bcrypt 
 - JWT authentication
 - Nodemon
 - Concurrently
