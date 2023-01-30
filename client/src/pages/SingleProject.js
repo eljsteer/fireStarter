@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Container from '@mui/material/Container';
@@ -6,6 +6,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
+import Chip from "@mui/material/Chip"
 import { createTheme, responsiveFontSizes, ThemeProvider, } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
@@ -14,6 +15,7 @@ import Stack from '@mui/material/Stack';
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import DeleteIcon from '@mui/icons-material/Delete';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import Auth from "../utils/auth";
 import { removeProjectId } from '../utils/localStorage';
@@ -33,6 +35,9 @@ theme = responsiveFontSizes(theme);
 export default function SingleProject() {
     const { id } = useParams();
     const navigate = useNavigate();
+    let [addVote, setAddVote] = useState(0);
+    let [userVoted, setUserVoted] = useState(false);
+    let NumVotes = addVote;
 
     const {loading, data } = useQuery(QUERY_SINGLE_PROJECT, {
         variables: { projectId: id },
@@ -45,6 +50,21 @@ export default function SingleProject() {
             {query: QUERY_ME}
         ]
     });
+
+    const handleClickVote = () => {
+      
+      if (
+        userVoted === false
+        ) {
+          setAddVote((addVote + 1 ));
+          setUserVoted(true);
+        } else if (
+        userVoted === true
+        ) {
+        setAddVote((addVote - 1 ));
+        setUserVoted(false);
+      }
+    };
 
     const stripeDonate =  (donationIndex) => {
         console.log(donationIndex)
@@ -173,7 +193,8 @@ export default function SingleProject() {
                         onClick={() => handleProjectDelete(singleProject._id)}>
                         <DeleteIcon /> Delete
                     </Button> ) 
-                    : null }                                             
+                    : null }         
+                    <Chip icon={<FavoriteBorderIcon sx={{width:"50px"}}/>} variant="outlined" onClick={handleClickVote} label={NumVotes} sx={{height:"3em"}} />
             </Stack>
         </Container>
     )
