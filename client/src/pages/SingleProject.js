@@ -21,7 +21,7 @@ import Auth from "../utils/auth";
 import { removeProjectId } from '../utils/localStorage';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { REMOVE_PROJECT } from '../utils/mutations';
+import { REMOVE_PROJECT, UPDATE_PROJECT } from '../utils/mutations';
 import { QUERY_SINGLE_PROJECT, QUERY_ME } from '../utils/queries';
 
 // >>------------------>>

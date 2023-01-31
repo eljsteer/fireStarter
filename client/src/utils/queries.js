@@ -23,6 +23,7 @@ export const QUERY_ME =gql`
         gitRepo
         fundingGoal
         currentFunds
+        votes
       }
     }
   }
@@ -46,6 +47,7 @@ export const QUERY_USER = gql`
         gitRepo
         fundingGoal
         currentFunds
+        votes
       }
     }
   }
@@ -69,6 +71,7 @@ export const QUERY_PROJECTS = gql`
       gitRepo
       fundingGoal
       currentFunds
+      votes
     }
   }
 `;
@@ -84,6 +87,7 @@ export const QUERY_SINGLE_PROJECT = gql`
       gitRepo
       fundingGoal
       currentFunds
+      votes
     }
   }
 `;

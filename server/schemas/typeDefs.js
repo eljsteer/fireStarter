@@ -22,6 +22,7 @@ const typeDefs = gql`
     fundingGoal: String
     currentFunds: String
     userId: String
+    votes: String
   }
 
   input UserInput {
@@ -36,6 +37,7 @@ const typeDefs = gql`
     gitRepo: String
     fundingGoal: String
     currentFunds: String
+    votes: String
   }
 
   type Auth {
