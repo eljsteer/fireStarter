@@ -35,24 +35,28 @@ theme = responsiveFontSizes(theme);
 export default function SingleProject() {
     const { id } = useParams();
     const navigate = useNavigate();
-    let [addVote, setAddVote] = useState(0);
-    let [userVoted, setUserVoted] = useState(false);
-    let NumVotes = addVote;
 
-    const {loading, data } = useQuery(QUERY_SINGLE_PROJECT, {
+    let [userVoted, setUserVoted] = useState(false);
+
+    const { loading, data } = useQuery(QUERY_SINGLE_PROJECT, {
         variables: { projectId: id },
     });
-
     const singleProject = data?.singleProject || {};
+    let [addVote, setAddVote] = useState(parseInt(singleProject.votes));
+    let NumVotes = addVote;
 
-    const [removeProject, { error }] = useMutation(REMOVE_PROJECT, {
+    const [updateProject, { error }] = useMutation(UPDATE_PROJECT, {
+      variables: { votes: NumVotes}
+    });
+
+    const [removeProject] = useMutation(REMOVE_PROJECT, {
         refetchQueries: [
             {query: QUERY_ME}
         ]
     });
 
-    const handleClickVote = () => {
-      
+    const handleClickVote = async (event) => {
+      event.preventDefault();
       if (
         userVoted === false
         ) {
@@ -64,7 +68,15 @@ export default function SingleProject() {
         setAddVote((addVote - 1 ));
         setUserVoted(false);
       }
-    };
+      try {
+          const { data } = await updateProject({
+              variables: { votes: NumVotes }
+          });
+          console.log(`Successfully added Vote to total: `, data);
+        } catch (error) {
+          console.log(error);
+        };
+      };
 
     const stripeDonate =  (donationIndex) => {
         console.log(donationIndex)
@@ -100,18 +112,22 @@ export default function SingleProject() {
             const { data } = await removeProject({
                 variables: { projectId }
             });
-
+            console.log(`Successfully Removed `, data);
             removeProjectId(projectId); // remove project from local storage
             navigate("/profile");
 
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            console.log(error);
         }
     };
 
     if (loading) {
         return <h2>Fire is starting...</h2>;
-    }
+    };
+    if (error) {
+      return `Submission error! ${error.message}`
+    };
+    
 
 // JSX Page Returned
     return (
@@ -194,7 +210,13 @@ export default function SingleProject() {
                         <DeleteIcon /> Delete
                     </Button> ) 
                     : null }         
-                    <Chip icon={<FavoriteBorderIcon sx={{width:"50px"}}/>} variant="outlined" onClick={handleClickVote} label={NumVotes} sx={{height:"3em"}} />
+                    <Chip 
+                        icon={<FavoriteBorderIcon 
+                        variant="outlined" 
+                        sx={{width:"50px"}}/>} 
+                        onClick={handleClickVote}
+                        label={NumVotes} 
+                        sx={{height:"3em"}} />
             </Stack>
         </Container>
     )
