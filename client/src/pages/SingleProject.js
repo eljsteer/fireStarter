@@ -36,18 +36,20 @@ export default function SingleProject() {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    let [userVoted, setUserVoted] = useState(false);
-
-    const { loading, data } = useQuery(QUERY_SINGLE_PROJECT, {
+    const { loading, data, error } = useQuery(QUERY_SINGLE_PROJECT, {
         variables: { projectId: id },
     });
+    
+    let [userVoted, setUserVoted] = useState(false);
     const singleProject = data?.singleProject || {};
-    let [addVote, setAddVote] = useState(parseInt(singleProject.votes));
-    let NumVotes = addVote;
+    let [addVote, setAddVote] = useState(0);
+    let votesInterger = parseInt(singleProject.votes);
+    let NumVotes = votesInterger+addVote;
 
-    const [updateProject, { error }] = useMutation(UPDATE_PROJECT, {
-      variables: { votes: NumVotes}
-    });
+    // const [updateProject, { error }] = useMutation(UPDATE_PROJECT, {
+    //   variables: { votes: NumVotes}
+    // });
+    // const [updateProject, { error }] = useMutation(UPDATE_PROJECT);
 
     const [removeProject] = useMutation(REMOVE_PROJECT, {
         refetchQueries: [
@@ -57,25 +59,21 @@ export default function SingleProject() {
 
     const handleClickVote = async (event) => {
       event.preventDefault();
-      if (
-        userVoted === false
-        ) {
+      if ( userVoted === false ) {
           setAddVote((addVote + 1 ));
           setUserVoted(true);
-        } else if (
-        userVoted === true
-        ) {
-        setAddVote((addVote - 1 ));
-        setUserVoted(false);
+        } else if ( userVoted === true ) {
+          setAddVote((addVote - 1 ));
+          setUserVoted(false);
       }
-      try {
-          const { data } = await updateProject({
-              variables: { votes: NumVotes }
-          });
-          console.log(`Successfully added Vote to total: `, data);
-        } catch (error) {
-          console.log(error);
-        };
+      // try {
+      //     const { data } = await updateProject({
+      //         variables: { votes: NumVotes }
+      //     });
+      //     console.log(`Successfully added Vote to total: `, data);
+      //   } catch (error) {
+      //     console.log(error);
+      //   };
       };
 
     const stripeDonate =  (donationIndex) => {
