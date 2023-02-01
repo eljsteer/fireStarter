@@ -43,8 +43,8 @@ export default function SingleProject() {
     let [userVoted, setUserVoted] = useState(false);
     const singleProject = data?.singleProject || {};
     let [addVote, setAddVote] = useState(0);
-    let votesInterger = parseInt(singleProject.votes);
-    let NumVotes = votesInterger+addVote;
+    let votesInteger = parseInt(singleProject.votes);
+    let NumVotes = votesInteger+addVote;
 
     // const [updateProject, { error }] = useMutation(UPDATE_PROJECT, {
     //   variables: { votes: NumVotes}
