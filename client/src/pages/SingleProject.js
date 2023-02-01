@@ -16,6 +16,7 @@ import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import LocalFireDepartmentOutlinedIcon from '@mui/icons-material/LocalFireDepartmentOutlined';
 
 import Auth from "../utils/auth";
 import { removeProjectId } from '../utils/localStorage';
@@ -23,6 +24,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { REMOVE_PROJECT, UPDATE_PROJECT } from '../utils/mutations';
 import { QUERY_SINGLE_PROJECT, QUERY_ME } from '../utils/queries';
+import { stringifyForDisplay } from '@apollo/client/utilities';
 
 // >>------------------>>
 // Signup Page Code
@@ -49,13 +51,25 @@ export default function SingleProject() {
     // const [updateProject, { error }] = useMutation(UPDATE_PROJECT, {
     //   variables: { votes: NumVotes}
     // });
-    // const [updateProject, { error }] = useMutation(UPDATE_PROJECT);
+    //const [updateProject, { voteData, error }] = useMutation(UPDATE_PROJECT);
 
     const [removeProject] = useMutation(REMOVE_PROJECT, {
         refetchQueries: [
             {query: QUERY_ME}
         ]
     });
+
+    // const handleVoteUpdate = async (event) => {
+    //   event.preventDefault(); 
+    //   let NumVoteStr = stringifyForDisplay(NumVotes);
+    //   console.log(NumVoteStr);
+    //   try {
+    //     await updateProject({variables: { votes: NumVotes}});
+    //     navigate("/discover");
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // }
 
     const handleClickVote = async (event) => {
       event.preventDefault();
@@ -66,15 +80,7 @@ export default function SingleProject() {
           setAddVote((addVote - 1 ));
           setUserVoted(false);
       }
-      // try {
-      //     const { data } = await updateProject({
-      //         variables: { votes: NumVotes }
-      //     });
-      //     console.log(`Successfully added Vote to total: `, data);
-      //   } catch (error) {
-      //     console.log(error);
-      //   };
-      };
+    };
 
     const stripeDonate =  (donationIndex) => {
         console.log(donationIndex)
@@ -173,13 +179,19 @@ export default function SingleProject() {
                         <br />
                         {Auth.loggedIn() ? (
                             <Link to='/profile'>
-                                <Button variant="contained">
+                                <Button 
+                                  variant="contained"
+                                  // onClick={handleVoteUpdate}
+                                >
                                     <ChevronLeftIcon/> Go Back
                                 </Button>
                             </Link> 
                         ) : (
                             <Link to='/discover'>
-                                <Button variant="contained">
+                                <Button 
+                                  variant="contained"
+                                  // onClick={handleVoteUpdate}
+                                >
                                     <ChevronLeftIcon/> Go Back
                                 </Button>
                             </Link> 
@@ -209,7 +221,7 @@ export default function SingleProject() {
                     </Button> ) 
                     : null }         
                     <Chip 
-                        icon={<FavoriteBorderIcon 
+                        icon={<LocalFireDepartmentOutlinedIcon 
                         variant="outlined" 
                         sx={{width:"50px"}}/>} 
                         onClick={handleClickVote}
