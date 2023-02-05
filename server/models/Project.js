@@ -44,6 +44,7 @@ const projectSchema = new Schema({
     },
     votes: {
       type: String,
+      default: 0,
     }
   }, 
   {

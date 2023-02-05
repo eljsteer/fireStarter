@@ -15,16 +15,16 @@ import Stack from '@mui/material/Stack';
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import DeleteIcon from '@mui/icons-material/Delete';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import LocalFireDepartmentOutlinedIcon from '@mui/icons-material/LocalFireDepartmentOutlined';
+import LocalFireOutlinedIcon from '@mui/icons-material/LocalFireDepartmentOutlined';
+import LocalFireIcon from '@mui/icons-material/LocalFireDepartment';
 
 import Auth from "../utils/auth";
 import { removeProjectId } from '../utils/localStorage';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { REMOVE_PROJECT, UPDATE_PROJECT } from '../utils/mutations';
+import { REMOVE_PROJECT } from '../utils/mutations';
 import { QUERY_SINGLE_PROJECT, QUERY_ME } from '../utils/queries';
-import { stringifyForDisplay } from '@apollo/client/utilities';
+import { red, orange } from '@mui/material/colors';
 
 // >>------------------>>
 // Signup Page Code
@@ -44,7 +44,7 @@ export default function SingleProject() {
     
     let [userVoted, setUserVoted] = useState(false);
     const singleProject = data?.singleProject || {};
-    let [addVote, setAddVote] = useState(0);
+    let [ addVote, setAddVote] = useState(0);
     let votesInteger = parseInt(singleProject.votes);
     let NumVotes = votesInteger+addVote;
 
@@ -74,10 +74,10 @@ export default function SingleProject() {
     const handleClickVote = async (event) => {
       event.preventDefault();
       if ( userVoted === false ) {
-          setAddVote((addVote + 1 ));
+          setAddVote((currentVote) => currentVote + 1 );
           setUserVoted(true);
         } else if ( userVoted === true ) {
-          setAddVote((addVote - 1 ));
+          setAddVote((currentVote) => currentVote - 1);
           setUserVoted(false);
       }
     };
@@ -221,12 +221,11 @@ export default function SingleProject() {
                     </Button> ) 
                     : null }         
                     <Chip 
-                        icon={<LocalFireDepartmentOutlinedIcon 
-                        variant="outlined" 
-                        sx={{width:"50px"}}/>} 
+                        icon={userVoted ? <LocalFireIcon variant="outlined" style={{ width:"35px", height:"35px", color: red[900]}} /> : <LocalFireOutlinedIcon variant="outlined" style={{width:"35px"}}/>} 
                         onClick={handleClickVote}
                         label={NumVotes} 
-                        sx={{height:"3em"}} />
+                        sx={{height:"3.2em", width:"7em"}} 
+                    />
             </Stack>
         </Container>
     )
