@@ -68,6 +68,7 @@ export const UPDATE_PROJECT = gql`
         gitRepo
         fundingGoal
         currentFunds
+        votes
       }
     }
   } 
@@ -82,6 +83,7 @@ export const REMOVE_PROJECT = gql`
       gitRepo
       fundingGoal
       currentFunds
+      votes
     }
   }  
 `;

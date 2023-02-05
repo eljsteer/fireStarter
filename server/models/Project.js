@@ -41,6 +41,10 @@ const projectSchema = new Schema({
       type: String,
       unique: true,
       trim: true
+    },
+    votes: {
+      type: String,
+      default: 0,
     }
   }, 
   {

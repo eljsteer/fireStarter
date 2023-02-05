@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Container from '@mui/material/Container';
@@ -6,6 +6,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
+import Chip from "@mui/material/Chip"
 import { createTheme, responsiveFontSizes, ThemeProvider, } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
@@ -14,6 +15,8 @@ import Stack from '@mui/material/Stack';
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import DeleteIcon from '@mui/icons-material/Delete';
+import LocalFireOutlinedIcon from '@mui/icons-material/LocalFireDepartmentOutlined';
+import LocalFireIcon from '@mui/icons-material/LocalFireDepartment';
 
 import Auth from "../utils/auth";
 import { removeProjectId } from '../utils/localStorage';
@@ -21,6 +24,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { REMOVE_PROJECT } from '../utils/mutations';
 import { QUERY_SINGLE_PROJECT, QUERY_ME } from '../utils/queries';
+import { red, orange } from '@mui/material/colors';
 
 // >>------------------>>
 // Signup Page Code
@@ -34,17 +38,49 @@ export default function SingleProject() {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const {loading, data } = useQuery(QUERY_SINGLE_PROJECT, {
+    const { loading, data, error } = useQuery(QUERY_SINGLE_PROJECT, {
         variables: { projectId: id },
     });
-
+    
+    let [userVoted, setUserVoted] = useState(false);
     const singleProject = data?.singleProject || {};
+    let [ addVote, setAddVote] = useState(0);
+    let votesInteger = parseInt(singleProject.votes);
+    let NumVotes = votesInteger+addVote;
 
-    const [removeProject, { error }] = useMutation(REMOVE_PROJECT, {
+    // const [updateProject, { error }] = useMutation(UPDATE_PROJECT, {
+    //   variables: { votes: NumVotes}
+    // });
+    //const [updateProject, { voteData, error }] = useMutation(UPDATE_PROJECT);
+
+    const [removeProject] = useMutation(REMOVE_PROJECT, {
         refetchQueries: [
             {query: QUERY_ME}
         ]
     });
+
+    // const handleVoteUpdate = async (event) => {
+    //   event.preventDefault(); 
+    //   let NumVoteStr = stringifyForDisplay(NumVotes);
+    //   console.log(NumVoteStr);
+    //   try {
+    //     await updateProject({variables: { votes: NumVotes}});
+    //     navigate("/discover");
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // }
+
+    const handleClickVote = async (event) => {
+      event.preventDefault();
+      if ( userVoted === false ) {
+          setAddVote((currentVote) => currentVote + 1 );
+          setUserVoted(true);
+        } else if ( userVoted === true ) {
+          setAddVote((currentVote) => currentVote - 1);
+          setUserVoted(false);
+      }
+    };
 
     const stripeDonate =  (donationIndex) => {
         console.log(donationIndex)
@@ -80,18 +116,22 @@ export default function SingleProject() {
             const { data } = await removeProject({
                 variables: { projectId }
             });
-
+            console.log(`Successfully Removed `, data);
             removeProjectId(projectId); // remove project from local storage
             navigate("/profile");
 
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            console.log(error);
         }
     };
 
     if (loading) {
         return <h2>Fire is starting...</h2>;
-    }
+    };
+    if (error) {
+      return `Submission error! ${error.message}`
+    };
+    
 
 // JSX Page Returned
     return (
@@ -139,13 +179,19 @@ export default function SingleProject() {
                         <br />
                         {Auth.loggedIn() ? (
                             <Link to='/profile'>
-                                <Button variant="contained">
+                                <Button 
+                                  variant="contained"
+                                  // onClick={handleVoteUpdate}
+                                >
                                     <ChevronLeftIcon/> Go Back
                                 </Button>
                             </Link> 
                         ) : (
                             <Link to='/discover'>
-                                <Button variant="contained">
+                                <Button 
+                                  variant="contained"
+                                  // onClick={handleVoteUpdate}
+                                >
                                     <ChevronLeftIcon/> Go Back
                                 </Button>
                             </Link> 
@@ -173,7 +219,13 @@ export default function SingleProject() {
                         onClick={() => handleProjectDelete(singleProject._id)}>
                         <DeleteIcon /> Delete
                     </Button> ) 
-                    : null }                                             
+                    : null }         
+                    <Chip 
+                        icon={userVoted ? <LocalFireIcon variant="outlined" style={{ width:"35px", height:"35px", color: red[900]}} /> : <LocalFireOutlinedIcon variant="outlined" style={{width:"35px"}}/>} 
+                        onClick={handleClickVote}
+                        label={NumVotes} 
+                        sx={{height:"3.2em", width:"7em"}} 
+                    />
             </Stack>
         </Container>
     )
