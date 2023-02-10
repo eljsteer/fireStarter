@@ -106,19 +106,16 @@ const LoginForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
-    
     try {
       const { data } = await loginUser({ 
         variables: { ...userFormData } 
       });
       Auth.login(data.login.token);
-
+      
     } catch (err) {
       console.error(err);
       setShowAlert(true);
-    }
-
-    navigate("/profile");
+    } 
 
     setUserFormData({
       email: '',

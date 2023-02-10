@@ -33,7 +33,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const SignupForm = () => {
   const [userFormData, setUserFormData] = useState({ firstName:"", lastName:"", email: "", password: "" });
-
+  
   const [firstInputError, setFirstInputError] = useState(false);
   const [lastInputError, setLastInputError] = useState(false);
   const [emailError, setEmailError] = useState(false);
@@ -83,10 +83,13 @@ const SignupForm = () => {
       if(!value) {
         setPassInputError(true);
         setPassHelperText("A valid Password is required");
-      } else if (value) {
-        setPassInputError(false);
-        setPassHelperText(false);
-      }
+      } else if (value.length < 5) {
+        setPassInputError(true);
+        setPassHelperText("Please enter a Password with at least 5 Characters ");
+      } else if (value.length > 30) {
+        setPassInputError(true);
+        setPassHelperText("Please enter a Password that is between 5 - 30 Characters ");
+      } 
     } 
   }
 
@@ -98,19 +101,14 @@ const SignupForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
-
     try {
       const { data } = await createUser({
         variables: { ...userFormData },
       });
-
       Auth.signup(data.createUser.token);
-
     } catch (err) {
       console.error(err);
     }
-
-    navigate("/profile");
 
     setUserFormData({
       firstName: '',
