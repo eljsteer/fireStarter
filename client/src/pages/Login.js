@@ -101,21 +101,15 @@ const LoginForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    try {
-      const { data } = await loginUser({ 
-        variables: { ...userFormData } 
-      });
-      Auth.login(data.login.token);
-      
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    } 
+        try {
+          const { data } = await loginUser({ 
+            variables: { ...userFormData } 
+          });
+          Auth.login(data.login.token);
+        } catch (err) {
+          console.error(err);
+          setShowAlert(true);
+        }
 
     setUserFormData({
       email: '',
@@ -141,7 +135,6 @@ const LoginForm = () => {
             <InputLabel htmlFor="outlined-adornment-amount">Email</InputLabel>
               <OutlinedInput
                 id="outlined-error-helper-text"
-                // label="Email"
                 type="email"
                 name="email"
                 placeholder="Please enter your email"
@@ -158,7 +151,6 @@ const LoginForm = () => {
                 id="outlined-adornment-password-error-helper-text"
                 type={userFormData.showPassword ? "text" : "password"}
                 name="password"
-                // label="Password"
                 placeholder="Please enter a Password"
                 onChange={handleInputChange}
                 onBlur={handleBlur}

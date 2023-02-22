@@ -45,7 +45,6 @@ const SignupForm = () => {
   const [passHelperText, setPassHelperText] = useState(false);
 
   const [createUser ] = useMutation(CREATE_USER);
-  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -85,10 +84,10 @@ const SignupForm = () => {
         setPassHelperText("A valid Password is required");
       } else if (value.length < 5) {
         setPassInputError(true);
-        setPassHelperText("Please enter a Password with at least 5 Characters ");
+        setPassHelperText("Password must be at least 5 characters");
       } else if (value.length > 30) {
         setPassInputError(true);
-        setPassHelperText("Please enter a Password that is between 5 - 30 Characters ");
+        setPassHelperText("Password must be between 5 - 30 characters ");
       } 
     } 
   }
