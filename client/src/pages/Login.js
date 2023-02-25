@@ -19,7 +19,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 
 import {validateEmail } from "../utils/helpers";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from "../utils/auth";
@@ -45,7 +45,6 @@ const LoginForm = () => {
   const [emailHelperText, setEmailHelperText] = useState(false);
   const [passwordHelperText, setPasswordHelperText] = useState(false);
   const [ loginUser ] = useMutation(LOGIN_USER);
-  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -101,24 +100,15 @@ const LoginForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    
-    try {
-      const { data } = await loginUser({ 
-        variables: { ...userFormData } 
-      });
-      Auth.login(data.login.token);
-
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    }
-
-    navigate("/profile");
+        try {
+          const { data } = await loginUser({ 
+            variables: { ...userFormData } 
+          });
+          Auth.login(data.login.token);
+        } catch (err) {
+          console.error(err);
+          setShowAlert(true);
+        }
 
     setUserFormData({
       email: '',
@@ -144,7 +134,6 @@ const LoginForm = () => {
             <InputLabel htmlFor="outlined-adornment-amount">Email</InputLabel>
               <OutlinedInput
                 id="outlined-error-helper-text"
-                // label="Email"
                 type="email"
                 name="email"
                 placeholder="Please enter your email"
@@ -161,7 +150,6 @@ const LoginForm = () => {
                 id="outlined-adornment-password-error-helper-text"
                 type={userFormData.showPassword ? "text" : "password"}
                 name="password"
-                // label="Password"
                 placeholder="Please enter a Password"
                 onChange={handleInputChange}
                 onBlur={handleBlur}

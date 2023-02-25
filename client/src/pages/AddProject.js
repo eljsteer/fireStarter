@@ -162,7 +162,7 @@ export default function AddProject() {
         } else if( name === "gitRepo") {
             if(!value) {
                 setGitHubError(true);
-                setGitHubHelperText("You must add a Github URL for your project");
+                setGitHubHelperText("You must add a valid repository URL for your project");
               } else if (value && !isValid) {
                   setGitHubError(true);
                   setGitHubHelperText("Please add a valid URL");            
@@ -179,7 +179,6 @@ export default function AddProject() {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
         event.preventDefault();
-        event.stopPropagation();
         }
         try {
             const { data } = await addProject({
@@ -258,10 +257,10 @@ export default function AddProject() {
                             <TextField
                             id="outlined-textarea"
                             sx={{display: "flex", justifyContent:"center"}}
-                            label="Github Repository"
+                            label="Project Repository"
                             type="gitRepo"
                             name="gitRepo"
-                            placeholder="Enter GitHub repository Link"
+                            placeholder="Enter Project repository Link"
                             multiline
                             onChange={handleInputChange}
                             onBlur={handleBlur}

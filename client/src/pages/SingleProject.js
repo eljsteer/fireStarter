@@ -24,7 +24,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { REMOVE_PROJECT } from '../utils/mutations';
 import { QUERY_SINGLE_PROJECT, QUERY_ME } from '../utils/queries';
-import { red, orange } from '@mui/material/colors';
+import { orange } from '@mui/material/colors';
 
 // >>------------------>>
 // Signup Page Code
@@ -221,7 +221,7 @@ export default function SingleProject() {
                     </Button> ) 
                     : null }         
                     <Chip 
-                        icon={userVoted ? <LocalFireIcon variant="outlined" style={{ width:"35px", height:"35px", color: red[900]}} /> : <LocalFireOutlinedIcon variant="outlined" style={{width:"35px"}}/>} 
+                        icon={userVoted ? <LocalFireIcon variant="outlined" style={{ width:"35px", height:"35px", color: orange[900]}} /> : <LocalFireOutlinedIcon variant="outlined" style={{width:"35px"}}/>} 
                         onClick={handleClickVote}
                         label={NumVotes} 
                         sx={{height:"3.2em", width:"7em"}} 
