@@ -74,6 +74,14 @@ export const UPDATE_PROJECT = gql`
   } 
 `;
 
+export const UPDATE_VOTES= gql`
+  mutation updateVotes($updateVoteData: ProjectInput!) {
+    updateVotes(updateVoteData: $updateVoteData) {
+      votes
+    }
+  }
+`;
+
 export const REMOVE_PROJECT = gql`
   mutation removeProject($projectId: ID!) {
     removeProject(projectId: $projectId) {

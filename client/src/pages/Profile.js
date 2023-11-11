@@ -52,7 +52,7 @@ export default function Profile() {
   return (
     <Container sx={{height: '100vh'}}>
       <Item>
-        <ThemeProvider sx={{maxWidth: "auto"}} theme={theme} >
+        <ThemeProvider sx={{maxwidth: "auto"}} theme={theme} >
           <Typography variant="h2" sx={{margin: 5}}>Welcome {welcomeUser}</Typography>
           <Link to='/addproject'>
             <Button variant="contained" sx={{margin: 2}}><AddIcon /> Add a project</Button>
@@ -70,7 +70,7 @@ export default function Profile() {
           columns={{ xs: 4, sm: 8, md: 12 }}
           sx={{display: 'flex', justifyContent:"center", alignItems:"top"}}>
           {allUserProjects.map((project, i) => (
-            <Grid sx={{ maxWidth: 500 }} xs={12} sm={12} md={10}>
+            <Grid sx={{ maxwidth: 500 }} xs={12} sm={12} md={10}>
               <Link
                 to={`/project/${project._id}`}
                 underline="none">

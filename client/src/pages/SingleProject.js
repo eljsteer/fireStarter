@@ -22,10 +22,9 @@ import Auth from "../utils/auth";
 import { removeProjectId } from '../utils/localStorage';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { REMOVE_PROJECT } from '../utils/mutations';
+import { REMOVE_PROJECT, UPDATE_VOTES } from '../utils/mutations';
 import { QUERY_SINGLE_PROJECT, QUERY_ME } from '../utils/queries';
 import { orange } from '@mui/material/colors';
-
 // >>------------------>>
 // Signup Page Code
 // >>------------------>>
@@ -37,21 +36,16 @@ theme = responsiveFontSizes(theme);
 export default function SingleProject() {
     const { id } = useParams();
     const navigate = useNavigate();
-
     const { loading, data, error } = useQuery(QUERY_SINGLE_PROJECT, {
         variables: { projectId: id },
     });
-    
-    let [userVoted, setUserVoted] = useState(false);
     const singleProject = data?.singleProject || {};
+    let [userVoted, setUserVoted] = useState(false);
     let [ addVote, setAddVote] = useState(0);
     let votesInteger = parseInt(singleProject.votes);
     let NumVotes = votesInteger+addVote;
 
-    // const [updateProject, { error }] = useMutation(UPDATE_PROJECT, {
-    //   variables: { votes: NumVotes}
-    // });
-    //const [updateProject, { voteData, error }] = useMutation(UPDATE_PROJECT);
+    const [updateVotes] = useMutation(UPDATE_VOTES);
 
     const [removeProject] = useMutation(REMOVE_PROJECT, {
         refetchQueries: [
@@ -59,58 +53,58 @@ export default function SingleProject() {
         ]
     });
 
-    // const handleVoteUpdate = async (event) => {
-    //   event.preventDefault(); 
-    //   let NumVoteStr = stringifyForDisplay(NumVotes);
-    //   console.log(NumVoteStr);
-    //   try {
-    //     await updateProject({variables: { votes: NumVotes}});
-    //     navigate("/discover");
-    //   } catch (err) {
-    //     console.error(err);
-    //   }
-    // }
-
     const handleClickVote = async (event) => {
       event.preventDefault();
-      if ( userVoted === false ) {
+
+      const token = Auth.loggedIn() ? Auth.getToken() : null; // checks if the user is logged in
+
+      if (!token) {
+        navigate("/login");
+        return false;
+      } else if ( userVoted === false ) {
           setAddVote((currentVote) => currentVote + 1 );
           setUserVoted(true);
         } else if ( userVoted === true ) {
           setAddVote((currentVote) => currentVote - 1);
           setUserVoted(false);
-      }
+        }
+
+      try {
+        await updateVotes({variables: { votes: NumVotes, projectId: id}});
+      } catch (err) {
+        console.log(err)
+      };
     };
 
-    const stripeDonate =  (donationIndex) => {
-        console.log(donationIndex)
-        fetch('/donation', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                items: [
-                    { id: donationIndex, quantity: 1}
-                ]
-            })
-        }).then(res => {
-            if (res.ok) return res.json()
-            return res.json().then(json => Promise.reject(json))
-        }).then(({ url }) => {
-            console.log(url)
-            window.location = url;
-        }).catch(e => {
-            console.error(e.error)
-        })
-    };
+    // const stripeDonate =  (donationIndex) => {
+    //     console.log(donationIndex)
+    //     fetch('/donation', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             items: [
+    //                 { id: donationIndex, quantity: 1}
+    //             ]
+    //         })
+    //     }).then(res => {
+    //         if (res.ok) return res.json()
+    //         return res.json().then(json => Promise.reject(json))
+    //     }).then(({ url }) => {
+    //         console.log(url)
+    //         window.location = url;
+    //     }).catch(e => {
+    //         console.error(e.error)
+    //     })
+    // };
 
     const handleProjectDelete = async (projectId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null; // checks if the user is logged in
 
         if (!token) {
             return false;
-        }
+        } 
 
         try {
             const { data } = await removeProject({
@@ -136,7 +130,7 @@ export default function SingleProject() {
 // JSX Page Returned
     return (
         <Container sx={{backgroundColor: "var(--ComponentGBColor)", height: 'auto', padding: 2}}>
-            <Card sx={{ maxWidth: 1250, backgroundColor: "var(--ComponentGBColor)" }}>
+            <Card sx={{ maxwidth: 1250, backgroundColor: "var(--ComponentGBColor)" }}>
                 <CardContent>
                     <ThemeProvider theme={theme}>
                         <Typography gutterBottom variant="h3" component="div" sx={{textAlign: 'center'}}>
@@ -205,13 +199,13 @@ export default function SingleProject() {
                 spacing={2}
                 margin={2}
             >
-                <Button 
+                {/* <Button 
                     variant="contained" 
                     color="success"
                     onClick={() => stripeDonate(singleProject._id)}
                     >
                     <AttachMoneyOutlinedIcon /> Fund Me
-                </Button>
+                </Button> */}
                 {Auth.loggedIn() && singleProject.userId === Auth.getProfile().data._id ? (
                     <Button 
                         variant="outlined" 
@@ -224,6 +218,7 @@ export default function SingleProject() {
                         icon={userVoted ? <LocalFireIcon variant="outlined" style={{ width:"35px", height:"35px", color: orange[900]}} /> : <LocalFireOutlinedIcon variant="outlined" style={{width:"35px"}}/>} 
                         onClick={handleClickVote}
                         label={NumVotes} 
+                        
                         sx={{height:"3.2em", width:"7em"}} 
                     />
             </Stack>

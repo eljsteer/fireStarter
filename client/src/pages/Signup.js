@@ -118,7 +118,7 @@ const SignupForm = () => {
 
 // JSX Page Returned
   return (
-    <Container sx={{height: '100vh'}} maxWidth="sm" alignItems="center">
+    <Container sx={{height: '100vh'}} maxwidth="sm" alignItems="center">
       <Box
         component="form"
         sx={{

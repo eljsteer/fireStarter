@@ -118,7 +118,7 @@ const LoginForm = () => {
 
 // JSX Page Returned
   return (
-    <Container sx={{height: '100vh'}} maxWidth="sm" alignItems="center">
+    <Container sx={{height: '100vh'}} maxwidth="sm" alignItems="center">
       <Box
         component="form"
         sx={{
@@ -129,7 +129,7 @@ const LoginForm = () => {
         onSubmit={handleFormSubmit}
         autoComplete="off"
       > 
-        <Card sx={{ maxWidth: 700, backgroundColor: "var(--ComponentGBColor)" }}>
+        <Card sx={{ maxwidth: 700, backgroundColor: "var(--ComponentGBColor)" }}>
           <CardContent sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
             <InputLabel htmlFor="outlined-adornment-amount">Email</InputLabel>
               <OutlinedInput

@@ -12,7 +12,7 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 export default function ProjectCard(props) {
   return (
-    <Card sx={{ maxWidth: 500, backgroundColor: "var(--ComponentGBColor)" }} raised={'true'}>
+    <Card sx={{ maxwidth: 500, backgroundColor: "var(--ComponentGBColor)" }} raised={'true'}>
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h4" component="div">

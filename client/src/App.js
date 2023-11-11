@@ -57,7 +57,7 @@ function App() {
       breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
       minBreakpoint="xxs">
       <CssBaseline />
-      <div class="bg_image">
+      <div className="bg_image">
         <Router>
           <div>          
             <Navigation />

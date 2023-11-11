@@ -22,7 +22,7 @@ const typeDefs = gql`
     fundingGoal: String
     currentFunds: String
     userId: String
-    votes: String
+    votes: Int!
   }
 
   input UserInput {
@@ -55,10 +55,11 @@ const typeDefs = gql`
 
   type Mutation {
     createUser(email: String!, password: String!, firstName: String!, lastName: String!): Auth
-    updateUser(updateData: UserInput!): User
+    updateUser(updateUserData: UserInput!): User
     login(email: String!, password: String!): Auth
     addProject(title: String!, description: String!, gitRepo: String, fundingGoal: String, currentFunds: String): Project
-    updateProject(projectData: ProjectInput!, projectId: ID!): Project
+    updateProject(projectId: ID!, updateProjectData: ProjectInput!): Project
+    updateVotes(projectId: ID!, updateVoteData: ProjectInput!): Project
     removeProject(projectId: ID!): Project
   }
 `;

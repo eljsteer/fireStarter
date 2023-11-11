@@ -26,18 +26,18 @@ const Item = styled(Paper)(({ theme }) => ({
  // JSX Page Returned
 const Home = () => {
   return (
-    <Container sx={{maxWidth: "auto", height: '100vh'}}>
+    <Container sx={{maxwidth: "auto", height: '100vh'}}>
       <Item>
-        <ThemeProvider sx={{maxWidth: "auto"}} theme={theme} >
+        <ThemeProvider sx={{maxwidth: "auto"}} theme={theme} >
           <Typography variant="h2" sx={{margin: 5}}>Welcome to FireStarter</Typography>
           <Typography variant="h6" sx={{margin: 2}}> We're a DAO (decentralised autonomous organisation) inspired application to connect a community of developers and contributors to assist in lighting the spark of innovation for projects.</Typography>
           <br />
-          <Typography variant="h6" sx={{margin: 2}}>Discover projects you want to help turn into a reality. Firestarter is a community owned and operated platform, which enables projects you want to see come to life, through funding by members of the community. A space where developers and contributors become connected by a common vision. Discover a project you're passionate about or create a project you want to see come to life. The opportunities are endless.</Typography>
+          {/* <Typography variant="h6" sx={{margin: 2}}>Discover projects you want to help turn into a reality. Firestarter is a community owned and operated platform, which enables projects you want to see come to life, through funding by members of the community. A space where developers and contributors become connected by a common vision. Discover a project you're passionate about or create a project you want to see come to life. The opportunities are endless.</Typography> */}
         </ThemeProvider>
       </Item>
   {/* Carousel Component for HotProjects */}
-      <Item maxWidth="auto" sx={{ objectFit: 'cover', flexGrow: 1 }}>
-        <Grid sx={{ maxWidth: 'auto' }} xs={12} sm={12} md={10}>
+      <Item maxwidth="auto" sx={{ objectFit: 'cover', flexGrow: 1 }}>
+        <Grid sx={{ maxwidth: 'auto' }} xs={12} sm={12} md={10}>
           <Item>
             <CarouselHome />
           </Item>

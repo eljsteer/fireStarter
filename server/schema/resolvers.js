@@ -1,4 +1,4 @@
-const { AuthenticationError } = require("apollo-server-express");
+const { AuthenticationError, ApolloError } = require("apollo-server-express");
 const { User, Project } = require("../models");
 const { signToken } = require("../utils/auth");
 // const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
@@ -43,11 +43,11 @@ const resolvers = {
     },
 
     // mutation to update a project 
-    updateUser: async (parent, { updateData }, context) => {
+    updateUser: async (parent, { updateUserData }, context) => {
       if (context.user) {
           const updatedUser = await User.findByIdAndUpdate(
               { _id: context.user._id },
-              { $set: { ...updateData } },
+              { $set: { ...updateUserData } },
               { new: true }
           );
             console.log(updatedUser);
@@ -98,15 +98,33 @@ const resolvers = {
     },
 
     // mutation to update a project 
-    updateProject: async (parent, { projectData }, context) => {
+    updateProject: async (parent, { updateProjectData }, context) => {
       if (context.user) {
-          const updatedProject = await User.findByIdAndUpdate(
+          const updatedProject = await Project.findByIdAndUpdate(
               { _id: context.user._id },
-              { $push: { userProjects: projectData } },
+              { $set: { userProjects: updateProjectData } },
               { new: true }
           );
   
           return updatedProject;
+      }
+      throw new AuthenticationError('You must to be logged in!');
+    }, 
+
+    // mutation to update votes
+    updateVotes: async (parent, { projectId, updateVoteData }, context) => {
+      if (context.user) {
+
+        const project = await Project.findOne(
+          { _id: projectId}
+        );
+
+        const updatedVote = await project.findOneAndUpdate(
+            { $set: { votes: votes + 1 } },
+            { new: true }
+        );
+  
+          return updatedVote.value;
       }
       throw new AuthenticationError('You must to be logged in!');
     }, 

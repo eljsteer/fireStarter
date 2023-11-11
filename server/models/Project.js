@@ -34,13 +34,11 @@ const projectSchema = new Schema({
     fundingGoal: {
       type: String,
       required: true,
-      unique: true,
       trim: true
     },
     currentFunds: {
       type: String,
-      unique: true,
-      trim: true
+      trim: true,
     },
     votes: {
       type: String,
